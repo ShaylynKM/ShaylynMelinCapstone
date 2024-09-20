@@ -5,6 +5,13 @@ using UnityEngine.Events;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    /// <summary>
+    /// Events in this script: 
+    /// - DialogueTriggered (fired when something triggers a specific section of dialogue. Fired again every time a new SO is used.)
+    /// 
+    /// TriggerDialogue() should be called upon interact with a trigger object, or in response to any condition being met that requires dialogue to trigger.
+    /// </summary>
+
     // Put this script onto any object that triggers dialogue.
 
     public List<DialogueSO> DialogueObjects;

@@ -8,7 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-    // Need a way to store multiple different SOs for this scene and call on them depending on what the trigger is. Also need to be able to call different SOs if the same trigger is interacted with twice, for example.
+    /// <summary>
+    /// Events in this script:
+    /// - OnDialogueComplete (triggered when the dialogue for a specific SO finishes)
+    /// 
+    /// TriggerDialogue(DialogueSO dialogueSO) should be called by the dialogue trigger object.
+    /// </summary>
 
     public UnityEvent OnDialogueEnded; // Any logic for when the dialogue ends, such as changing scenes.
 
