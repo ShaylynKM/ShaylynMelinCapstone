@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     // Need a way to store multiple different SOs for this scene and call on them depending on what the trigger is. Also need to be able to call different SOs if the same trigger is interacted with twice, for example.
+
+    public UnityEvent OnDialogueEnded; // Any logic for when the dialogue ends, such as changing scenes.
 
     [SerializeField]
     private GameObject _dialogueBox; // Dialogue box that pops up when this script is triggered
@@ -178,6 +181,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         _dialogueBox.SetActive(false);
+        OnDialogueEnded?.Invoke();
     }
 }
 
