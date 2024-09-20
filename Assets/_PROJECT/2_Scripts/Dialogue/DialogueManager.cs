@@ -10,9 +10,6 @@ public class DialogueManager : MonoBehaviour
     // Need a way to store multiple different SOs for this scene and call on them depending on what the trigger is. Also need to be able to call different SOs if the same trigger is interacted with twice, for example.
 
     [SerializeField]
-    private DialogueSO _dialogueInfo; // SO containing the dialogue lines/speaker name/etc
-
-    [SerializeField]
     private GameObject _dialogueBox; // Dialogue box that pops up when this script is triggered
 
     [SerializeField]
@@ -26,29 +23,34 @@ public class DialogueManager : MonoBehaviour
 
     private bool _completeCurrentSentence = false; // If we show the full sentence at once
 
-    private Queue<DialogueLine> _lines; // Queue that holds all the dialogue lines for the current SO
+    private Queue<DialogueLine> _lines = new Queue<DialogueLine>(); // Queue that holds all the dialogue lines for the current SO
 
     private bool _isTyping = false; // If text is currently being typed
 
-    private float _loadSpeed = 0.05f; // Delay to load in the text (so the first character isn't typed instantly)
+    private float _loadSpeed = 0.03f; // Delay to load in the text (so the first character isn't typed instantly)
 
-    [SerializeField]
     private bool _insideFormatTag = false; // For making sure the text sounds don't play for format tags
 
-    public void TriggerDialogue()
+    private void Awake()
     {
-        // Call this method in the event when triggering the dialogue from outside
-        StartCoroutine(WaitForDialogueLoad());
+        _dialogueBox.SetActive(false);
     }
 
-    private IEnumerator WaitForDialogueLoad()
+    public void TriggerDialogue(DialogueSO dialogueSO)
+    {
+        // Call this method in the event when triggering the dialogue from outside
+        _dialogueBox.SetActive(true);
+        StartCoroutine(WaitForDialogueLoad(dialogueSO));
+    }
+
+    private IEnumerator WaitForDialogueLoad(DialogueSO dialogueSO)
     {
         _dialogueText.text = ""; // Clears text
         _speakerNameText.text = ""; // Clears speaker name
 
         yield return new WaitForSeconds(_loadSpeed); // Waits for the duration of the load speed to load in the text
 
-        StartDialogue(_dialogueInfo.DialogueLines);
+        StartDialogue(dialogueSO.DialogueLines);
     }
 
     public void StartDialogue(List<DialogueLine> dialogueLines)
@@ -105,6 +107,8 @@ public class DialogueManager : MonoBehaviour
 
         _completeCurrentSentence = false;
 
+        yield return new WaitForSeconds(_loadSpeed);
+
         int currentIndex = 0; // The index of the character we are currently typing
 
 
@@ -153,6 +157,8 @@ public class DialogueManager : MonoBehaviour
 
             currentIndex++; // Continues to increment characters, even if they aren't being revealed (in the case of a format tag)
 
+            yield return new WaitForSeconds(dialogueLine.TypingSpeed);
+
             if (currentIndex >= dialogueLineCharLength)
             {
                 break; // Prevents index going out of bounds
@@ -171,7 +177,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-      // Hide the dialogue box, probably
+        _dialogueBox.SetActive(false);
     }
 }
 
