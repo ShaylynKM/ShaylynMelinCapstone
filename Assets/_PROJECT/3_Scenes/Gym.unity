@@ -605,6 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20330ddc12ef8624b8aaff776da8ef9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDialogueEnded:
+    m_PersistentCalls:
+      m_Calls: []
   _dialogueBox: {fileID: 1106535294}
   _speakerNameText: {fileID: 2027921068}
   _dialogueText: {fileID: 450436574}
