@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private MyInputActions _input;
 
@@ -17,12 +17,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private bool _inBattle = false; // If we are in a battle or not
-
+    [SerializeField]
+    private PlayerActionsSO _playerActionsSo;
     private bool _playerCanMove = true;
 
     private void Awake()
     {
-        _input = new MyInputActions();
+        //_input = new MyInputActions();
 
         _rb = GetComponent<Rigidbody2D>();
 
@@ -31,23 +32,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerInputManager.Instance.PlayerMove += HandleMove;
+        PlayerInputManager.Instance.PlayerInteract += HandleInteract;
         // Subscribe to our input action
 
-        _input.Enable();
+        //_input.Enable();
 
-        _input.Player.Move.performed += OnMovement;
+        // _input.Player.Move.performed += OnMovement;
 
-        _input.Player.Move.canceled += OnMovementCanceled;
+        // _input.Player.Move.canceled += OnMovementCanceled;
     }
     private void OnDisable()
     {
         // Unsubscribe from our input action
 
-        _input.Disable();
+        //_input.Disable();
 
-        _input.Player.Move.performed -= OnMovement;
+       // _input.Player.Move.performed -= OnMovement;
 
-        _input.Player.Move.canceled -= OnMovementCanceled;
+       // _input.Player.Move.canceled -= OnMovementCanceled;
     }
 
     private void OnMovement(InputAction.CallbackContext value) // This is what is providing the value to input
@@ -68,6 +71,23 @@ public class PlayerMovement : MonoBehaviour
         _moveVector = Vector2.zero; // Stop the player from moving
     }
 
+    private void HandleMove(Vector2 movement)
+    {
+        Debug.Log(($"Received movement of {movement}"));
+        if(_playerCanMove == true)
+        {
+            _moveVector = movement;
+        }
+        else if(_playerCanMove == false)
+        {
+            _moveVector = Vector2.zero;
+        }
+    }
+
+    private void HandleInteract()
+    {
+        _playerActionsSo.HandleInteract();
+    }
     public void EnableMovement()
     {
         // For events

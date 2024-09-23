@@ -30,7 +30,7 @@ public class DialogueTrigger : MonoBehaviour
         // UnityEvent that takes in our dialogue scriptable object
     }
 
-    public DialogueTriggerEvent DialogueTriggered;
+    public UnityEvent<DialogueSO>  DialogueTriggered;
 
     public void TriggerDialogue()
     {
@@ -52,7 +52,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _dialogueIndex = 0; // Reset the index
-        TriggerDialogue();
+       // _dialogueIndex = 0; // Reset the index
+       // TriggerDialogue();
     }
 }

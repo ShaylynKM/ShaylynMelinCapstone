@@ -167,8 +167,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectile: {fileID: 3304958370132016450, guid: 9dbdd846d1ca2e44a95ac36bbdea1a0c, type: 3}
-  _playerMovement: {fileID: 813008716}
+  playerController: {fileID: 813008716}
   _spawnDelay: 2
+--- !u!1 &413381114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413381116}
+  - component: {fileID: 413381117}
+  m_Layer: 0
+  m_Name: '[PlayerInput]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413381116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413381114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &413381117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413381114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e11b265c2f4ffd9d47273d888f81b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &450436573
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inBattle: 0
+  _playerActionsSo: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
 --- !u!50 &813008717
 Rigidbody2D:
   serializedVersion: 4
@@ -1533,7 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7ec3f3c3476c449cdccdbf5919200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionBased: 1
+  _collisionBased: 0
   Interact:
     m_PersistentCalls:
       m_Calls:
@@ -1550,6 +1595,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _interactBubble: {fileID: 1821304510}
+  _playerActionsSo: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
 --- !u!114 &2099349122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1575,10 +1621,10 @@ MonoBehaviour:
       - m_Target: {fileID: 886123229}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
         m_MethodName: TriggerDialogue
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: DialogueSO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1608,3 +1654,4 @@ SceneRoots:
   - {fileID: 2099349119}
   - {fileID: 886123228}
   - {fileID: 533133098}
+  - {fileID: 413381116}

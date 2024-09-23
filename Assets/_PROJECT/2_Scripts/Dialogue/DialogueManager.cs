@@ -46,18 +46,20 @@ public class DialogueManager : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        PlayerInputManager.Instance.NextDialogue += DisplayNextDialogueLine;
     }
     private void OnDisable()
     {
-        
+        PlayerInputManager.Instance.NextDialogue -= DisplayNextDialogueLine;
     }
 
     public void TriggerDialogue(DialogueSO dialogueSO)
     {
         // Call this method in the event when triggering the dialogue from outside
         _dialogueBox.SetActive(true);
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue);
         StartCoroutine(WaitForDialogueLoad(dialogueSO));
+        
     }
 
     private IEnumerator WaitForDialogueLoad(DialogueSO dialogueSO)
@@ -101,8 +103,7 @@ public class DialogueManager : MonoBehaviour
         // Dequeues the next line and updates UI elements accordingly
         DialogueLine currentLine = _lines.Dequeue();
         _speakerNameText.text = currentLine.SpeakerName;
-
-        StopAllCoroutines();
+        
 
         // Starts typing the next dialogue line
         StartCoroutine(TypeSentence(currentLine));
@@ -196,6 +197,7 @@ public class DialogueManager : MonoBehaviour
     {
         _dialogueBox.SetActive(false);
         OnDialogueEnded?.Invoke();
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove);
     }
 }
 
