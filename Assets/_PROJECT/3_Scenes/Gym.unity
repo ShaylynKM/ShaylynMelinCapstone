@@ -590,7 +590,6 @@ GameObject:
   - component: {fileID: 813008716}
   - component: {fileID: 813008717}
   - component: {fileID: 813008718}
-  - component: {fileID: 813008719}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -678,8 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1303331ad921342b0fb57c72362586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inBattle: 0
-  _playerActionsSo: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
+  _playerActionsSO: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
 --- !u!50 &813008717
 Rigidbody2D:
   serializedVersion: 4
@@ -752,18 +750,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &813008719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813008713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c69a7fc8215a7b642a1910a86bc6d74f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &886123226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f7ec3f3c3476c449cdccdbf5919200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactBubble: {fileID: 1821304510}
   _collisionBased: 0
   Interact:
     m_PersistentCalls:
@@ -1594,8 +1581,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _interactBubble: {fileID: 1821304510}
-  _playerActionsSo: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
+  _playerActionsSO: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
 --- !u!114 &2099349122
 MonoBehaviour:
   m_ObjectHideFlags: 0
