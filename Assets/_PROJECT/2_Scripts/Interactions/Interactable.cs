@@ -21,7 +21,8 @@ public class Interactable : MonoBehaviour
 
     private void Awake()
     {
-        _interactBubble.SetActive(false);
+        if(_interactBubble != null)
+            _interactBubble.SetActive(false);
     }
 
     private void InteractInvoker()
@@ -34,7 +35,9 @@ public class Interactable : MonoBehaviour
         if (collision.GetComponent<PlayerController>())
         {
             _playerActionsSO.Interact.AddListener(InteractInvoker);
-            _interactBubble.SetActive(true);
+
+            if(_interactBubble != null)
+                _interactBubble.SetActive(true);
         }
     }
 
@@ -43,7 +46,9 @@ public class Interactable : MonoBehaviour
         if (collision.GetComponent<PlayerController>())
         {
             _playerActionsSO.Interact.RemoveListener(InteractInvoker);
-            _interactBubble.SetActive(false);
+
+            if (_interactBubble != null)
+                _interactBubble.SetActive(false);
         }
     }
 }
