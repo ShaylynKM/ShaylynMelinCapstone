@@ -1207,9 +1207,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2761b5439fe754b911d03b54696813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alt: 0
   DialogueObjects:
   - {fileID: 11400000, guid: 6af845ec092ac08489f336abe23790e5, type: 2}
   - {fileID: 11400000, guid: aa8e1fb1f3f2f2342842624833f4231f, type: 2}
+  AlternateDialogue:
+  - {fileID: 11400000, guid: ede52ea12ce5ae24b824a43cd0488496, type: 2}
+  - {fileID: 11400000, guid: 1645e2660f7b19d4c8cdc3466e7ba919, type: 2}
   DialogueTriggered:
     m_PersistentCalls:
       m_Calls:
