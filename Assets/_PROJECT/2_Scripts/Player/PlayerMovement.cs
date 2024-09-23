@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,16 @@ public class PlayerMovement : MonoBehaviour
     private MyInputActions _input;
 
     private Vector2 _moveVector = Vector2.zero;
-
     private Rigidbody2D _rb;
 
     private SpriteRenderer _spriteRenderer;
 
     private float _moveSpeed = 10f;
+
+    [SerializeField]
+    private bool _inBattle = false; // If we are in a battle or not
+
+    private bool _playerCanMove = true;
 
     private void Awake()
     {
@@ -30,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
         _input.Enable();
 
-        _input.Player.Movement.performed += OnMovement;
+        _input.Player.Move.performed += OnMovement;
 
-        _input.Player.Movement.canceled += OnMovementCanceled;
+        _input.Player.Move.canceled += OnMovementCanceled;
     }
     private void OnDisable()
     {
@@ -40,19 +45,37 @@ public class PlayerMovement : MonoBehaviour
 
         _input.Disable();
 
-        _input.Player.Movement.performed -= OnMovement;
+        _input.Player.Move.performed -= OnMovement;
 
-        _input.Player.Movement.canceled -= OnMovementCanceled;
+        _input.Player.Move.canceled -= OnMovementCanceled;
     }
 
     private void OnMovement(InputAction.CallbackContext value) // This is what is providing the value to input
     {
-        _moveVector = value.ReadValue<Vector2>();
+        // Allow the player to move when movement is allowed.
+        if(_playerCanMove == true)
+        {
+            _moveVector = value.ReadValue<Vector2>();
+        }
+        else if(_playerCanMove == false)
+        {
+            _moveVector = Vector2.zero;
+        }
     }
 
     private void OnMovementCanceled(InputAction.CallbackContext value)
     {
         _moveVector = Vector2.zero; // Stop the player from moving
+    }
+
+    public void EnableMovement()
+    {
+        // For events
+        _playerCanMove = true;
+    }
+    public void DisableMovement()
+    {
+        _playerCanMove = false;
     }
 
     private void FixedUpdate()
@@ -64,13 +87,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_moveVector.x > 0)
+        if(_inBattle == false)
         {
-            _spriteRenderer.flipX = false;
+            // Flip the sprite when turning left and right
+            if (_moveVector.x > 0)
+            {
+                _spriteRenderer.flipX = false;
+            }
+            else if (_moveVector.x < 0)
+            {
+                _spriteRenderer.flipX = true;
+            }
         }
-        else if (_moveVector.x < 0)
-        {
-            _spriteRenderer.flipX = true;
-        }
+
     }
 }

@@ -44,6 +44,15 @@ public class DialogueManager : MonoBehaviour
         _dialogueBox.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        
+    }
+    private void OnDisable()
+    {
+        
+    }
+
     public void TriggerDialogue(DialogueSO dialogueSO)
     {
         // Call this method in the event when triggering the dialogue from outside

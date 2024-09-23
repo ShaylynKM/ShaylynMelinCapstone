@@ -52,6 +52,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        _dialogueIndex = 0; // Reset the index
         TriggerDialogue();
     }
 }
