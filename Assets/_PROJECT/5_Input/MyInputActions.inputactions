@@ -365,6 +365,28 @@
                 },
                 {
                     "name": "",
+                    "id": "116ebc46-6138-48be-8b37-4d19486327cb",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "NextDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ccb366c-884d-4df2-a7dc-f61eaae4e6de",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "NextDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f1770b84-d43e-4634-9c66-6273e14a899b",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
