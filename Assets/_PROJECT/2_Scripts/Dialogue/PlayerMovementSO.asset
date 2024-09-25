@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   Flip: 0
-  <SlowDownSpeed>k__BackingField: 0.458
+  <SlowDownSpeed>k__BackingField: 0.01
+  <AccelerationSpeed>k__BackingField: 0.915

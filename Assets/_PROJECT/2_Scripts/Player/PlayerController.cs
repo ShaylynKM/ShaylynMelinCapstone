@@ -81,7 +81,10 @@ public class PlayerController : MonoBehaviour
         // Using FixedUpdate for physics interactions
         // Debug.Log(Time.fixedDeltaTime);
         //Debug.Log(Time.deltaTime);
-        _movementVector = Vector2.Lerp(_rb.velocity, _moveVector * _moveSpeed, _movementStats.SlowDownSpeed);
+        if(_moveVector.magnitude > 0.1f)
+            _movementVector = Vector2.Lerp(_rb.velocity,_moveVector * _moveSpeed, _movementStats.AccelerationSpeed);
+        else
+            _movementVector = Vector2.Lerp( _moveVector * _moveSpeed, _rb.velocity, _movementStats.SlowDownSpeed);
         _rb.velocity = _movementVector;// _moveVector * _moveSpeed; // move player by multiplying the input by the speed
 
     }
