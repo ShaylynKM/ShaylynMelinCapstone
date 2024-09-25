@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 385bab6807f80f14ba8d4bc5c6174594, type: 3}
-  m_Name: PlayerMovementSO
+  m_Name: PlayerMovement
   m_EditorClassIdentifier: 
-  MoveSpeed: 8
-  Flip: 0
-  <SlowDownSpeed>k__BackingField: 0.01
-  <AccelerationSpeed>k__BackingField: 0.915
+  MoveSpeed: 6
+  Flip: 1
+  <SlowDownSpeed>k__BackingField: 0.3
+  <AccelerationSpeed>k__BackingField: 0.6
