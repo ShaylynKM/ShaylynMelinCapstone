@@ -13,32 +13,40 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
-    private float _moveSpeed = 10f;
+    private float _moveSpeed;
 
     [SerializeField]
     private PlayerActionsSO _playerActionsSO;
 
-    private bool _playerCanMove = true;
+    [SerializeField]
+    private PlayerMovementSO _movementStats;
 
-    private bool _inBattle = false;
+    private bool _playerCanMove = true;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _moveSpeed = _movementStats.MoveSpeed; // Set the speed to what is defined in the scriptable object
+    }
+
+    private void Start()
+    {
+        // Enable was being called before Singleton was created (probably)
+        PlayerInputManager.Instance.PlayerMove += HandleMove;
+        PlayerInputManager.Instance.PlayerInteract += HandleInteract;
     }
 
     private void OnEnable()
     {
-        PlayerInputManager.Instance.PlayerMove += HandleMove;
-        PlayerInputManager.Instance.PlayerInteract += HandleInteract;
 
     }
 
     private void HandleMove(Vector2 movement)
     {
-        //Debug.Log(($"Received movement of {movement}"));
+        Debug.Log(($"Received movement of {movement}"));
         if(_playerCanMove == true)
         {
             _moveVector = movement;
@@ -67,12 +75,12 @@ public class PlayerController : MonoBehaviour
     {
         // Using FixedUpdate for physics interactions
 
-        _rb.velocity = _moveVector * _moveSpeed; // move player by multiplying the input by the speed
+        _rb.velocity = _moveVector * _moveSpeed * Time.deltaTime; // move player by multiplying the input by the speed
     }
 
     private void Update()
     {
-        if(_inBattle == false)
+        if(_movementStats.Flip == false)
         {
             // Flip the sprite when turning left and right
             if (_moveVector.x > 0)

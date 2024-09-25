@@ -19,11 +19,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int DamageAmount)
     {
-        _health -= DamageAmount;
+        _health -= DamageAmount; // subtract the amount of damage
 
         if (_health <= 0)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
 
             return;
         }
@@ -35,11 +35,7 @@ public class HealthComponent : MonoBehaviour, IDamageable
     {
         //assign private health variable to health from scriptable object
         _health = _healthSO.Health;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("The health is " + _health);
     }
 }

@@ -4,7 +4,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
 
-    protected bool _isPersistent; // Whether or not this instance should call DoNotDestroyOnLoad
+    protected bool _isPersistent = false; // Whether or not this instance should call DoNotDestroyOnLoad
 
     public static T Instance
     {

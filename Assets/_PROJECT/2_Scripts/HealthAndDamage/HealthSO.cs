@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealthSO", menuName = "HealthSO")]
+[CreateAssetMenu(fileName = "HealthSO", menuName = "ScriptableObjects/Health")]
 public class HealthSO : ScriptableObject
 {
     public int Health;
