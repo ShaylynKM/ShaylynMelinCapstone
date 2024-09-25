@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _inBattle = false;
 
+    private Vector2 _movementVector;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         // Enable was being called before Singleton was created (probably)
         PlayerInputManager.Instance.PlayerMove += HandleMove;
         PlayerInputManager.Instance.PlayerInteract += HandleInteract;
+
     }
 
     private void OnEnable()
@@ -76,13 +79,16 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Using FixedUpdate for physics interactions
+        // Debug.Log(Time.fixedDeltaTime);
+        //Debug.Log(Time.deltaTime);
+        _movementVector = Vector2.Lerp(_rb.velocity, _moveVector * _moveSpeed, _movementStats.SlowDownSpeed);
+        _rb.velocity = _movementVector;// _moveVector * _moveSpeed; // move player by multiplying the input by the speed
 
-        _rb.velocity = _moveVector * _moveSpeed * Time.deltaTime; // move player by multiplying the input by the speed
     }
 
     private void Update()
     {
-        if(_movementStats.Flip == true)
+        if (_movementStats.Flip == true)
         {
             // Flip the sprite when turning left and right
             if (_moveVector.x > 0)

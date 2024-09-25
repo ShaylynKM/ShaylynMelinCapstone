@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385bab6807f80f14ba8d4bc5c6174594, type: 3}
   m_Name: PlayerMovementSO
   m_EditorClassIdentifier: 
-  MoveSpeed: 250
+  MoveSpeed: 8
   Flip: 0
+  <SlowDownSpeed>k__BackingField: 0.458
