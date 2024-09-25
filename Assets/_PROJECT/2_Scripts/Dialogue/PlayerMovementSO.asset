@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerMovementSO
   m_EditorClassIdentifier: 
   MoveSpeed: 250
-  Flip: 1
+  Flip: 0

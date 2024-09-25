@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(_movementStats.Flip == false)
+        if(_movementStats.Flip == true)
         {
             // Flip the sprite when turning left and right
             if (_moveVector.x > 0)
