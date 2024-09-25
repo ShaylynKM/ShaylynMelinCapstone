@@ -466,7 +466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &533133096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,7 +766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &886123228
 Transform:
   m_ObjectHideFlags: 0
@@ -810,7 +810,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _dialogueBox: {fileID: 1106535294}
-  _speakerNameText: {fileID: 2027921068}
   _dialogueText: {fileID: 450436574}
 --- !u!1 &1067528617
 GameObject:
@@ -1438,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &2099349117
 BoxCollider2D:
   m_ObjectHideFlags: 0
