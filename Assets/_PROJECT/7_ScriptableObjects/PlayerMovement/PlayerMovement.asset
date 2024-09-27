@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerMovement
   m_EditorClassIdentifier: 
   MoveSpeed: 6
-  Flip: 1
-  <SlowDownSpeed>k__BackingField: 0.3
-  <AccelerationSpeed>k__BackingField: 0.6
+  Flip: 0
+  <SlowDownSpeed>k__BackingField: 0.508
+  <AccelerationSpeed>k__BackingField: 0.564
