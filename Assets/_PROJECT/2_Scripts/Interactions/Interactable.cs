@@ -6,13 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Interactable : MonoBehaviour
 {
-    private bool _hasCollided = false;
-
     [SerializeField]
     private GameObject _interactBubble; // Bubble that pops up when we are in the trigger area
-
-    [SerializeField]
-    private bool _collisionBased; // If entering a trigger is required to interact. Set in inspector
 
     public UnityEvent Interact; // Fired when we are able to interact with this object
 
