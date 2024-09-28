@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtoStraightBullet : ProtoBulletStrategy
+public class ProtoStraightBullet : ProtoBullet
 {
     protected override void Awake()
     {

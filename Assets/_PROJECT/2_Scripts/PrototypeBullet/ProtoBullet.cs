@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
-public abstract class ProtoBulletStrategy : MonoBehaviour
+public abstract class ProtoBullet : MonoBehaviour
 {
     [SerializeField]
     private Vector2 _direction; // Which way this bullet travels
