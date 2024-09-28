@@ -7,7 +7,7 @@ using UnityEngine.Events;
 //when the health drops below zero, broadcast an event
 public class HealthComponent : MonoBehaviour, IDamageable
 {
-    // Check if an object is damagable before applying damage (in that object's script) (delete this later)
+    // Check if an object is damageable before applying damage (in that object's script) (delete this later)
 
     [SerializeField]
     private HealthSO _healthSO;
@@ -30,7 +30,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
         OnDamage?.Invoke(DamageAmount);  
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         //assign private health variable to health from scriptable object
