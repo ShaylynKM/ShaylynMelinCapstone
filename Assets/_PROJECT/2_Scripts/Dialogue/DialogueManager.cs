@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private GameObject _dialogueBox; // Dialogue box that pops up when this script is triggered
 
-    //[SerializeField]
-    //private TextMeshProUGUI _speakerNameText; // Name of the speaking character
+    [SerializeField]
+    private TextMeshProUGUI _speakerNameText; // Name of the speaking character
 
     [SerializeField]
     private TextMeshProUGUI _dialogueText; // What the character is saying; should pop up inside the dialogue box
@@ -65,7 +66,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator WaitForDialogueLoad(DialogueSO dialogueSO)
     {
         _dialogueText.text = ""; // Clears text
-        //_speakerNameText.text = ""; // Clears speaker name
+        _speakerNameText.text = ""; // Clears speaker name
 
         yield return new WaitForSeconds(_loadSpeed); // Waits for the duration of the load speed to load in the text
 
@@ -102,7 +103,7 @@ public class DialogueManager : MonoBehaviour
 
         // Dequeues the next line and updates UI elements accordingly
         DialogueLine currentLine = _lines.Dequeue();
-        //_speakerNameText.text = currentLine.SpeakerName;
+        _speakerNameText.text = currentLine.SpeakerName;
         
 
         // Starts typing the next dialogue line
@@ -204,12 +205,13 @@ public class DialogueManager : MonoBehaviour
 [System.Serializable]
 public class DialogueLine
 {
-    //public string SpeakerName; // Name of the character speaking
+    public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
 
     [TextArea]
     public string Line; // One line of dialogue
 
-    public Sprite SpeakerPortrait; // Image of the speaking character to be displayed with each line
+    //public Sprite SpeakerPortrait; // Image of the speaking character to be displayed with each line
 
     public float TypingSpeed = 0.05f; // How fast the text characters are being revealed in the dialogue box
+
 }
