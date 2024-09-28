@@ -12,11 +12,17 @@ public class ProtoStraightBullet : ProtoBulletStrategy
         base.Awake();
     }
 
+    // Redundant right now but can be elaborated on later
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<PlayerBattleController>()) // If this is the player
+        DestroySelf();
+        if(collision.gameObject.GetComponent<PlayerBattleController>())
         {
-            this.DestroySelf(); // Destroy the bullet on contact with the player
+            DestroySelf();
+        }
+        else if(collision.gameObject.GetComponent<BulletDestroyer>())
+        {
+            DestroySelf();
         }
     }
 }
