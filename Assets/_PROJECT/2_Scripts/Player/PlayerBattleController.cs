@@ -25,7 +25,15 @@ public class PlayerBattleController : PlayerController
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<BasicBullet>()) // If this is a basic bullet
+        if (collision.gameObject.GetComponent<ProtoBulletStrategy>()) // If this is a bullet
+        {
+            OnPlayerDamaged(_basicDamageAmount); // Take damage
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<ProtoBulletStrategy>()) // If this is a bullet
         {
             OnPlayerDamaged(_basicDamageAmount); // Take damage
         }
