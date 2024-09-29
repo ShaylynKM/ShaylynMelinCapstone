@@ -16,7 +16,9 @@ public class DialogueTrigger : MonoBehaviour
 
     // Put this script onto any object that triggers dialogue.
 
-    public bool alt;
+    private bool _dialogueAlreadyTriggered = false; // Trying to prevent stack overflows
+
+    public bool alt; // testing
 
     public List<DialogueSO> DialogueObjects;
 
@@ -24,19 +26,21 @@ public class DialogueTrigger : MonoBehaviour
 
     private int _dialogueIndex = 0; // How many SOs deep we are
 
-    [System.Serializable]
-    public class DialogueTriggerEvent : UnityEvent<DialogueSO> 
-    {
-        // UnityEvent that takes in our dialogue scriptable object
-    }
-
     public UnityEvent<DialogueSO>  DialogueTriggered;
 
-    public void TriggerDialogue()
+    public void DTTriggerDialogue()
     {
+        if(_dialogueAlreadyTriggered == true)
+        {
+            return;
+        }
+
         if(_dialogueIndex < DialogueObjects.Count)
         {
+            _dialogueAlreadyTriggered = true;
+
             DialogueTriggered?.Invoke(DialogueObjects[_dialogueIndex]); // Invoke the event, passing in the current scriptable object
+
             _dialogueIndex++; // Increment the index
         }
         if(_dialogueIndex == DialogueObjects.Count)
@@ -50,9 +54,8 @@ public class DialogueTrigger : MonoBehaviour
         DialogueObjects = AlternateDialogue; // Switch which objects we are using. Call with an event based on a condition.
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void DialogueInTriggerEnded()
     {
-       // _dialogueIndex = 0; // Reset the index
-       // TriggerDialogue();
+        _dialogueAlreadyTriggered = false; // Reset the bool so we can trigger the dialogue again
     }
 }

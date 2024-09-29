@@ -54,11 +54,14 @@ public class DialogueManager : MonoBehaviour
         PlayerInputManager.Instance.NextDialogue -= DisplayNextDialogueLine;
     }
 
-    public void TriggerDialogue(DialogueSO dialogueSO)
+    public void DMTriggerDialogue(DialogueSO dialogueSO)
     {
         // Call this method in the event when triggering the dialogue from outside
+
         _dialogueBox.SetActive(true);
-        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue);
+
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue); // Change the input state to the dialogue state
+
         StartCoroutine(WaitForDialogueLoad(dialogueSO));
         
     }
@@ -197,8 +200,10 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         _dialogueBox.SetActive(false);
+
         OnDialogueEnded?.Invoke();
-        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove);
+
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove); // Allow the player to move again
     }
 }
 
