@@ -23,8 +23,6 @@ public class PlayerController : MonoBehaviour
 
     private bool _playerCanMove = true;
 
-    private bool _inBattle = false;
-
     private Vector2 _movementVector;
 
     private void Awake()

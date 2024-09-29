@@ -12,15 +12,9 @@ public class ProtoStraightBullet : ProtoBullet
         base.Awake();
     }
 
-    // Redundant right now but can be elaborated on later
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DestroySelf();
-        if(collision.gameObject.GetComponent<PlayerBattleController>())
-        {
-            DestroySelf();
-        }
-        else if(collision.gameObject.GetComponent<BulletDestroyer>())
+        if(collision.gameObject.GetComponent<PlayerBattleController>() || (collision.gameObject.GetComponent<BulletDestroyer>()))
         {
             DestroySelf();
         }

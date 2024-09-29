@@ -24,9 +24,21 @@ public abstract class ProtoBullet : MonoBehaviour
     {
         _collider = this.GetComponent<CircleCollider2D>();
 
-        Init(transform.position, _target);
-
         SetTrigger(); // Whether we should use OnTriggerEnter2D or OnCollisionEnter2D
+    }
+
+    private void Start()
+    {
+        // These have to be in start for the bullet spawner to properly set the bullets' targets
+
+        SetTarget(_target);
+
+        Init(transform.position, _target);
+    }
+
+    public virtual void SetTarget(GameObject target)
+    {
+        _target = target; // For setting this from outside when bullets are spawned
     }
 
     public virtual void Init(Vector3 position, GameObject target)
