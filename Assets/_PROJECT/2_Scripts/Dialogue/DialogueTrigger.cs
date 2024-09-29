@@ -16,8 +16,6 @@ public class DialogueTrigger : MonoBehaviour
 
     // Put this script onto any object that triggers dialogue.
 
-    private bool _dialogueAlreadyTriggered = false; // Trying to prevent stack overflows
-
     public bool alt; // testing
 
     public List<DialogueSO> DialogueObjects;
@@ -30,15 +28,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DTTriggerDialogue()
     {
-        if(_dialogueAlreadyTriggered == true)
-        {
-            return;
-        }
-
         if(_dialogueIndex < DialogueObjects.Count)
         {
-            _dialogueAlreadyTriggered = true;
-
             DialogueTriggered?.Invoke(DialogueObjects[_dialogueIndex]); // Invoke the event, passing in the current scriptable object
 
             _dialogueIndex++; // Increment the index
@@ -52,10 +43,5 @@ public class DialogueTrigger : MonoBehaviour
     public void UseAlternateDialogue()
     {
         DialogueObjects = AlternateDialogue; // Switch which objects we are using. Call with an event based on a condition.
-    }
-
-    public void DialogueInTriggerEnded()
-    {
-        _dialogueAlreadyTriggered = false; // Reset the bool so we can trigger the dialogue again
     }
 }
