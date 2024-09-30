@@ -9,13 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-    /// <summary>
-    /// Events in this script:
-    /// - OnDialogueComplete (triggered when the dialogue for a specific SO finishes)
-    /// 
-    /// TriggerDialogue(DialogueSO dialogueSO) should be called by the dialogue trigger object.
-    /// </summary>
-
     public UnityEvent OnDialogueEnded; // Any logic for when the dialogue ends, such as changing scenes.
 
     [SerializeField]
@@ -26,9 +19,6 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _dialogueText; // What the character is saying; should pop up inside the dialogue box
-
-    [SerializeField]
-    public Action OnDialogueComplete; // Event triggered when the dialogue is complete
 
     private bool _completeCurrentSentence = false; // If we show the full sentence at once
 

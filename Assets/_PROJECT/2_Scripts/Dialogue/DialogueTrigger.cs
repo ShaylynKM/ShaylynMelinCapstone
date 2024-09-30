@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private int _dialogueIndex = 0; // How many SOs deep we are
 
-    public UnityEvent<DialogueSO>  DialogueTriggered;
+    public UnityEvent<DialogueSO> DialogueTriggered;
 
     public void DTTriggerDialogue()
     {
@@ -34,7 +34,7 @@ public class DialogueTrigger : MonoBehaviour
 
             _dialogueIndex++; // Increment the index
         }
-        if(_dialogueIndex == DialogueObjects.Count)
+        if (_dialogueIndex == DialogueObjects.Count)
         {
             _dialogueIndex = DialogueObjects.Count - 1; // If we've reached the last object, repeat that object for future interactions.
         }
