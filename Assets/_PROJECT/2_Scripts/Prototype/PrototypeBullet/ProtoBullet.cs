@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class ProtoBullet : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 _direction; // Which way this bullet travels
+    protected Vector2 _direction; // Which way this bullet travels
 
     [SerializeField]
     protected float _speed; // How fast this bullet travels

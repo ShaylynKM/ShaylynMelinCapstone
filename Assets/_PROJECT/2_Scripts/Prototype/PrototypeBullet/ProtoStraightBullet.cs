@@ -6,7 +6,7 @@ public class ProtoStraightBullet : ProtoBullet
 {
     protected override void Awake()
     {
-        this._speed = 5f;
+        this._speed = 4f;
         this._isTrigger = true;
 
         base.Awake();

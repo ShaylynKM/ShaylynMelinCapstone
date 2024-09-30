@@ -14,9 +14,6 @@ public class ProtoBulletSpawner : MonoBehaviour
     [SerializeField]
     float _spawnDelay = 2f; // Time between spawning bullets
 
-    [SerializeField]
-    float _stagger = 1f; // Have some bullets spawn before others. Set in inspector
-
     private void Start()
     {
         StartCoroutine(BulletSpawner());
@@ -24,8 +21,6 @@ public class ProtoBulletSpawner : MonoBehaviour
 
     IEnumerator BulletSpawner()
     {
-        yield return new WaitForSeconds(_stagger);
-
         while (true)
         {
             GameObject bulletPrefab = Instantiate(_bullet, this.transform.position, Quaternion.identity); // Store reference to the instantiated bullet

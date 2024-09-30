@@ -15,11 +15,15 @@ public class PhaseManager : MonoBehaviour
     private GameObject _phase1Object;
 
     [SerializeField]
+    private GameObject _phase2Object;
+
+    [SerializeField]
     private DialogueManager _dialogueManager;
 
     void Start()
     {
         _phase1Object.SetActive(false);
+        _phase2Object.SetActive(false);
 
         Invoke("Phase1DialogueBegin", _dialogueStartDelay); // Required a delay to make sure all the event listeners are created in time
     }
@@ -34,6 +38,11 @@ public class PhaseManager : MonoBehaviour
     public void Phase1()
     {
         StartCoroutine(Phase1Coroutine());
+    }
+
+    public void Phase2()
+    {
+        StartCoroutine(Phase2Coroutine());
     }
 
     IEnumerator Phase1Coroutine()
@@ -51,7 +60,26 @@ public class PhaseManager : MonoBehaviour
         _dialogueManager.OnDialogueEnded.RemoveListener(Phase1);
         Debug.Log("removed the listener");
 
+        Debug.Log("phase 2 started");
+        _dialogueManager.OnDialogueEnded.AddListener(Phase2);
+
         Dialogue2Start.Invoke();
     }
 
+    IEnumerator Phase2Coroutine()
+    {
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+
+        _phase2Object.SetActive(true);
+
+        yield return new WaitForSeconds(10);
+
+        _phase2Object.SetActive(false);
+
+        yield return new WaitForSeconds(5);
+
+        _dialogueManager.OnDialogueEnded.RemoveListener(Phase2);
+
+        //Dialogue3Start.Invoke();
+    }
 }
