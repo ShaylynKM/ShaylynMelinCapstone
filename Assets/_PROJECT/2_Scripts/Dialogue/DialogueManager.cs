@@ -85,6 +85,7 @@ public class DialogueManager : MonoBehaviour
         {
             _completeCurrentSentence = true; // Ensures the typing coroutine is stopped in TypeSentence
             _isTyping = false;
+
             return;
         }
         // If there are no more lines to display, end the dialogue.
@@ -179,12 +180,6 @@ public class DialogueManager : MonoBehaviour
 
         _isTyping = false;// Indicates that typing is complete.
         _completeCurrentSentence = false;
-    }
-
-    // Should be attached to the dialogue box button
-    public void OnDialogueBoxClick()
-    {
-        DisplayNextDialogueLine();
     }
 
     public void EndDialogue()

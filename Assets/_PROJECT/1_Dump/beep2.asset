@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: beep2
   m_EditorClassIdentifier: 
   DialogueLines:
-  - SpeakerName: bvbb
-    Line: Line 1 (the sequel)
-    SpeakerPortrait: {fileID: 0}
+  - SpeakerName: 
+    Line: (You really want to get out of there, but she just keeps talking. You're
+      getting nervous you'll be late for class.)
     TypingSpeed: 0.05

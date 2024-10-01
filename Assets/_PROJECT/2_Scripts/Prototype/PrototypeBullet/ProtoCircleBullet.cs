@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProtoCircleBullet : ProtoBullet
 {
     float _timeBeforeLaunch = 1f; // How long before the bullets move after spawning
-    float _timeBeforeDestroy = .5f; // How long before the bullets are destroyed once they reach the target
+    float _timeBeforeDestroy = .1f; // How long before the bullets are destroyed once they reach the target
 
     bool _hasLaunched = false; // If the bullet has already been launched
     bool _currentlyLaunching = false; // If the bullet is in motion or about to move

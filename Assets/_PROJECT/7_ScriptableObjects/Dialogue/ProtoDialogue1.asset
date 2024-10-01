@@ -21,13 +21,13 @@ MonoBehaviour:
     Line: Good morning, honey!
     TypingSpeed: 0.05
   - SpeakerName: You
-    Line: Oh, uh, hi, Mom. Where's Dad?
+    Line: Oh, uh, hi, Mom!
     TypingSpeed: 0.05
   - SpeakerName: Mom
-    Line: Still asleep. You leaving for class?
+    Line: You just missed your dad. He's already left for work.
     TypingSpeed: 0.05
   - SpeakerName: You
-    Line: Yup... just on my way out--
+    Line: Oh! Yeah, uh, I was on my way out, too.
     TypingSpeed: 0.05
   - SpeakerName: Mom
     Line: Oh! Before you go, I wanted to talk to you about something.

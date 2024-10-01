@@ -1,15 +1,24 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PhaseManager : MonoBehaviour
 {
-    //public UnityEvent<PlayerInputState> ChangePlayerState;
+    [SerializeField]
+    private GameObject _endText;
+
+    [SerializeField]
+    PlayerBattleController _player;
 
     public UnityEvent Dialogue1Start;
     public UnityEvent Dialogue2Start;
+    public UnityEvent Dialogue3Start;
 
     private float _dialogueStartDelay = .02f;
+
+    private float _timeBetweenCircles = 1f; // How long between instantiating the circle pattern in phase 3
 
     [SerializeField]
     private GameObject _phase1Object;
@@ -18,10 +27,15 @@ public class PhaseManager : MonoBehaviour
     private GameObject _phase2Object;
 
     [SerializeField]
+    private GameObject _circlePatternPrefab;
+
+    [SerializeField]
     private DialogueManager _dialogueManager;
 
     void Start()
     {
+        _endText.SetActive(false);
+
         _phase1Object.SetActive(false);
         _phase2Object.SetActive(false);
 
@@ -32,7 +46,6 @@ public class PhaseManager : MonoBehaviour
     {
         Dialogue1Start?.Invoke();
         _dialogueManager.OnDialogueEnded.AddListener(Phase1);
-        Debug.Log("Added the listener");
     }
 
     public void Phase1()
@@ -42,7 +55,14 @@ public class PhaseManager : MonoBehaviour
 
     public void Phase2()
     {
+        StopCoroutine(Phase1Coroutine());
         StartCoroutine(Phase2Coroutine());
+    }
+
+    public void Phase3()
+    {
+        StopCoroutine(Phase2Coroutine());
+        StartCoroutine(Phase3Coroutine());
     }
 
     IEnumerator Phase1Coroutine()
@@ -51,16 +71,14 @@ public class PhaseManager : MonoBehaviour
 
         _phase1Object.SetActive(true);
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
 
         _phase1Object.SetActive(false);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
 
         _dialogueManager.OnDialogueEnded.RemoveListener(Phase1);
-        Debug.Log("removed the listener");
 
-        Debug.Log("phase 2 started");
         _dialogueManager.OnDialogueEnded.AddListener(Phase2);
 
         Dialogue2Start.Invoke();
@@ -72,14 +90,46 @@ public class PhaseManager : MonoBehaviour
 
         _phase2Object.SetActive(true);
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
 
         _phase2Object.SetActive(false);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
 
         _dialogueManager.OnDialogueEnded.RemoveListener(Phase2);
 
-        //Dialogue3Start.Invoke();
+        _dialogueManager.OnDialogueEnded.AddListener(Phase3);
+
+        Dialogue3Start.Invoke();
+    }
+
+    IEnumerator Phase3Coroutine()
+    {
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+
+        Transform playerTransform = _player.GetComponent<Transform>();
+
+        int counter = 0;
+        int maximumLoops = 5; // How many times the loop can run
+
+        while(counter < maximumLoops)
+        {
+            Instantiate(_circlePatternPrefab, playerTransform.position, playerTransform.rotation);
+
+            yield return new WaitForSeconds(_timeBetweenCircles);
+
+            counter++;
+
+            if(counter == maximumLoops)
+            {
+                break;
+            }
+        }
+
+        _dialogueManager.OnDialogueEnded.RemoveListener(Phase3);
+
+        _endText.SetActive(true);
+
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove);
     }
 }

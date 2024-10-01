@@ -13,7 +13,21 @@ MonoBehaviour:
   m_Name: beep3
   m_EditorClassIdentifier: 
   DialogueLines:
-  - SpeakerName: asdfsd
-    Line: hrm...
-    SpeakerPortrait: {fileID: 0}
-    TypingSpeed: 0.5
+  - SpeakerName: You
+    Line: Listen, I'd love to stay and talk but I'm kind of in a rush.
+    TypingSpeed: 0.05
+  - SpeakerName: Mom
+    Line: In a rush, you say?
+    TypingSpeed: 0.05
+  - SpeakerName: Mom
+    Line: Maybe...
+    TypingSpeed: 0.05
+  - SpeakerName: Mom
+    Line: ... if you'd ever come down and eat with us...
+    TypingSpeed: 0.05
+  - SpeakerName: Mom
+    Line: ... you wouldn't be in a rush every time we get a chance to talk!
+    TypingSpeed: 0.05
+  - SpeakerName: 
+    Line: (Oh, no. You knew it. She's mad.)
+    TypingSpeed: 0.05

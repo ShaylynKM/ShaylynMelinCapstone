@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: beep1
   m_EditorClassIdentifier: 
   DialogueLines:
-  - SpeakerName: bvbb
-    Line: Line 1
-    SpeakerPortrait: {fileID: 0}
+  - SpeakerName: Mom
+    Line: How are classes going?
     TypingSpeed: 0.05
-  - SpeakerName: bvbb
-    Line: Line 2
-    SpeakerPortrait: {fileID: 0}
+  - SpeakerName: You
+    Line: Oh, uh, fine--
+    TypingSpeed: 0.05
+  - SpeakerName: 
+    Line: (Your mom has trapped you in an awkward conversation. Yay.)
     TypingSpeed: 0.05
