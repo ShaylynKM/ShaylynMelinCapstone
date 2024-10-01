@@ -21,16 +21,19 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
                 _inputActions.Player.Disable();
                 _inputActions.PlayerBattle.Disable();
                 _inputActions.PlayerDialogue.Enable();
+                Debug.Log("Input state: Dialogue");
                 break;
             case PlayerInputState.Battle:
                 _inputActions.Player.Disable();
                 _inputActions.PlayerBattle.Enable();
                 _inputActions.PlayerDialogue.Disable();
+                Debug.Log("Input state: Battle");
                 break;
             case PlayerInputState.PlayerMove:
                 _inputActions.Player.Enable();
                 _inputActions.PlayerDialogue.Disable();
                 _inputActions.PlayerBattle.Disable();
+                Debug.Log("Input state: Move");
                 break;
             
         }

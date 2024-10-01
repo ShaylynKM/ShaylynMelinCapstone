@@ -34,10 +34,14 @@ public class DialogueManager : MonoBehaviour
     {
         _dialogueBox.SetActive(false);
     }
+    private void Start()
+    {
+        PlayerInputManager.Instance.NextDialogue += DisplayNextDialogueLine;
+    }
 
     private void OnEnable()
     {
-        PlayerInputManager.Instance.NextDialogue += DisplayNextDialogueLine;
+
     }
     private void OnDisable()
     {
