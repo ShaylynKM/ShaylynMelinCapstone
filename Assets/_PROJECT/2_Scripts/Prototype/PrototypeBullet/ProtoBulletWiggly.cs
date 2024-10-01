@@ -6,7 +6,7 @@ public class ProtoBulletWiggly : ProtoBullet
 {
     private float _wiggleHeight = 0.02f;
 
-    private float _wiggleSpeed = 3f;
+    private float _wiggleSpeed = 2f;
 
     protected override void Awake()
     {

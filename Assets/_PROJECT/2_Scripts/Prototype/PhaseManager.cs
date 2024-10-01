@@ -32,6 +32,8 @@ public class PhaseManager : MonoBehaviour
     [SerializeField]
     private DialogueManager _dialogueManager;
 
+    private bool _gameDone = false;
+
     void Start()
     {
         _endText.SetActive(false);
@@ -131,5 +133,19 @@ public class PhaseManager : MonoBehaviour
         _endText.SetActive(true);
 
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove);
+
+        _gameDone = true;
+
+    }
+
+    private void Update()
+    {
+        if(_gameDone == true)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("ProtoBattle");
+            }
+        }
     }
 }
