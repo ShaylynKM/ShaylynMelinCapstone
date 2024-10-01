@@ -21,8 +21,6 @@ public class HealthComponent : MonoBehaviour
         //assign private health variable to health from scriptable object
         _health = _healthSO.Health;
 
-        Debug.Log("The health is " + _health);
-
         UpdateUI?.Invoke(_health);
     }
 
@@ -37,7 +35,5 @@ public class HealthComponent : MonoBehaviour
             return;
         }
         UpdateUI?.Invoke(_health); // Update the UI to show the new health
-
-        Debug.Log("the health is " + _health);
     }
 }
