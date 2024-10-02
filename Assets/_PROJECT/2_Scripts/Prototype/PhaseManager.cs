@@ -92,7 +92,7 @@ public class PhaseManager : MonoBehaviour
 
         _phase2Object.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
 
         _phase2Object.SetActive(false);
 
@@ -112,7 +112,7 @@ public class PhaseManager : MonoBehaviour
         Transform playerTransform = _player.GetComponent<Transform>();
 
         int counter = 0;
-        int maximumLoops = 5; // How many times the loop can run
+        int maximumLoops = 10; // How many times the loop can run
 
         while(counter < maximumLoops)
         {

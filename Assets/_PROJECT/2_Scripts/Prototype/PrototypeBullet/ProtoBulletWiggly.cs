@@ -10,7 +10,7 @@ public class ProtoBulletWiggly : ProtoBullet
 
     protected override void Awake()
     {
-        this._speed = 4f;
+        this._speed = 6f;
         this._isTrigger = true;
 
         base.Awake();
