@@ -5,9 +5,9 @@ using UnityEngine;
 public abstract class MovementStrategy : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 _direction;
+    protected Vector2 _direction;
     [SerializeField]
-    private float _speed = 5f;
+    protected float _speed = 5f;
     
     public virtual void Initialize(Vector3 position, GameObject target)
     {

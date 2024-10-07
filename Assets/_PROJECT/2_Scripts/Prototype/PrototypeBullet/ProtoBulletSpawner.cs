@@ -21,7 +21,7 @@ public class ProtoBulletSpawner : MonoBehaviour
 
     IEnumerator BulletSpawner()
     {
-        while (true)
+        while (true) //this means it runs indefinitely
         {
             GameObject bulletPrefab = Instantiate(_bullet, this.transform.position, Quaternion.identity); // Store reference to the instantiated bullet
 

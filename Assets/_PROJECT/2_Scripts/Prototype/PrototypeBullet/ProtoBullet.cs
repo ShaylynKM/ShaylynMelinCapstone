@@ -26,7 +26,7 @@ public abstract class ProtoBullet : MonoBehaviour
 
         SetTrigger(); // Whether we should use OnTriggerEnter2D or OnCollisionEnter2D
     }
-
+    //your initialize for your bullet would use the same information and get the component of it that is a movement strategy and then initialize the movement strategy
     private void Start()
     {
         // These have to be in start for the bullet spawner to properly set the bullets' targets
@@ -47,14 +47,21 @@ public abstract class ProtoBullet : MonoBehaviour
         this._direction = (target.transform.position - transform.position).normalized; // Move towards the target
     }
 
-    protected virtual void DestroySelf()
+    public virtual void Init(Vector3 position, Vector3 direction) //polymorphism or function overloading
     {
-        StartCoroutine(WaitToDestroySelf(_destroyTime));
+        this.transform.position = position;
+        this._direction = direction; 
     }
 
-    IEnumerator WaitToDestroySelf(float time)
+    protected virtual void DestroySelf()
     {
-        yield return new WaitForSeconds(time); // Wait before destroying so other events in response to collision with the bullet can fire
+        Invoke("WaitToDestroySelf", _destroyTime);
+       // StartCoroutine(WaitToDestroySelf(_destroyTime));
+    }
+
+    void WaitToDestroySelf()
+    {
+        //yield return new WaitForSeconds(time); // Wait before destroying so other events in response to collision with the bullet can fire
         Destroy(this.gameObject);
     }
 
