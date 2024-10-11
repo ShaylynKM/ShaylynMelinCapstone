@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
-    public void OnDeSpawn()
+    protected virtual void OnDespawn()
     {
-        PoolManager.Instance.Despawn(this); // Call the pool manager to despawn this object.
+        
     }
 }

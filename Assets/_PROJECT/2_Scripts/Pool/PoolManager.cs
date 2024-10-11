@@ -12,13 +12,11 @@ public class PoolManager : Singleton<PoolManager>
     /// Peek: Returns an element that is at the top of the stack but does not remove it
     /// </summary>
 
-    private Dictionary<string, Stack<PoolObject>> _stackDictionary = new Dictionary<string, Stack<PoolObject>>();
+    private Dictionary<PoolObject, Stack<PoolObject>> _stackDictionary = new Dictionary<PoolObject, Stack<PoolObject>>();
 
     public void InitPool(PoolObject bulletPrefab, int poolSize)
     {
-        string key = bulletPrefab.name;
-
-        if(!_stackDictionary.ContainsKey(key))
+        if(!_stackDictionary.ContainsKey(bulletPrefab))
         {
             Stack<PoolObject> objStack = new Stack<PoolObject>();
 
@@ -28,21 +26,19 @@ public class PoolManager : Singleton<PoolManager>
                 obj.gameObject.SetActive(false); // Set the new objects inactive
                 objStack.Push(obj); // Push the new objects to the stack
             }
-            _stackDictionary.Add(key, objStack); // Add the insantiated objects to the dictionary
+            _stackDictionary.Add(bulletPrefab, objStack); // Add the instantiated objects to the dictionary
         }
 
     }
 
-    public PoolObject Spawn(string name)
+    public PoolObject Spawn(PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[name];
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab];
 
         if(objStack.Count <= 1) // In the event only one item is left in the pool
         {
-            PoolObject poolObject = objStack.Peek(); // Look at the top item
-            PoolObject objectClone = Instantiate(poolObject); // Instantiate a clone of the object
-            objectClone.name = poolObject.name; // All objects must have the same name
-            return objectClone; // If we are calling for another object and there isn't enough, we instantiate a new one
+            PoolObject newBullet = Instantiate(bulletPrefab); // Insantiate a new object
+            return newBullet; // Return this new object to be used
         }
         else // In the event more than one item is left in the pool
         {
@@ -52,16 +48,14 @@ public class PoolManager : Singleton<PoolManager>
         }
     }
 
-    public void Despawn(PoolObject poolObject)
+    public void Despawn(PoolObject currentBullet, PoolObject bulletPrefab)
     {
-        string key = poolObject.name;
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab];
 
-        Stack<PoolObject> objStack = _stackDictionary[poolObject.name];
-
-        if (_stackDictionary.ContainsKey(key)) // If this object is in the dictionary
+        if (_stackDictionary.ContainsKey(bulletPrefab)) // If this object is in the dictionary
         {
-            poolObject.gameObject.SetActive(false); // Set the object as inactive in the scene
-            objStack.Push(poolObject); // Put the object back in the stack to be used later
+            currentBullet.gameObject.SetActive(false); // Set this specific object as inactive in the scene
+            objStack.Push(currentBullet); // Put the object back in the stack to be used later
         }
     }
 

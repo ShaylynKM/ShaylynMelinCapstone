@@ -19,22 +19,18 @@ public class BulletSpawner : MonoBehaviour
 
     private void Start()
     {
-        PoolManager.Instance.InitPool(_bulletPrefab, _poolSize);
-    }
-
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            SpawnBulletWithDirection();
-        }
+        PoolManager.Instance.InitPool(_bulletPrefab, _poolSize); // Add all the bullets to the pool
     }
 
     private void SpawnBulletWithDirection()
     {
-        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab.name);
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab);
 
         MoveStrategy moveStrategy = spawnedBullet.GetComponent<MoveStrategy>();
+
+        Bullet bullet = spawnedBullet.GetComponent<Bullet>();
+
+        bullet.Init(_bulletPrefab); // Set reference so that this bullet can properly be added to the stack dictionary in PoolManager
 
         if(moveStrategy != null)
         {
@@ -45,7 +41,11 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnBulletWithTarget()
     {
-        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab.name);
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab);
+
+        Bullet bullet = spawnedBullet.GetComponent<Bullet>();
+
+        bullet.Init(_bulletPrefab); // Set reference so that this bullet can properly be added to the stack dictionary in PoolManager
 
         if (spawnedBullet == null)
         {
