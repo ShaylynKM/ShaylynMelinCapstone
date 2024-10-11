@@ -9,7 +9,7 @@ public class BulletSpawner : MonoBehaviour
     private GameObject _target; // Used if the bullet has a specific target to move towards
 
     [SerializeField]
-    private int _poolSize; // How many bullets per pool
+    private int _poolSize = 20; // How many bullets per pool
 
     // Used to configure the direction
     [SerializeField]
@@ -20,6 +20,14 @@ public class BulletSpawner : MonoBehaviour
     private void Start()
     {
         PoolManager.Instance.InitPool(_bulletPrefab, _poolSize); // Add all the bullets to the pool
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            SpawnBulletWithDirection();
+        }
     }
 
     private void SpawnBulletWithDirection()
