@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1564802236080942612}
   - component: {fileID: -6975333654198798840}
   - component: {fileID: 3342538554934465535}
-  - component: {fileID: -4878876543770900263}
+  - component: {fileID: 2684908315431786443}
+  - component: {fileID: 701353466721747750}
   m_Layer: 0
   m_Name: PF_Bullet
   m_TagString: Untagged
@@ -97,7 +98,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-4878876543770900263
+--- !u!114 &2684908315431786443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,13 +107,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5432577806339451261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d10f49c306ad514eb7093cc6842f148, type: 3}
+  m_Script: {fileID: 11500000, guid: 31f6f6d21ee89484ca18fc42dfb503cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: {x: 0, y: 0}
-  _speed: 0
-  _isTrigger: 0
-  _target: {fileID: 0}
+--- !u!114 &701353466721747750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432577806339451261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1fdf001a76e5649a00abbba3316bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: {x: 1, y: 0, z: 0}
+  _speed: 5
 --- !u!1 &6666833526272891863
 GameObject:
   m_ObjectHideFlags: 0

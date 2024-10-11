@@ -3,10 +3,13 @@ using UnityEngine;
 public class BulletSpawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _bulletPrefab; // Bullets to be used with this spawner
+    private PoolObject _bulletPrefab; // Bullets to be used with this spawner
 
     [SerializeField]
     private GameObject _target; // Used if the bullet has a specific target to move towards
+
+    [SerializeField]
+    private int _poolSize; // How many bullets per pool
 
     // Used to configure the direction
     [SerializeField]
@@ -16,17 +19,20 @@ public class BulletSpawner : MonoBehaviour
 
     private void Start()
     {
-        PoolManager.Instance.InitPool(_bulletPrefab); // Initialize the pool for this spawner
+        PoolManager.Instance.InitPool(_bulletPrefab, _poolSize);
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            SpawnBulletWithDirection();
+        }
     }
 
     private void SpawnBulletWithDirection()
     {
-        GameObject spawnedBullet = PoolManager.Instance.GetPooledBullet();
-
-        if(spawnedBullet == null)
-        {
-            return; // If there are no more bullets in the pool, return
-        }
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab.name);
 
         MoveStrategy moveStrategy = spawnedBullet.GetComponent<MoveStrategy>();
 
@@ -35,13 +41,11 @@ public class BulletSpawner : MonoBehaviour
             Vector3 direction = new Vector3(_xDirection, _yDirection, 0f);
             moveStrategy.Initialize(this.transform.position, direction); // Initialize the bullet at this object's transform + facing the specified direction
         }
-
-        spawnedBullet.SetActive(true); // Activate the bullet we just spawned
     }
 
     private void SpawnBulletWithTarget()
     {
-        GameObject spawnedBullet = PoolManager.Instance.GetPooledBullet();
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab.name);
 
         if (spawnedBullet == null)
         {
@@ -54,13 +58,5 @@ public class BulletSpawner : MonoBehaviour
         {
             moveStrategy.Initialize(this.transform.position, _target); // Initialize the bullet at this object's transform + facing the target object
         }
-
-        spawnedBullet.SetActive(true); // Activate the bullet we just spawned
-
-    }
-
-    private void DespawnBullet(GameObject bulletToDespawn)
-    {
-        PoolManager.Instance.DeactivatePooledBullet(bulletToDespawn, this.transform.position); // Despawn passed bullet reference and reset its position to the transform of this spawner.
     }
 }
