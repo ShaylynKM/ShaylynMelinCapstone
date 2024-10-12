@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class PhaseManager : MonoBehaviour
+public class ProtoPhaseManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _endText;
