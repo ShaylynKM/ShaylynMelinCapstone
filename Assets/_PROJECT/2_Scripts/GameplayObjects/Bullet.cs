@@ -16,6 +16,7 @@ public class Bullet : PoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        OnDespawn();
+        if(collision.GetComponent<PlayerBattleController>() || collision.GetComponent<BulletDestroyer>())
+            OnDespawn();
     }
 }

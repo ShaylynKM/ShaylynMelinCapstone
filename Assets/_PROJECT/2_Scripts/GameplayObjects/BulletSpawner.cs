@@ -24,15 +24,19 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             SpawnBulletWithDirection();
+        }
+        if(Input.GetMouseButtonDown(1))
+        {
+            SpawnBulletWithTarget();
         }
     }
 
     private void SpawnBulletWithDirection()
     {
-        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab);
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab); // Spawn from a pool of the specific bullet prefab referenced on this object
 
         MoveStrategy moveStrategy = spawnedBullet.GetComponent<MoveStrategy>();
 
@@ -49,7 +53,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnBulletWithTarget()
     {
-        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab);
+        PoolObject spawnedBullet = PoolManager.Instance.Spawn(_bulletPrefab); // Spawn from a pool of the specific bullet prefab referenced on this object
 
         Bullet bullet = spawnedBullet.GetComponent<Bullet>();
 

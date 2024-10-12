@@ -7,50 +7,49 @@ using UnityEngine.Pool;
 public class PoolManager : Singleton<PoolManager>
 {
     /// <summary>
+    /// Reminder to myself:
     /// Push: Inserts an element at the top of the stack
     /// Pop: Removes an element from the top of the stack
-    /// Peek: Returns an element that is at the top of the stack but does not remove it
     /// </summary>
 
-    private Dictionary<PoolObject, Stack<PoolObject>> _stackDictionary = new Dictionary<PoolObject, Stack<PoolObject>>();
+    private Dictionary<PoolObject, Stack<PoolObject>> _stackDictionary = new Dictionary<PoolObject, Stack<PoolObject>>(); // This creates a dictionary of stacks of pool objects. Will be populated with references to our bullet prefabs, found on the bullet spawner.
 
     public void InitPool(PoolObject bulletPrefab, int poolSize)
     {
-        if(!_stackDictionary.ContainsKey(bulletPrefab))
+        if(!_stackDictionary.ContainsKey(bulletPrefab)) // If this type of bullet prefab isn't in the dictionary already
         {
-            Stack<PoolObject> objStack = new Stack<PoolObject>();
+            Stack<PoolObject> objStack = new Stack<PoolObject>(); // Create a stack of this type of bullet prefab
 
             for(int i = 0; i < poolSize; i++)
             {
-                PoolObject obj = Instantiate(bulletPrefab); // Instantiate the bullet prefabs of whatever necessary variation
+                PoolObject obj = Instantiate(bulletPrefab); // Instantiate the bullet prefabs of whatever specified variation
                 obj.gameObject.SetActive(false); // Set the new objects inactive
                 objStack.Push(obj); // Push the new objects to the stack
             }
             _stackDictionary.Add(bulletPrefab, objStack); // Add the instantiated objects to the dictionary
         }
-
     }
 
     public PoolObject Spawn(PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab];
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab]; // Dictionary entry for the stack of this specific type of bullet
 
-        if(objStack.Count <= 1) // In the event only one item is left in the pool
+        if(objStack.Count <= 1) // In the event only one item is left in the pool (used 1 instead of 0 to prevent null reference exceptions:)
         {
-            PoolObject newBullet = Instantiate(bulletPrefab); // Insantiate a new object
+            PoolObject newBullet = Instantiate(bulletPrefab); // Instantiate a new object
             return newBullet; // Return this new object to be used
         }
         else // In the event more than one item is left in the pool
         {
-            PoolObject oldPoolObject = objStack.Pop(); // Remove the object from the stack to be used
-            oldPoolObject.gameObject.SetActive(true); // Set the object as active in the scene
-            return oldPoolObject; // Return this object that already existed in the pool to be used
+            PoolObject existingBullet = objStack.Pop(); // Remove the object from the stack to be used
+            existingBullet.gameObject.SetActive(true); // Set the object as active in the scene
+            return existingBullet; // Return this object that already existed in the pool to be used
         }
     }
 
     public void Despawn(PoolObject currentBullet, PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab];
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab]; // Dictionary entry for the stack of this specific type of bullet
 
         if (_stackDictionary.ContainsKey(bulletPrefab)) // If this object is in the dictionary
         {
