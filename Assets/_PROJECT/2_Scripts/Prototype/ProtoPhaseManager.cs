@@ -146,6 +146,10 @@ public class ProtoPhaseManager : MonoBehaviour
             {
                 SceneManager.LoadScene("ProtoBattle");
             }
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("ProtoOverworld");
+            }
         }
     }
 }
