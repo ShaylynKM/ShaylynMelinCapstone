@@ -26,7 +26,8 @@ public class AudioSO : ScriptableObject
     public float ClipPitch = 1f; // May randomize the pitch for certain sounds
     public bool PitchRandomized;
     public bool IsLooped;
-    public bool PlayOnAwake;
+    public bool CanPlay; // If this audio can be played right now (if it isn't already playing)
+    public bool IsPaused; // Keep track of if this audio is paused so that a different audio doesn't take over its audio source
 
     [HideInInspector]
     public AudioSource Source;

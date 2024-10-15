@@ -28,18 +28,17 @@ public class AudioManager : Singleton<AudioManager>
     {
         base.Awake();
 
-        _audioSOs = Resources.LoadAll<AudioSO>("Audio"); // Load all the SOs from the Audio folder in Resources
-
+        _audioSOs = Resources.LoadAll<AudioSO>("ScriptableObjects/Audio"); // Load all the SOs from the Audio folder in Resources
         _audioPairs = new Dictionary<string, AudioSO>(); // Our dictionary of audioSOs
-
         _audioPoolSize = _audioSOs.Length; // We have as many audios in our pool as there are audioSOs
-
 
         foreach(var audioData in _audioSOs)
         {
             if(!_audioPairs.ContainsKey(audioData.ClipName))
             {
                 _audioPairs.Add(audioData.ClipName, audioData); // Add the audioSO to our dictionary if it does not already exist
+                audioData.CanPlay = true; // All the clips are available to play at the start of the game
+                audioData.IsPaused = false; // None of the clips are paused
             }
         }
 
@@ -50,14 +49,15 @@ public class AudioManager : Singleton<AudioManager>
             AudioSource pooledAudioSource = this.gameObject.AddComponent<AudioSource>(); // Add an audio source for every available audioSO
             _audioPool.Add(pooledAudioSource); // Add this audio source to the pool
         }
+
     }
 
-    public AudioSource GetAudioSource()
+    public AudioSource GetAudioSource(AudioClip clipName)
     {
         // Gets an available audio source out of the pool
         foreach(AudioSource audioSource in _audioPool)
         {
-            if(!audioSource.isPlaying)
+            if(audioSource.clip == null || audioSource.clip == clipName) // If this audio source isn't occupied, or it is occupied by the current clip we want to play, it is available
             {
                 return audioSource;
             }
@@ -69,30 +69,53 @@ public class AudioManager : Singleton<AudioManager>
     {
         if(_audioPairs.TryGetValue(audioName, out var audioData)) // If our audio is in the dictionary, assign its value to "audioData"
         {
-            _audioSource = GetAudioSource(); // Get an available audio source out of our pool to use
+            _audioSource = GetAudioSource(audioData.Clip); // Get an available audio source out of our pool to use
 
-            _audioSource.clip = audioData.Clip;
-            _audioSource.volume = audioData.ClipVolume;
-            _audioSource.pitch = audioData.ClipPitch;
-            _audioSource.loop = audioData.IsLooped;
-            _audioSource.playOnAwake = audioData.PlayOnAwake;
-            _audioSource.outputAudioMixerGroup = audioData.Mixer;
-            audioData.Source = _audioSource;
-
-            if(audioData.PitchRandomized == true)
+            if(audioData.IsPaused == true)
             {
-                audioData.ClipPitch = Random.Range(_lowestPitch, _highestPitch); // Randomize the pitch, if we've selected the option to do so in the SO
-                _audioSource.pitch = audioData.ClipPitch; // Reassign the pitch
+                return; // This audio source is taken by a paused audio. Try again
             }
 
-            if(_audioSource.isPlaying == false)
+            if(_audioSource != null && audioData.CanPlay == true)
             {
-                _audioSource.Play(); // Play the audio, as long as it is not currently in the process of playing (trying to avoid overlapping sfx)
+                AudioClip currentClip = audioData.Clip;
+
+                audioData.CanPlay = false;
+
+                _audioSource.clip = currentClip;
+                _audioSource.volume = audioData.ClipVolume;
+                _audioSource.pitch = audioData.ClipPitch;
+                _audioSource.loop = audioData.IsLooped;
+                _audioSource.outputAudioMixerGroup = audioData.Mixer;
+                audioData.Source = _audioSource;
+
+                if (audioData.PitchRandomized == true)
+                {
+                    audioData.ClipPitch = Random.Range(_lowestPitch, _highestPitch); // Randomize the pitch, if we've selected the option to do so in the SO
+                    _audioSource.pitch = audioData.ClipPitch; // Reassign the pitch
+                }
+                if (!_audioSource.isPlaying)
+                {
+                    _audioSource.Play(); // Play the audio, as long as it is not currently in the process of playing
+
+                    if(_audioSource.isPlaying == true)
+                        StartCoroutine(WaitBeforePlaying(audioName, currentClip.length)); // Must wait the length of the current clip before playing it again
+                }
+                else
+                {
+                    Debug.LogError("The clip" + audioName + "cannot be found.");
+                }
             }
         }
-        else
+    }
+
+    IEnumerator WaitBeforePlaying(string audioName, float time)
+    {
+        if (_audioPairs.TryGetValue(audioName, out var audioData)) // If our audio is in the dictionary, assign its value to "audioData"
         {
-            Debug.LogError("The clip" + audioName + "cannot be found.");
+            yield return new WaitForSeconds(time);
+            audioData.CanPlay = true;
+
         }
     }
 
@@ -116,6 +139,9 @@ public class AudioManager : Singleton<AudioManager>
             if (audioData.Source != null && audioData.Source.isPlaying && audioData.Source.clip == audioData.Clip)
             {
                 audioData.Source.Pause(); // Pause this audio
+                audioData.IsPaused = true;
+
+                Debug.Log(audioData.name + audioData.IsPaused);
             }
         }
         else
@@ -131,6 +157,9 @@ public class AudioManager : Singleton<AudioManager>
             if (audioData.Source != null && audioData.Source.isPlaying == false && audioData.Source.clip == audioData.Clip)
             {
                 audioData.Source.UnPause(); // Play this audio after pausing it
+                audioData.IsPaused = false;
+
+                Debug.Log(audioData.name + audioData.IsPaused);
             }
         }
         else
