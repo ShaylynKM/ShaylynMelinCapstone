@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[CreateAssetMenu(fileName = "AudioSO", menuName = "ScriptableObjects/Audio")]
 public class AudioSO : ScriptableObject
 {
     [SerializeField]
