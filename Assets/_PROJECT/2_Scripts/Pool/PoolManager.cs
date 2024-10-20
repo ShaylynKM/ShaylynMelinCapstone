@@ -12,11 +12,11 @@ public class PoolManager : Singleton<PoolManager>
     /// Pop: Removes an element from the top of the stack
     /// </summary>
 
-    private Dictionary<PoolObject, Stack<PoolObject>> _stackDictionary = new Dictionary<PoolObject, Stack<PoolObject>>(); // This creates a dictionary of stacks of pool objects. Will be populated with references to our bullet prefabs, found on the bullet spawner.
+    private Dictionary<string, Stack<PoolObject>> _stackDictionary = new Dictionary<string, Stack<PoolObject>>(); // This creates a dictionary of stacks of pool objects. Will be populated with references to our bullet prefabs, found on the bullet spawner.
 
     public void InitPool(PoolObject bulletPrefab, int poolSize)
     {
-        if(!_stackDictionary.ContainsKey(bulletPrefab)) // If this type of bullet prefab isn't in the dictionary already
+        if(!_stackDictionary.ContainsKey(bulletPrefab.name)) // If this type of bullet prefab isn't in the dictionary already
         {
             Stack<PoolObject> objStack = new Stack<PoolObject>(); // Create a stack of this type of bullet prefab
 
@@ -26,13 +26,13 @@ public class PoolManager : Singleton<PoolManager>
                 obj.gameObject.SetActive(false); // Set the new objects inactive
                 objStack.Push(obj); // Push the new objects to the stack
             }
-            _stackDictionary.Add(bulletPrefab, objStack); // Add the instantiated objects to the dictionary
+            _stackDictionary.Add(bulletPrefab.name, objStack); // Add the instantiated objects to the dictionary
         }
     }
 
     public PoolObject Spawn(PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab]; // Dictionary entry for the stack of this specific type of bullet
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab.name]; // Dictionary entry for the stack of this specific type of bullet
 
         if(objStack.Count <= 1) // In the event only one item is left in the pool (used 1 instead of 0 to prevent null reference exceptions:)
         {
@@ -49,9 +49,9 @@ public class PoolManager : Singleton<PoolManager>
 
     public void Despawn(PoolObject currentBullet, PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab]; // Dictionary entry for the stack of this specific type of bullet
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab.name]; // Dictionary entry for the stack of this specific type of bullet
 
-        if (_stackDictionary.ContainsKey(bulletPrefab)) // If this object is in the dictionary
+        if (_stackDictionary.ContainsKey(bulletPrefab.name)) // If this object is in the dictionary
         {
             currentBullet.gameObject.SetActive(false); // Set this specific object as inactive in the scene
             objStack.Push(currentBullet); // Put the object back in the stack to be used later
