@@ -15,11 +15,13 @@ public class HealthComponent : MonoBehaviour
     public UnityEvent<int> UpdateUI;
 
     private int _health;
+    private int _maxHealth;
 
     void Start()
     {
         //assign private health variable to health from scriptable object
         _health = _healthSO.Health;
+        _maxHealth = _healthSO.MaxHealth;
 
         UpdateUI?.Invoke(_health);
     }
@@ -34,6 +36,20 @@ public class HealthComponent : MonoBehaviour
 
             return;
         }
+        UpdateUI?.Invoke(_health); // Update the UI to show the new health
+    }
+
+    public void ApplyHealing(int healAmount)
+    {
+        if(_health + healAmount > _maxHealth)
+        {
+            _health = _maxHealth; // Do not surpass the maximum health amount
+        }
+        else
+        {
+            _health += healAmount; // Add the amount of HP to heal
+        }
+
         UpdateUI?.Invoke(_health); // Update the UI to show the new health
     }
 }
