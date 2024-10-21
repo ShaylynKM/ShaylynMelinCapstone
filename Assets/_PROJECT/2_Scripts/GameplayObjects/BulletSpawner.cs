@@ -22,17 +22,17 @@ public class BulletSpawner : MonoBehaviour
         PoolManager.Instance.InitPool(_bulletPrefab, _poolSize); // Add all the bullets to the pool
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SpawnBulletWithDirection();
-        }
-        if(Input.GetMouseButtonDown(1))
-        {
-            SpawnBulletWithTarget();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        SpawnBulletWithDirection();
+    //    }
+    //    if(Input.GetMouseButtonDown(1))
+    //    {
+    //        SpawnBulletWithTarget();
+    //    }
+    //}
 
     private void SpawnBulletWithDirection()
     {

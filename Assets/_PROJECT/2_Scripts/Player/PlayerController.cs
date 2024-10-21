@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         _moveSpeed = _movementStats.MoveSpeed; // Set the speed to what is defined in the scriptable object
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         // Enable was being called before Singleton was created (probably)
         PlayerInputManager.Instance.PlayerMove += HandleMove;

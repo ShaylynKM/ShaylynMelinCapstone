@@ -41,10 +41,16 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     protected override void Awake()
     {
         base.Awake();
+
+        // Regular actions
         _inputActions = new MyInputActions();
         _inputActions.Player.Move.performed += (val) => PlayerMove?.Invoke(val.ReadValue<Vector2>());
         _inputActions.Player.Interact.performed += (val) => PlayerInteract?.Invoke();
 
+        // Battle actions
+        _inputActions.PlayerBattle.Move.performed += (val) => PlayerMove?.Invoke(val.ReadValue<Vector2>());
+
+        // Dialogue actions
         _inputActions.PlayerDialogue.NextDialogue.performed += (val) => NextDialogue?.Invoke();
     }
     private void OnEnable()

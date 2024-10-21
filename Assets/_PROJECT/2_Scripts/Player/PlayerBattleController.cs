@@ -12,6 +12,12 @@ public class PlayerBattleController : PlayerController
 
     private int _basicDamageAmount = 1;
 
+    protected override void Start()
+    {
+        base.Start();
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+    }
+
     public void OnPlayerDeath()
     {
         _currentScene = SceneManager.GetActiveScene();
