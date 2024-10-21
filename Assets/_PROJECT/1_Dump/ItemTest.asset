@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d38c71960c06df478b772685b358441, type: 3}
+  m_Name: ItemTest
+  m_EditorClassIdentifier: 
+  ItemName: Test
+  ItemSprite: {fileID: 0}
+  ItemHP: 3
+  ItemDescription: This is a test! Phenomenal.
