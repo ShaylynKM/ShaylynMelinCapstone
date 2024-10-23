@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPhase : PhaseStrategy
+public class TestPhase : Phase
 {
-    private void OnEnable()
+    public override void StartPhase(BulletSpawner bulletSpawner)
     {
+        base.StartPhase(bulletSpawner);
         Debug.Log("Hi! I'm the first phase.");
         StartCoroutine(Wait());
     }

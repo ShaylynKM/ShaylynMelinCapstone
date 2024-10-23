@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnotherTestPhase : PhaseStrategy
+public class AnotherTestPhase : Phase
 {
     private void OnEnable()
     {
