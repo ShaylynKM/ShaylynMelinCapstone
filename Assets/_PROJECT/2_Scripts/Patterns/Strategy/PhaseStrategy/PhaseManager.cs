@@ -4,42 +4,50 @@ using UnityEngine.Events;
 public class PhaseManager : Singleton<PhaseManager>
 {
     [SerializeField]
-    private PhaseInfo[] _phases; // Array of all the phases during a battle
+    private PhasePair[] _phases; // Array of all the phases during a battle
 
     private int _phaseIndex;
-
+    private Phase _currentPhase;
+    private UnityEvent AllPhasesComplete;
     private void Start()
     {
         _phaseIndex = 0; // We are currently on the first phase object
 
-        _phases[_phaseIndex].PhaseObject.SetActive(true); // Activate the first phase object
-
-        _phases[_phaseIndex].OnBeginPhase.Invoke(); // Invoke the event to start the phase
+        _currentPhase = Instantiate(_phases[_phaseIndex].phase); // Activate the first phase object
+        _currentPhase.PhaseFinished += NextPhase;
+        _currentPhase.StartPhase(_phases[_phaseIndex].spawner);
+        
     }
 
     public void NextPhase()
     {
-        if(_phaseIndex >= _phases.Length - 1) // If we are on the last phase
+        _phaseIndex++; // Increment the index
+        if(_phaseIndex >= _phases.Length ) // If we are on the last phase
         {
-            _phases[_phaseIndex].OnEndBattle.Invoke(); // invoke the event to end the battle
+            AllPhasesComplete?.Invoke(); // invoke the event to end the battle
 
             return; // and return. Otherwise,
         }
 
-        _phaseIndex++; // Increment the index
-
-        _phases[_phaseIndex].PhaseObject.SetActive(true); // Activate the game object this phase script is attached to
-
-        _phases[_phaseIndex].OnBeginPhase.Invoke(); // Fire the event to begin the next phase
+ 
+        
+        _currentPhase = Instantiate(_phases[_phaseIndex].phase); // Activate the first phase object
+        _currentPhase.PhaseFinished += NextPhase;
+        _currentPhase.StartPhase(_phases[_phaseIndex].spawner);
 
     }
-
     [System.Serializable]
-    public struct PhaseInfo
+    public struct PhasePair
     {
-        public PhaseStrategy Phase;
-        public GameObject PhaseObject;
-        public UnityEvent OnBeginPhase; // Event to start a new phase
-        public UnityEvent OnEndBattle; // Event to end the battle
+        public Phase phase;
+        public BulletSpawner spawner;
     }
+    // [System.Serializable]
+    // public struct PhaseInfo
+    // {
+    //     public PhaseStrategy Phase;
+    //     public GameObject PhaseObject;
+    //     public UnityEvent OnBeginPhase; // Event to start a new phase
+    //     public UnityEvent OnEndBattle; // Event to end the battle
+    // }
 }
