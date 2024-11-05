@@ -4,7 +4,7 @@ using _PROJECT._0_TryingStuffOut;
 using UnityEngine;
 using UnityEngine.Serialization;
 [RequireComponent(typeof(TryingStuffMoveStrategy), typeof(TryingStuffSpawnStrategy))] 
-public class ReallyBasicSpawner : TryingStuffSpawner
+public class ReallyBasicSpawner : Spawner
 {
 
     private float _spawnWaitTime = .1f;
