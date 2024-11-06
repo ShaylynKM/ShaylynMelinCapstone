@@ -17,9 +17,11 @@ public class BulletSpawner : MonoBehaviour
     protected float _xDirection = 1f;
     [SerializeField]
     protected float _yDirection = 0f;
-    
+
+    private Interval _interval;
     private void Start()
     {
+        _interval = GetComponent<Interval>();
         PoolManager.Instance.InitPool(_bulletPrefab, _poolSize); // Add all the bullets to the pool
     }
 
