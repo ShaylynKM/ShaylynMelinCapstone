@@ -6,10 +6,6 @@ public class AdvancedBulletSpawner : BulletSpawner
     [SerializeField] private Transform[] spawnLocations;
     
     // Used to configure the direction
-    [SerializeField]
-    private float _xDirection = 1f;
-    [SerializeField]
-    private float _yDirection = 0f;
     
     private void Start()
     {

@@ -577,6 +577,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &770158922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2823206952597325470, guid: 85d0292bc0eda534086678397f842566, type: 3}
+  m_PrefabInstance: {fileID: 1082274795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &790824843
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +661,85 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.31, y: 3.5, z: 0.025402052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &848712005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848712007}
+  - component: {fileID: 848712006}
+  m_Layer: 0
+  m_Name: IntervalSetterUpper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &848712006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848712005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2510422be5a14704917245b8a2b4f506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnSpawn: 1
+  intervalPairs:
+  - time: 2
+    Command:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1082274798}
+          m_TargetAssemblyTypeName: ContinuousInterval, Assembly-CSharp
+          m_MethodName: Begin
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - time: 5
+    Command:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1082274798}
+          m_TargetAssemblyTypeName: ContinuousInterval, Assembly-CSharp
+          m_MethodName: Begin
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  timeInterval: 1
+--- !u!4 &848712007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848712005}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0244558, y: -2.0302727, z: -0.034867905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,19 +962,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2823206952597325470, guid: 85d0292bc0eda534086678397f842566, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082274798}
   m_SourcePrefab: {fileID: 100100000, guid: 85d0292bc0eda534086678397f842566, type: 3}
 --- !u!114 &1082274796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8643615656674749490, guid: 85d0292bc0eda534086678397f842566, type: 3}
   m_PrefabInstance: {fileID: 1082274795}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 770158922}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aac00fed88050549b8272d2947c2667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1082274798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770158922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92da0ded9b444839a73d808596945076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnSpawn: 0
+  timesToRun: 5
+  timeInterval: 2
+  Command:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1082274796}
+        m_TargetAssemblyTypeName: BulletSpawner, Assembly-CSharp
+        m_MethodName: SpawnBulletWithDirection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1170087724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1809604601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,8 +1501,6 @@ MonoBehaviour:
   - {fileID: 1170087725}
   - {fileID: 1661401190}
   - {fileID: 1546351588}
-  _xDirection: 1
-  _yDirection: 0
 --- !u!4 &1809604602
 Transform:
   m_ObjectHideFlags: 0
@@ -1481,6 +1596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[PhaseManager]'
       objectReference: {fileID: 0}
+    - target: {fileID: 9171994280770068500, guid: 8ac9c76dcb65da1488e7e26aea06b171, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1508,3 +1627,4 @@ SceneRoots:
   - {fileID: 1661401190}
   - {fileID: 1546351588}
   - {fileID: 1170087725}
+  - {fileID: 848712007}

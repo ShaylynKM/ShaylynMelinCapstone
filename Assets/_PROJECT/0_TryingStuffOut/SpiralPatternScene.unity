@@ -353,6 +353,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1865316986}
   - component: {fileID: 1865316985}
+  - component: {fileID: 1865316988}
+  - component: {fileID: 1865316987}
   m_Layer: 0
   m_Name: '[Spawner]'
   m_TagString: Untagged
@@ -372,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec713f3bae92824c96a4afc4a87aed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _circlePrefab: {fileID: 3310022267042379517, guid: 3596eb451a130fa4cbe9eed0b5bb0dc3, type: 3}
+  spawnObject: {fileID: 3310022267042379517, guid: 3596eb451a130fa4cbe9eed0b5bb0dc3, type: 3}
 --- !u!4 &1865316986
 Transform:
   m_ObjectHideFlags: 0
@@ -388,6 +390,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1865316987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865316984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e086a2e7e11434498944a036a0cc58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1865316988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865316984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd700c1891194f849d2ec6e416032b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

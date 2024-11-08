@@ -1,40 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using _PROJECT._0_TryingStuffOut;
 using UnityEngine;
-
-public class ReallyBasicSpawner : MonoBehaviour
+using UnityEngine.Serialization;
+[RequireComponent(typeof(TryingStuffMoveStrategy), typeof(TryingStuffSpawnStrategy))] 
+public class ReallyBasicSpawner : Spawner
 {
-    [SerializeField] private GameObject _circlePrefab;
 
     private float _spawnWaitTime = .1f;
 
     private bool _waitingToSpawn = false;
 
+    private TryingStuffMoveStrategy _moveStrategy;
+    private TryingStuffSpawnStrategy _spawnStrategy;
     private void Start()
     {
         _waitingToSpawn = false;
+        _moveStrategy = GetComponent<TryingStuffMoveStrategy>();
+        _spawnStrategy = GetComponent<TryingStuffSpawnStrategy>();
+        // StartCoroutine(SpawnWithSinPattern());
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && _waitingToSpawn == false)
+        _moveStrategy.Move(this.gameObject);
+        if (Input.GetMouseButtonDown(0))
         {
-            _waitingToSpawn = true;
 
-            StartCoroutine(WaitToSpawn());
+            Vector3 mousePosition = Input.mousePosition;
+            
+            mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+            _spawnStrategy.Spawn(mousePosition,spawnObject);
         }
+        // if (Input.GetMouseButton(0) && _waitingToSpawn == false)
+        // {
+        //     _waitingToSpawn = true;
+        //     Vector3 mousePosition = Input.mousePosition;
+        //
+        //     mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
+        //     //StartCoroutine(WaitToSpawn(mousePosition));
+        // }
     }
 
-    IEnumerator WaitToSpawn()
-    {
-        Vector3 mousePosition = Input.mousePosition;
-
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
-
-        Instantiate(_circlePrefab, mousePosition, _circlePrefab.transform.rotation);
-
-        yield return new WaitForSeconds(_spawnWaitTime);
-
-        _waitingToSpawn = false;
-    }
 }
