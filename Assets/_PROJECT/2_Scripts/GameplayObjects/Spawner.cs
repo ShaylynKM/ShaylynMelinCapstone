@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MoveStrategy))]
-[RequireComponent(typeof(Interval))]
 public class Spawner : MonoBehaviour
 {
     [SerializeField] protected GameObject _spawnObject;
@@ -19,7 +18,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected int _poolSize;
 
     protected MoveStrategy _moveStrategy;
-    protected Interval _interval;
     protected Vector3 _spawnLocation;
     protected PoolObject _poolObject;
 
@@ -30,6 +28,15 @@ public class Spawner : MonoBehaviour
 
     public virtual void SpawnObject()
     {
-        
+        PoolObject obj = PoolManager.Instance.Spawn(_poolObject); // Spawns the object with the pool manager
+
+        obj.transform.position = this.transform.position; // Position is on the spawner
+
+        Vector3 direction = new Vector3(Mathf.Cos(_spawnedObjectAngle * Mathf.Deg2Rad), Mathf.Sin(_spawnedObjectAngle * Mathf.Deg2Rad), 0);
+
+        MoveStrategy objMoveStrategy = obj.GetComponent<MoveStrategy>();
+
+        if (objMoveStrategy != null)
+            objMoveStrategy.Initialize(this.transform.position, direction); // Set the angle of the spawned object
     }
 }

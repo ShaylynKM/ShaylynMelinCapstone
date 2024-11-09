@@ -14,6 +14,7 @@ using UnityEngine.Events;
         public event Action Complete;
         [SerializeField] private bool _spawnOnStart = false;
         protected float _timeBegan;
+        private float _delayAtStart = 0.5f;
         public bool IsActive
         {
             get
@@ -30,7 +31,7 @@ using UnityEngine.Events;
         protected virtual void Start()
         {
             if (_spawnOnStart)
-                Begin();
+                Invoke("Begin", _delayAtStart);
         }
         public virtual void Begin()
         {
