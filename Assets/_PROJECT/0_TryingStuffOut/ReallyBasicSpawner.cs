@@ -30,7 +30,7 @@ public class ReallyBasicSpawner : Spawner
             Vector3 mousePosition = Input.mousePosition;
             
             mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0f));
-            _spawnStrategy.Spawn(mousePosition,spawnObject);
+            //_spawnStrategy.Spawn(mousePosition,spawnObject);
         }
         // if (Input.GetMouseButton(0) && _waitingToSpawn == false)
         // {
