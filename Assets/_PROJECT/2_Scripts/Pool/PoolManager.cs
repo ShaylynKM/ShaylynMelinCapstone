@@ -16,13 +16,15 @@ public class PoolManager : Singleton<PoolManager>
 
     public void InitPool(PoolObject bulletPrefab, int poolSize)
     {
-        if(!_stackDictionary.ContainsKey(bulletPrefab.name)) // If this type of bullet prefab isn't in the dictionary already
+        string key = bulletPrefab.name.Replace("(Clone)", "").Trim(); // Used so that the name is consistent
+        if(!_stackDictionary.ContainsKey(key)) // If this type of bullet prefab isn't in the dictionary already
         {
             Stack<PoolObject> objStack = new Stack<PoolObject>(); // Create a stack of this type of bullet prefab
 
             for(int i = 0; i < poolSize; i++)
             {
                 PoolObject obj = Instantiate(bulletPrefab); // Instantiate the bullet prefabs of whatever specified variation
+                obj.name = key;
                 obj.gameObject.SetActive(false); // Set the new objects inactive
                 objStack.Push(obj); // Push the new objects to the stack
             }
@@ -32,11 +34,14 @@ public class PoolManager : Singleton<PoolManager>
 
     public PoolObject Spawn(PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab.name]; // Dictionary entry for the stack of this specific type of bullet
+        string key = bulletPrefab.name.Replace("(Clone)", "").Trim();
+
+        Stack<PoolObject> objStack = _stackDictionary[key]; // Dictionary entry for the stack of this specific type of bullet
 
         if(objStack.Count <= 1) // In the event only one item is left in the pool (used 1 instead of 0 to prevent null reference exceptions:)
         {
             PoolObject newBullet = Instantiate(bulletPrefab); // Instantiate a new object
+            newBullet.name = key;
             return newBullet; // Return this new object to be used
         }
         else // In the event more than one item is left in the pool
@@ -49,9 +54,11 @@ public class PoolManager : Singleton<PoolManager>
 
     public void Despawn(PoolObject currentBullet, PoolObject bulletPrefab)
     {
-        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab.name]; // Dictionary entry for the stack of this specific type of bullet
+        string key = bulletPrefab.name.Replace("(Clone)", "").Trim();
 
-        if (_stackDictionary.ContainsKey(bulletPrefab.name)) // If this object is in the dictionary
+        Stack<PoolObject> objStack = _stackDictionary[key]; // Dictionary entry for the stack of this specific type of bullet
+
+        if (_stackDictionary.ContainsKey(key)) // If this object is in the dictionary
         {
             currentBullet.gameObject.SetActive(false); // Set this specific object as inactive in the scene
             objStack.Push(currentBullet); // Put the object back in the stack to be used later

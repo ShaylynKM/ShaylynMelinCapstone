@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : PoolObject
 {
-    private PoolObject _bulletPrefab; // Our prefab
+    [SerializeField] private PoolObject _bulletPrefab; // Our prefab
 
     public void Init(PoolObject bulletPrefab)
     {

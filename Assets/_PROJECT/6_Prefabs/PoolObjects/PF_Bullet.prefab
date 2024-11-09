@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3342538554934465535}
   - component: {fileID: 2684908315431786443}
   - component: {fileID: 701353466721747750}
+  - component: {fileID: 689057684964344940}
   m_Layer: 0
   m_Name: PF_Bullet
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5432577806339451261}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268346, w: 0.9238795}
+  m_LocalPosition: {x: 5.48, y: 3.09, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -92,7 +93,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f6f6d21ee89484ca18fc42dfb503cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletPrefab: {fileID: 2684908315431786443}
 --- !u!114 &701353466721747750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +126,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 1, y: 0, z: 0}
   _speed: 5
+--- !u!114 &689057684964344940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432577806339451261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1764dd36a9e77544b66a140ee5a5778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6666833526272891863
 GameObject:
   m_ObjectHideFlags: 0

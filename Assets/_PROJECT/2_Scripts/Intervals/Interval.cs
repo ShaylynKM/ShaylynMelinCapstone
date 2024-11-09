@@ -12,7 +12,7 @@ using UnityEngine.Events;
         protected bool _isActive = false;
         public event Action Executed;
         public event Action Complete;
-        [SerializeField] private bool startOnSpawn = false;
+        [SerializeField] private bool _spawnOnStart = false;
         protected float _timeBegan;
         public bool IsActive
         {
@@ -29,7 +29,7 @@ using UnityEngine.Events;
 
         protected virtual void Start()
         {
-            if (startOnSpawn)
+            if (_spawnOnStart)
                 Begin();
         }
         public virtual void Begin()
