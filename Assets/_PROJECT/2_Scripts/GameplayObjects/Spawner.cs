@@ -17,6 +17,17 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] protected int _poolSize;
 
+    [SerializeField] protected float _speed;
+
+    [Tooltip("Amplitude of sine wave movement for spawned objects that use the SineWaveMovement class.")]
+    [SerializeField] protected float _amplitude;
+
+    [Tooltip("Frequency of sine wave movement for spawned objects that use the SineWaveMovement class.")]
+    [SerializeField] protected float _frequency;
+
+    [Tooltip("Whether or not the sine wave formation for an object using SineWaveMovement.cs is inverted.")]
+    [SerializeField] private bool _invertSine = false;
+
     protected MoveStrategy _moveStrategy;
     protected Vector3 _spawnLocation;
     protected PoolObject _poolObject;
@@ -37,6 +48,23 @@ public class Spawner : MonoBehaviour
         MoveStrategy objMoveStrategy = obj.GetComponent<MoveStrategy>();
 
         if (objMoveStrategy != null)
+        {
+            objMoveStrategy.Speed = _speed;
             objMoveStrategy.Initialize(this.transform.position, direction); // Set the angle of the spawned object
+
+            if(objMoveStrategy is SineWaveMovement sineWaveMovement)
+            {
+                sineWaveMovement.Amplitude = _amplitude;
+                sineWaveMovement.Frequency = _frequency;
+                sineWaveMovement.Inverted = _invertSine;
+            }
+        }
+
+        OnObjectSpawned(obj);
+    }
+
+    public virtual void OnObjectSpawned(PoolObject obj)
+    {
+        // For additional logic involving the specific instance being spawned
     }
 }

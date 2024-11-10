@@ -8,6 +8,18 @@ public abstract class MoveStrategy : MonoBehaviour
     [SerializeField]
     protected float _speed;
 
+    public float Speed
+    {
+        get
+        {
+            return _speed;
+        }
+        set
+        {
+            _speed = value;
+        }
+    }
+
     public virtual void Initialize(Vector3 position, GameObject target)
     {
         // If the bullet has a specific target

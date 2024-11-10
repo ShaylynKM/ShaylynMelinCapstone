@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3014454243148545283, guid: 182161c53302c754d9f26a6704272490, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -728
+      objectReference: {fileID: 0}
     - target: {fileID: 4715892035460392067, guid: 182161c53302c754d9f26a6704272490, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -278,12 +282,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: _poolSize
-      value: 10
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _amplitude
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _frequency
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: _invertSine
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: _spawnedObjectAngle
@@ -292,6 +308,14 @@ PrefabInstance:
     - target: {fileID: 4083558605452680771, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: m_Name
       value: Sine_Spawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083558605452680771, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242797287888142442, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: timeInterval
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6993941328685765394, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -790,8 +814,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: _poolSize
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _amplitude
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: _frequency
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1215649775554810022, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: _invertWave
@@ -804,6 +840,14 @@ PrefabInstance:
     - target: {fileID: 4083558605452680771, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: m_Name
       value: Sine_Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083558605452680771, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242797287888142442, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
+      propertyPath: timeInterval
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6993941328685765394, guid: a38bf116b4ddc8b40804241e4e83a8c5, type: 3}
       propertyPath: m_LocalPosition.x

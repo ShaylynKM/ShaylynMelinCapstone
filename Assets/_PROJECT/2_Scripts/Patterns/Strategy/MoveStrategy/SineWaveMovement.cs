@@ -8,10 +8,45 @@ public class SineWaveMovement : MoveStrategy
     private Vector3 _perpendicular; // Allows the bullet to move in a sine pattern even at non-zero angles
     private float _startTime;
 
-    [SerializeField] private float _amplitude = 2;
-    [SerializeField] private float _frequency = 2;
+    private float _amplitude;
+    private float _frequency;
 
-    public bool Inverted = false;
+    private bool _inverted = false;
+
+    public bool Inverted
+    {
+        get
+        {
+            return _inverted;
+        }
+        set
+        {
+            _inverted = value;
+        }
+    }
+
+    public float Amplitude
+    {
+        get
+        {
+            return _amplitude;
+        }
+        set
+        {
+            _amplitude = value;
+        }
+    }
+    public float Frequency
+    {
+        get
+        {
+            return _frequency;
+        }
+        set
+        {
+            _frequency = value;
+        }
+    }
 
     private void Start()
     {

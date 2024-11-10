@@ -137,10 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 0, z: 0}
-  _speed: 4
-  _amplitude: 1
-  _frequency: 2
-  Inverted: 0
+  _speed: 0
 --- !u!1 &6666833526272891863
 GameObject:
   m_ObjectHideFlags: 0
