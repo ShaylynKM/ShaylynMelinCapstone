@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpiralMovement : MonoBehaviour
+public class OriginalSpiralMovement : MonoBehaviour
 {
     [SerializeField]private float speed = 100f; // Speed of rotation
     [SerializeField]private float radius = 0f; // Radius size when the object is spawned

@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SineSpawner : Spawner
+public class SpiralSpawner : Spawner
 {
     /// <summary>
-    /// This is a spawner that moves in a sine wave pattern.
+    /// This is a spawner that moves in spirals.
     /// </summary>
+    /// 
+
     public override void Start()
     {
         base.Start();
-        _moveStrategy = GetComponent<SineWaveMovement>();
+        _moveStrategy = GetComponent<SpiralMovement>();
         _poolObject = _spawnObject.GetComponent<PoolObject>();
         PoolManager.Instance.InitPool(_poolObject, _poolSize);
     }

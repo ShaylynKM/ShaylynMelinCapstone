@@ -2,10 +2,8 @@ using UnityEngine;
 
 public abstract class MoveStrategy : MonoBehaviour
 {
-    [SerializeField]
     protected Vector3 _direction;
 
-    [SerializeField]
     protected float _speed;
 
     public float Speed

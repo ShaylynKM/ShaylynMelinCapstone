@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(MoveStrategy))]
 public class Spawner : MonoBehaviour
@@ -20,13 +21,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected float _speed;
 
     [Tooltip("Amplitude of sine wave movement for spawned objects that use the SineWaveMovement class.")]
-    [SerializeField] protected float _amplitude;
+    [SerializeField] protected float _sineAmplitude;
 
     [Tooltip("Frequency of sine wave movement for spawned objects that use the SineWaveMovement class.")]
-    [SerializeField] protected float _frequency;
+    [SerializeField] protected float _sineFrequency;
 
     [Tooltip("Whether or not the sine wave formation for an object using SineWaveMovement.cs is inverted.")]
-    [SerializeField] private bool _invertSine = false;
+    [SerializeField] protected bool _invertSine = false;
+
+    [SerializeField] protected float _spiralAngleIncrement;
+    [SerializeField] protected float _rateOfSpiralGrowth;
 
     protected MoveStrategy _moveStrategy;
     protected Vector3 _spawnLocation;
@@ -50,21 +54,24 @@ public class Spawner : MonoBehaviour
         if (objMoveStrategy != null)
         {
             objMoveStrategy.Speed = _speed;
-            objMoveStrategy.Initialize(this.transform.position, direction); // Set the angle of the spawned object
 
-            if(objMoveStrategy is SineWaveMovement sineWaveMovement)
+            if(objMoveStrategy is SineWaveMovement sineWaveMovement) // Assign the variables for sine waves
             {
-                sineWaveMovement.Amplitude = _amplitude;
-                sineWaveMovement.Frequency = _frequency;
+                sineWaveMovement.Initialize(_spawnLocation, direction);
+
+                sineWaveMovement.Amplitude = _sineAmplitude;
+                sineWaveMovement.Frequency = _sineFrequency;
                 sineWaveMovement.Inverted = _invertSine;
             }
+            else if(objMoveStrategy is SpiralMovement spiralMovement) // Assign variables for spirals
+            {
+                spiralMovement.Initialize(_spawnLocation, direction);
+
+                spiralMovement.AngleIncrement = _spiralAngleIncrement;
+                spiralMovement.RateOfGrowth = _rateOfSpiralGrowth;
+                spiralMovement.InitialPosition = _spawnLocation;
+
+            }
         }
-
-        OnObjectSpawned(obj);
-    }
-
-    public virtual void OnObjectSpawned(PoolObject obj)
-    {
-        // For additional logic involving the specific instance being spawned
     }
 }
