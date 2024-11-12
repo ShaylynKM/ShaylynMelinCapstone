@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(MoveStrategy))]
 public class Spawner : MonoBehaviour
 {
+    [Tooltip("For homing bullets, set this as the player.")]
+    [SerializeField] protected GameObject _homingTarget;
+
     [SerializeField] protected GameObject _spawnObject;
 
     [Tooltip("This is how many objects should spawn in one go.")]
@@ -70,7 +73,10 @@ public class Spawner : MonoBehaviour
                 spiralMovement.AngleIncrement = _spiralAngleIncrement;
                 spiralMovement.RateOfGrowth = _rateOfSpiralGrowth;
                 spiralMovement.InitialPosition = _spawnLocation;
-
+            }
+            else if(objMoveStrategy is HomingMovement homingMovement) // Assign variables for homing objects
+            {
+                homingMovement.TargetToFollow = _homingTarget;
             }
         }
     }
