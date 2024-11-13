@@ -8,7 +8,7 @@ public class StaticSpawner : Spawner
     {
         base.Start();
         _moveStrategy = GetComponent<NoMoveStrategy>();
-        _poolObject = _spawnObject.GetComponent<PoolObject>();
+        _poolObject = _spawnedObject.GetComponent<PoolObject>();
         PoolManager.Instance.InitPool(_poolObject, _poolSize);
     }
 

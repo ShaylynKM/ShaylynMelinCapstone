@@ -11,7 +11,7 @@ public class SineSpawner : Spawner
     {
         base.Start();
         _moveStrategy = GetComponent<SineWaveMovement>();
-        _poolObject = _spawnObject.GetComponent<PoolObject>();
+        _poolObject = _spawnedObject.GetComponent<PoolObject>();
         PoolManager.Instance.InitPool(_poolObject, _poolSize);
     }
 }
