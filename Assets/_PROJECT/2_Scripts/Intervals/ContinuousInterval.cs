@@ -35,8 +35,8 @@ public class ContinuousInterval : Interval
     {
         for (int i = 0; i < timesToRun; i++)
         {
-            yield return new WaitForSeconds(timeInterval);
             Execute();
+            yield return new WaitForSeconds(timeInterval);
         }
 
         base.Completed();

@@ -31,8 +31,9 @@ namespace _PROJECT._2_Scripts.Intervals
             for (int i = 0; i < intervalPairs.Length; i++)
             {
                 _currentPair = intervalPairs[i];
-                yield return new WaitForSeconds(intervalPairs[i].time);
                 intervalPairs[i].Command.Invoke();
+                yield return new WaitForSeconds(intervalPairs[i].time);
+s
             }
             base.Completed();
         }
