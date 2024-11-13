@@ -92,10 +92,6 @@ public class Spawner : MonoBehaviour
         {
             transform.Rotate(0, 0, Time.deltaTime * _spawnerRotationSpeed);
         }
-        if(_spawnerShouldRotate == true)
-        {
-            transform.position += _playerObject.transform.position;
-        }
 
         if (this._moveStrategy is MoveWithPlayer moveWithPlayer) // If this spawner is supposed to move with the player
         {
