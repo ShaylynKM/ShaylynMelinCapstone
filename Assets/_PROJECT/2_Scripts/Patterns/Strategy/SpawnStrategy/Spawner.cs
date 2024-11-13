@@ -17,7 +17,11 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] protected bool _spawnerShouldRotate = false;
 
+    [SerializeField] protected bool _spawnerShouldFollowPlayer = false;
+
     [SerializeField] protected float _spawnerRotationSpeed = 5;
+
+    [SerializeField] protected GameObject _playerObject;
 
     [Tooltip("How long before an object starts moving.")]
     [SerializeField] private float _timeBeforeMoving;
@@ -75,13 +79,27 @@ public class Spawner : MonoBehaviour
     public virtual void Start()
     {
         _spawnLocation = this.transform.position;
+
+        if(this._moveStrategy is MoveWithPlayer moveWithPlayer) // If this spawner is supposed to move with the player
+        {
+            transform.position = moveWithPlayer.PlayerObject.transform.position; // place this object on the player's transform
+        }
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if(_spawnerShouldRotate == true)
         {
             transform.Rotate(0, 0, Time.deltaTime * _spawnerRotationSpeed);
+        }
+        if(_spawnerShouldRotate == true)
+        {
+            transform.position += _playerObject.transform.position;
+        }
+
+        if (this._moveStrategy is MoveWithPlayer moveWithPlayer) // If this spawner is supposed to move with the player
+        {
+            transform.position = _playerObject.transform.position; // Follow the player
         }
     }
 
@@ -147,15 +165,11 @@ public class Spawner : MonoBehaviour
 
                     trapMovement.Target = _trapTarget;
 
-                    Debug.Log(trapMovement.Target.ToString());
-
                     if (trapMovement.ReadyToDespawn == true)
                     {
                         Bullet bulletScript = obj.GetComponent<Bullet>();
                         bulletScript.OnDespawn();
-                        //?!?!?!?!?!?!??!??????!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?
-                    }
-                        
+                    }                      
                 }
                 else
                 {
