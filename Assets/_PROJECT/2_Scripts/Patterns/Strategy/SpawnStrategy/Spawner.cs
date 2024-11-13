@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -93,7 +94,7 @@ public class Spawner : MonoBehaviour
         {
             PoolObject obj = PoolManager.Instance.Spawn(_poolObject); // Spawns the object with the pool manager
 
-            obj.transform.position = _spawnLocation; // Position is on the spawner
+            obj.transform.position = transform.position; // Position is on the spawner
 
             MoveStrategy objMoveStrategy = obj.GetComponent<MoveStrategy>();
 
@@ -120,7 +121,7 @@ public class Spawner : MonoBehaviour
 
                 if (objMoveStrategy is SineWaveMovement sineWaveMovement) // Assign the variables for sine waves
                 {
-                    sineWaveMovement.Initialize(_spawnLocation, worldDirection);
+                    sineWaveMovement.Initialize(transform.position, worldDirection);
 
                     sineWaveMovement.Amplitude = _sineAmplitude;
                     sineWaveMovement.Frequency = _sineFrequency;
@@ -128,23 +129,25 @@ public class Spawner : MonoBehaviour
                 }
                 else if (objMoveStrategy is SpiralMovement spiralMovement) // Assign variables for spirals
                 {
-                    spiralMovement.Initialize(_spawnLocation, worldDirection);
+                    spiralMovement.Initialize(transform.position, worldDirection);
 
                     spiralMovement.AngleIncrement = _spiralAngleIncrement;
                     spiralMovement.RateOfGrowth = _rateOfSpiralGrowth;
-                    spiralMovement.InitialPosition = _spawnLocation;
+                    spiralMovement.InitialPosition = transform.position;
                 }
                 else if (objMoveStrategy is HomingMovement homingMovement) // Assign variables for homing objects
                 {
-                    homingMovement.Initialize(_spawnLocation, _homingTarget);
+                    homingMovement.Initialize(transform.position, _homingTarget);
 
                     homingMovement.TargetToFollow = _homingTarget;
                 }
                 else if(objMoveStrategy is TrapMovement trapMovement) // Assign variables for traps
                 {
-                    trapMovement.Initialize(_spawnLocation, _trapTarget);
+                    trapMovement.Initialize(transform.position, _trapTarget);
 
                     trapMovement.Target = _trapTarget;
+
+                    Debug.Log(trapMovement.Target.ToString());
 
                     if (trapMovement.ReadyToDespawn == true)
                     {
@@ -156,7 +159,7 @@ public class Spawner : MonoBehaviour
                 }
                 else
                 {
-                    objMoveStrategy.Initialize(_spawnLocation, worldDirection); // Default to this if there is no specific move strategy
+                    objMoveStrategy.Initialize(transform.position, worldDirection); // Default to this if there is no specific move strategy
                 }
             }
         }

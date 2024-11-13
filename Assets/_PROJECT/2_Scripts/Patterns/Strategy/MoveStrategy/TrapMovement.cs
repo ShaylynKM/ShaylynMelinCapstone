@@ -44,12 +44,18 @@ public class TrapMovement : MoveStrategy
         _waitingToMove = false;
     }
 
+    IEnumerator WaitBeforeDespawning()
+    {
+        _waitingToMove = true;
+        yield return new WaitForSeconds(_timeBeforeDespawn);
+        PoolManager.Instance.Despawn(this.gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject == _target)
         {
-            _readyToDespawn = true;
-            _waitingToMove = true;
+            StartCoroutine(WaitBeforeDespawning());
         }
     }
 }

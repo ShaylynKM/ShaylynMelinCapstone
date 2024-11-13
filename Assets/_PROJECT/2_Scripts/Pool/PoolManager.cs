@@ -34,14 +34,14 @@ public class PoolManager : Singleton<PoolManager>
 
     public PoolObject Spawn(PoolObject bulletPrefab)
     {
-        string key = bulletPrefab.name.Replace("(Clone)", "").Trim();
+        //string key = bulletPrefab.name.Replace("(Clone)", "").Trim();
 
-        Stack<PoolObject> objStack = _stackDictionary[key]; // Dictionary entry for the stack of this specific type of bullet
+        Stack<PoolObject> objStack = _stackDictionary[bulletPrefab.name]; // Dictionary entry for the stack of this specific type of bullet
 
         if(objStack.Count <= 1) // In the event only one item is left in the pool (used 1 instead of 0 to prevent null reference exceptions:)
         {
             PoolObject newBullet = Instantiate(bulletPrefab); // Instantiate a new object
-            newBullet.name = key;
+            newBullet.name = bulletPrefab.name;
             return newBullet; // Return this new object to be used
         }
         else // In the event more than one item is left in the pool
@@ -51,10 +51,20 @@ public class PoolManager : Singleton<PoolManager>
             return existingBullet; // Return this object that already existed in the pool to be used
         }
     }
-
-    public void Despawn(PoolObject currentBullet, PoolObject bulletPrefab)
+    public void Despawn(GameObject despawnObject)
     {
-        string key = bulletPrefab.name.Replace("(Clone)", "").Trim();
+        if(despawnObject.TryGetComponent<PoolObject>(out PoolObject poolOjbect))
+        {
+            Despawn(poolOjbect);
+        }
+        else
+        {
+            Debug.Log("You are trying to despawn something that is not a pool object. No.");
+        }
+    }
+    public void Despawn(PoolObject currentBullet)
+    {
+        string key = currentBullet.name;
 
         Stack<PoolObject> objStack = _stackDictionary[key]; // Dictionary entry for the stack of this specific type of bullet
 
