@@ -33,7 +33,7 @@ namespace _PROJECT._2_Scripts.Intervals
                 _currentPair = intervalPairs[i];
                 intervalPairs[i].Command.Invoke();
                 yield return new WaitForSeconds(intervalPairs[i].time);
-s
+
             }
             base.Completed();
         }
