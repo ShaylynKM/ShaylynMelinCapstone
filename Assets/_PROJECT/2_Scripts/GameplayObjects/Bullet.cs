@@ -9,7 +9,7 @@ public class Bullet : PoolObject
         _bulletPrefab = bulletPrefab; // To set the reference in the spawner
     }
 
-    protected override void OnDespawn()
+    public override void OnDespawn()
     {
         PoolManager.Instance.Despawn(this, _bulletPrefab);
     }

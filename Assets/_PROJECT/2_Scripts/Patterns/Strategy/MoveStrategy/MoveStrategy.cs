@@ -6,6 +6,20 @@ public abstract class MoveStrategy : MonoBehaviour
 
     protected float _speed;
 
+    protected float _timeBeforeMoving = .5f;
+    protected float _timeBeforeDespawn = .5f;
+
+    protected bool _waitingToMove = true;
+    protected bool _readyToDespawn = false;
+
+    public bool ReadyToDespawn
+    {
+        get
+        {
+            return _readyToDespawn;
+        }
+    }
+
     public float Speed
     {
         get
@@ -15,6 +29,29 @@ public abstract class MoveStrategy : MonoBehaviour
         set
         {
             _speed = value;
+        }
+    }
+    public float TimeBeforeMoving
+    {
+        get
+        {
+            return _timeBeforeMoving;
+        }
+        set
+        {
+            _timeBeforeMoving = value;
+        }
+    }
+
+    public float TimeBeforeDespawn
+    {
+        get
+        {
+            return TimeBeforeDespawn;
+        }
+        set
+        {
+            _timeBeforeDespawn = value;
         }
     }
 

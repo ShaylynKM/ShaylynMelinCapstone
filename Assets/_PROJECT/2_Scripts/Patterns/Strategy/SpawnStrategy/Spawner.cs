@@ -18,6 +18,12 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] protected float _spawnerRotationSpeed = 5;
 
+    [Tooltip("How long before an object starts moving.")]
+    [SerializeField] private float _timeBeforeMoving;
+
+    [Tooltip("How long before an object is despawned.")]
+    [SerializeField] private float _timeBeforeDespawn;
+
     [Tooltip("This is how many objects should spawn in one go.")]
     [SerializeField] protected int _spawnAmount = 1;
 
@@ -53,6 +59,13 @@ public class Spawner : MonoBehaviour
 
     [Tooltip("For homing bullets, set this as the player.")]
     [SerializeField] protected GameObject _homingTarget;
+
+
+    [Header("TRAP")]
+
+    [Tooltip("The center of the 'trap' for objects that use TrapMovement.cs. ")]
+    [SerializeField] private GameObject _trapTarget;
+
 
     protected MoveStrategy _moveStrategy;
     protected Vector3 _spawnLocation;
@@ -102,6 +115,8 @@ public class Spawner : MonoBehaviour
             if (objMoveStrategy != null)
             {
                 objMoveStrategy.Speed = _spawnedObjectSpeed;
+                objMoveStrategy.TimeBeforeDespawn = _timeBeforeDespawn;
+                objMoveStrategy.TimeBeforeMoving = _timeBeforeMoving;
 
                 if (objMoveStrategy is SineWaveMovement sineWaveMovement) // Assign the variables for sine waves
                 {
@@ -125,9 +140,23 @@ public class Spawner : MonoBehaviour
 
                     homingMovement.TargetToFollow = _homingTarget;
                 }
+                else if(objMoveStrategy is TrapMovement trapMovement) // Assign variables for traps
+                {
+                    trapMovement.Initialize(_spawnLocation, _trapTarget);
+
+                    trapMovement.Target = _trapTarget;
+
+                    if (trapMovement.ReadyToDespawn == true)
+                    {
+                        Bullet bulletScript = obj.GetComponent<Bullet>();
+                        bulletScript.OnDespawn();
+                        //?!?!?!?!?!?!??!??????!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!?
+                    }
+                        
+                }
                 else
                 {
-                    objMoveStrategy.Initialize(_spawnLocation, worldDirection);
+                    objMoveStrategy.Initialize(_spawnLocation, worldDirection); // Default to this if there is no specific move strategy
                 }
             }
         }
