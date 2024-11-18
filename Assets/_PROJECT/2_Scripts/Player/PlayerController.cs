@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
         // Enable was being called before Singleton was created (probably)
         PlayerInputManager.Instance.PlayerMove += HandleMove;
         PlayerInputManager.Instance.PlayerInteract += HandleInteract;
+        PlayerInputManager.Instance.PlayerStop += () =>
+        {
+            _playerCanMove = false;
+            _moveVector = new Vector2();
+        };
 
     }
 

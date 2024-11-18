@@ -7,6 +7,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     private MyInputActions _inputActions;
     private PlayerController _playerController;
     public event Action<Vector2> PlayerMove;
+    public event Action PlayerStop;
     public event Action PlayerInteract;
 
     public event Action NextDialogue;
@@ -21,6 +22,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
                 _inputActions.Player.Disable();
                 _inputActions.PlayerBattle.Disable();
                 _inputActions.PlayerDialogue.Enable();
+                PlayerStop?.Invoke();
                 Debug.Log("Input state: Dialogue");
                 break;
             case PlayerInputState.Battle:
