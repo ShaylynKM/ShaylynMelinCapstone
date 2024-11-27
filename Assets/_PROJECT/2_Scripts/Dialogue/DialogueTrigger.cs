@@ -18,30 +18,36 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool alt; // testing
 
-    public List<DialogueSO> DialogueObjects;
+    [field: SerializeField] public DialogueSO Dialogue { get; private set; } 
+    //public List<DialogueSO> DialogueObjects;
 
-    public List<DialogueSO> AlternateDialogue; // If there's different dialogue after a condition changes
+    //public List<DialogueSO> AlternateDialogue; // If there's different dialogue after a condition changes
 
     private int _dialogueIndex = 0; // How many SOs deep we are
 
-    public UnityEvent<DialogueSO> DialogueTriggered;
-
-    public void DTTriggerDialogue()
+    public UnityEvent<DialogueTrigger> DialogueTriggered;
+    public UnityEvent DialogueEnds;
+    public void StartDialogue()
     {
-        if(_dialogueIndex < DialogueObjects.Count)
-        {
-            DialogueTriggered?.Invoke(DialogueObjects[_dialogueIndex]); // Invoke the event, passing in the current scriptable object
-
-            _dialogueIndex++; // Increment the index
-        }
-        if (_dialogueIndex == DialogueObjects.Count)
-        {
-            _dialogueIndex = DialogueObjects.Count - 1; // If we've reached the last object, repeat that object for future interactions.
-        }
+        DialogueTriggered?.Invoke(this);
     }
 
-    public void UseAlternateDialogue()
-    {
-        DialogueObjects = AlternateDialogue; // Switch which objects we are using. Call with an event based on a condition.
-    }
+    //public void DTTriggerDialogue()
+    //{
+    //    if(_dialogueIndex < DialogueObjects.Count)
+    //    {
+    //        DialogueTriggered?.Invoke(DialogueObjects[_dialogueIndex]); // Invoke the event, passing in the current scriptable object
+
+    //        _dialogueIndex++; // Increment the index
+    //    }
+    //    if (_dialogueIndex == DialogueObjects.Count)
+    //    {
+    //        _dialogueIndex = DialogueObjects.Count - 1; // If we've reached the last object, repeat that object for future interactions.
+    //    }
+    //}
+
+    //public void UseAlternateDialogue()
+    //{
+    //    DialogueObjects = AlternateDialogue; // Switch which objects we are using. Call with an event based on a condition.
+    //}
 }

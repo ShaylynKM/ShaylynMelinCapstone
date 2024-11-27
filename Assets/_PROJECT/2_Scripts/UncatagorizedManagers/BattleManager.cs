@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject[] _dialogueObjects; // Objects containing the dialogue for each section
 
     public UnityEvent PhaseFinished;
+    public UnityEvent OnBeginScene;
 
     private void Start()
     {
@@ -25,35 +26,50 @@ public class BattleManager : MonoBehaviour
         {
             phase.SetActive(false);
         }
+        Invoke("Begin", .1f);
+    }
+    public void Begin()
+    {
+        OnBeginScene?.Invoke();
     }
 
-    public void StartPhase()
+    //public void StartPhase()
+    //{
+    //    for(int i = 0; i < _phases.Length; i++)
+    //    {
+    //        if(_phases[i] != null && !_phases[i].activeInHierarchy)
+    //        {
+    //            _phases[i].SetActive(true); // Set this phase as active
+
+    //            Phase phaseScript = _phases[i].GetComponent<Phase>();
+
+    //            if (phaseScript.PhaseHasFinished == true)
+    //            {
+    //                PhaseFinished.Invoke(); // Invoke the event for when a phase finishes
+    //            }
+    //            break;
+    //        }
+    //        else if (_phases[i] != null && _phases[i].activeInHierarchy)
+    //        {
+    //            Debug.Log("Phase array element " + i + "is already active");
+    //            return;
+    //        }
+
+    //        else if (_phases[i] = null)
+    //        {
+    //            Debug.LogError("Nothing in the phase array.");
+    //        }
+    //    }
+    //}
+    public void StartNextPhase()
     {
-        for(int i = 0; i < _phases.Length; i++)
-        {
-            if(_phases[i] != null && !_phases[i].activeInHierarchy)
-            {
-                _phases[i].SetActive(true); // Set this phase as active
 
-                Phase phaseScript = _phases[i].GetComponent<Phase>();
-
-                if (phaseScript.PhaseHasFinished == true)
-                {
-                    PhaseFinished.Invoke(); // Invoke the event for when a phase finishes
-                }
-                break;
-            }
-            else if (_phases[i] != null && _phases[i].activeInHierarchy)
-            {
-                Debug.Log("Phase array element " + i + "is already active");
-                return;
-            }
-
-            else if (_phases[i] = null)
-            {
-                Debug.LogError("Nothing in the phase array.");
-            }
-        }
+    }
+    public void StartSpecificPhase(Phase newPhase)
+    {
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle); // Allow the player to move again
+        newPhase.gameObject.SetActive(true);
+        newPhase.BeginPhase(0);
     }
 
     public void BattleEnd()

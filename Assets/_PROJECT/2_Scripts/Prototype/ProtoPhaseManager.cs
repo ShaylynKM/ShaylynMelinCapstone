@@ -41,7 +41,7 @@ public class ProtoPhaseManager : MonoBehaviour
         _phase1Object.SetActive(false);
         _phase2Object.SetActive(false);
 
-        Invoke("Phase1DialogueBegin", _dialogueStartDelay); // Required a delay to make sure all the event listeners are created in time
+      //  Invoke("Phase1DialogueBegin", _dialogueStartDelay); // Required a delay to make sure all the event listeners are created in time
     }
 
     void Phase1DialogueBegin()

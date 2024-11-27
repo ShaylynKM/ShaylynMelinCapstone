@@ -37,17 +37,17 @@ public class MainMenuManager : MonoBehaviour
         _quitGameMenu.SetActive(false);
         _loadingScreen.SetActive(false);
 
-        // Checking to see if there's save data
-        SaveData data = SaveManager.OnLoadGame();
-        if (data != null)
-        {
-            _savedScene = data.SavedScene;
-            _continueButton.interactable = true; // If save data exists, enable the continue button
-        }
-        else
-        {
-            _continueButton.interactable = false; // If there is no saved data, disable the continue button
-        }
+        //// Checking to see if there's save data
+        //SaveData data = SaveManager.OnLoadGame();
+        //if (data != null)
+        //{
+        //    _savedScene = data.SavedScene;
+        //    _continueButton.interactable = true; // If save data exists, enable the continue button
+        //}
+        //else
+        //{
+        //    _continueButton.interactable = false; // If there is no saved data, disable the continue button
+        //}
     }
 
     public void OnNewGameButton()
@@ -62,7 +62,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGameStart()
     {
-        SaveManager.ClearSave();
+        //SaveManager.ClearSave();
         StartCoroutine(LoadSceneAsync(_firstSceneIndex));
     }
 

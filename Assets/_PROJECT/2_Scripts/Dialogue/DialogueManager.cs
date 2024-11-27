@@ -32,10 +32,15 @@ public class DialogueManager : MonoBehaviour
     private float _loadSpeed = 0.03f; // Delay to load in the text (so the first character isn't typed instantly)
 
     private bool _insideFormatTag = false; // For making sure the text sounds don't play for format tags
-
+    private DialogueTrigger _currentTrigger;
     private void Awake()
     {
         _dialogueBox.SetActive(false);
+        DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        foreach(DialogueTrigger dialogueTrigger in dialogueTriggers)
+        {
+            dialogueTrigger.DialogueTriggered.AddListener(DMTriggerDialogue);
+        }
     }
     private void Start()
     {
@@ -51,39 +56,34 @@ public class DialogueManager : MonoBehaviour
         PlayerInputManager.Instance.NextDialogue -= DisplayNextDialogueLine;
     }
 
-    public void DMTriggerDialogue(DialogueSO dialogueSO)
+    public void DMTriggerDialogue(DialogueTrigger dialogueTrigger)
     {
+        _currentTrigger = dialogueTrigger;
         // Call this method in the event when triggering the dialogue from outside
 
         _dialogueBox.SetActive(true);
 
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue); // Change the input state to the dialogue state
-
-        StartCoroutine(WaitForDialogueLoad(dialogueSO));
+        StartCoroutine(WaitForDialogueLoad());
         
     }
 
-    private IEnumerator WaitForDialogueLoad(DialogueSO dialogueSO)
+    private IEnumerator WaitForDialogueLoad()
     {
         _dialogueText.text = ""; // Clears text
         _speakerNameText.text = ""; // Clears speaker name
-
+        
         yield return new WaitForSeconds(_loadSpeed); // Waits for the duration of the load speed to load in the text
 
-        StartDialogue(dialogueSO.DialogueLines);
-    }
-
-    public void StartDialogue(List<DialogueLine> dialogueLines)
-    {
         _lines.Clear(); // Empties the queue
 
-        foreach (DialogueLine dialogueLine in dialogueLines)
+        foreach (DialogueLine dialogueLine in _currentTrigger.Dialogue.DialogueLines)
         {
             _lines.Enqueue(dialogueLine);
         }
-
         DisplayNextDialogueLine();
     }
+
 
     public void DisplayNextDialogueLine()
     {
@@ -108,15 +108,17 @@ public class DialogueManager : MonoBehaviour
 
         // Dequeues the next line and updates UI elements accordingly
         DialogueLine currentLine = _lines.Dequeue();
-        _speakerNameText.text = currentLine.SpeakerName;
+
         
 
         // Starts typing the next dialogue line
         StartCoroutine(TypeSentence(currentLine));
+        
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
+        _speakerNameText.text = dialogueLine.SpeakerName;
         _dialogueText.text = dialogueLine.Line;
 
         string fullText = _dialogueText.text;
@@ -197,9 +199,10 @@ public class DialogueManager : MonoBehaviour
     {
         _dialogueBox.SetActive(false);
 
+        _currentTrigger.DialogueEnds?.Invoke();
         OnDialogueEnded?.Invoke();
 
-        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove); // Allow the player to move again
+ 
     }
 }
 
