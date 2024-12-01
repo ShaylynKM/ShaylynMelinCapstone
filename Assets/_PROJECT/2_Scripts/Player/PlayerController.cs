@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerMovementSO _movementStats;
 
+    [SerializeField]
+    private AnimationClip _walkAnimation;
+
     private bool _playerCanMove = true;
 
     private Vector2 _movementVector;
