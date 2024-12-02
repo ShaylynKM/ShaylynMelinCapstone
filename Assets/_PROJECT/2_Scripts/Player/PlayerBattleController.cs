@@ -9,6 +9,7 @@ public class PlayerBattleController : PlayerController
     private Scene _currentScene;
 
     public UnityEvent<int> PlayerHit;
+    public UnityEvent<int> PlayerHeal;
 
     private int _basicDamageAmount = 1;
 
@@ -31,22 +32,35 @@ public class PlayerBattleController : PlayerController
 
     public void OnPlayerDamaged(int damage)
     {
-        PlayerHit?.Invoke(damage);
+        PlayerHit?.Invoke(damage); // Called by the health component
+    }
+
+    public void OnPlayerHealed(int health)
+    {
+        PlayerHeal?.Invoke(health); // Called by the health component
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<ProtoBullet>()) // If this is a bullet
+        if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet
         {
             OnPlayerDamaged(_basicDamageAmount); // Take damage
+        }
+        if (collision.gameObject.GetComponent<hpDrop>()) // If this is HP
+        {
+            OnPlayerHealed(_basicDamageAmount); // Heal a damage point
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ProtoBullet>()) // If this is a bullet
+        if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet
         {
             OnPlayerDamaged(_basicDamageAmount); // Take damage
+        }
+        if(collision.gameObject.GetComponent<hpDrop>()) // If this is HP
+        {
+            OnPlayerHealed(_basicDamageAmount); // Heal a damage point
         }
     }
     public override void EnableMovement()

@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : PoolObject
+public class hpDrop : PoolObject
 {
     public override void OnDespawn()
     {
@@ -9,7 +11,7 @@ public class Bullet : PoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<PlayerBattleController>() || collision.GetComponent<BulletDestroyer>())
+        if (collision.GetComponent<PlayerBattleController>() || collision.GetComponent<BulletDestroyer>())
             OnDespawn();
     }
 }

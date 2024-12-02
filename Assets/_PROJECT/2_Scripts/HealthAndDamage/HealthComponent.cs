@@ -36,4 +36,12 @@ public class HealthComponent : MonoBehaviour
         }
         UpdateUI?.Invoke(_health); // Update the UI to show the new health
     }
+
+    public void Heal(int healAmount)
+    {
+        if(_health < _healthSO.MaxHealth)
+        {
+            _health += healAmount; // Add the HP
+        }
+    }
 }
