@@ -106,7 +106,7 @@ public class Spawner : MonoBehaviour
         // Iterate through the amount of projectiles spawned at once and give them their angles
         for (int i = 0; i < _spawnAmount; i++)
         {
-            PoolObject obj = PoolManager.Instance.Spawn(_poolObject); // Spawns the object with the pool manager
+            PoolObject obj = PoolManager.Instance.Spawn(_spawnedObject.GetComponent<PoolObject>()); // Spawns the object with the pool manager
 
             obj.transform.position = transform.position; // Position is on the spawner
 

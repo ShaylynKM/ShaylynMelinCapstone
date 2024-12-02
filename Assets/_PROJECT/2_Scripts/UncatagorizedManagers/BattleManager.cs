@@ -22,6 +22,11 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        var phases = FindObjectsOfType<Phase>();
+        _phases = new GameObject[phases.Length];
+        for (int i = 0; i < _phases.Length; i++)
+            _phases[i] = phases[i].gameObject;
+
         SetPhasesInactive();
 
         Invoke("Begin", .1f);

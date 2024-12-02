@@ -938,7 +938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -992,7 +992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &327758730
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,7 +1152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &368126445
 Transform:
   m_ObjectHideFlags: 0
@@ -1239,7 +1239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &421256848
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,7 +1326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &455004389
 Transform:
   m_ObjectHideFlags: 0
@@ -1479,7 +1479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1656,7 +1656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1885,7 +1885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1939,7 +1939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &782291489
 Transform:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2333,7 +2333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &998072110
 Transform:
   m_ObjectHideFlags: 0
@@ -2420,7 +2420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1002399237
 Transform:
   m_ObjectHideFlags: 0
@@ -2507,7 +2507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1002637665
 Transform:
   m_ObjectHideFlags: 0
@@ -2594,7 +2594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1129620319
 Transform:
   m_ObjectHideFlags: 0
@@ -2747,7 +2747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2867,7 +2867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2921,7 +2921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1213097117
 Transform:
   m_ObjectHideFlags: 0
@@ -3101,7 +3101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3359,7 +3359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4271,7 +4271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _spawnOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6314184361289011336, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: Command.m_PersistentCalls.m_Calls.Array.data[0].m_Target
