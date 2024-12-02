@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AnimationClip _walkAnimation;
 
-    private bool _playerCanMove = true;
+    protected bool _playerCanMove = true;
 
     private Vector2 _movementVector;
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerActionsSO.HandleInteract();
     }
-    public void EnableMovement()
+    public virtual void EnableMovement()
     {
         // For events
         _playerCanMove = true;

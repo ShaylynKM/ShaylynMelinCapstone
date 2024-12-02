@@ -11,20 +11,29 @@ public class Phase : MonoBehaviour
 
     [SerializeField] private Interval[] _patternPrefabs; // The bullet patterns needed for this phase. Could just be one
 
-    private bool _phaseHasFinished = false;
+    [SerializeField] private float _timeToWait; // How long before the phase is officially considered over
 
-    public bool PhaseHasFinished { get { return _phaseHasFinished; } }
+    //private bool _phaseHasFinished = false;
+
+    //public bool PhaseHasFinished { get { return _phaseHasFinished; } }
     public UnityEvent PhaseOver;
     private int _currentPhase = 0;
 
     private void Start()
-    {
-        for(int i = 0; i < _patternPrefabs.Length - 1; i++)        
+    {      
+        for (int i = 0; i < _patternPrefabs.Length - 1; i++)        
         {
             _patternPrefabs[i].gameObject.SetActive(false);
             _patternPrefabs[i].Complete += () => BeginPhase(i + 1);
         }
-        _patternPrefabs[_patternPrefabs.Length - 1].Complete += () => PhaseOver?.Invoke();
+        //_patternPrefabs[_patternPrefabs.Length - 1].Complete += () => PhaseOver?.Invoke();
+
+        _patternPrefabs[_patternPrefabs.Length - 1].Complete += () => Invoke("PhaseOverInvoker", _timeToWait);
+    }
+
+    private void PhaseOverInvoker()
+    {
+        PhaseOver?.Invoke();
     }
 
     public void BeginPhase(int phaseNumber)

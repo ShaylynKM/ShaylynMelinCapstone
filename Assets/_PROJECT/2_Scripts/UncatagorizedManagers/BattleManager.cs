@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
 
     [SerializeField] private GameObject[] _phases; // Objects for each phase in the entire battle
-    [SerializeField] private GameObject[] _dialogueObjects; // Objects containing the dialogue for each section
+    //[SerializeField] private GameObject[] _dialogueObjects; // Objects containing the dialogue for each section
 
     public UnityEvent PhaseFinished;
     public UnityEvent OnBeginScene;
@@ -67,7 +67,6 @@ public class BattleManager : MonoBehaviour
     }
     public void StartSpecificPhase(Phase newPhase)
     {
-        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle); // Allow the player to move again
         newPhase.gameObject.SetActive(true);
         newPhase.BeginPhase(0);
     }

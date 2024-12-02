@@ -941,7 +941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2761b5439fe754b911d03b54696813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alt: 0
   <Dialogue>k__BackingField: {fileID: 11400000, guid: 6af845ec092ac08489f336abe23790e5, type: 2}
   DialogueTriggered:
     m_PersistentCalls:
@@ -1129,7 +1128,7 @@ PrefabInstance:
     - target: {fileID: 3468200303385610522, guid: c22076b606b057c4cb67340564079339, type: 3}
       propertyPath: UpdateUI.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1563916668}
+      objectReference: {fileID: 0}
     - target: {fileID: 3468200303385610522, guid: c22076b606b057c4cb67340564079339, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1246,7 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59101c7e9ce67fd47a4725a55eb21b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endText: {fileID: 2119977094}
+  _endText: {fileID: 0}
   _player: {fileID: 1305757452}
   Dialogue1Start:
     m_PersistentCalls:
@@ -1449,17 +1448,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &1457551044 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4991441787464303901, guid: 182161c53302c754d9f26a6704272490, type: 3}
-  m_PrefabInstance: {fileID: 6486115689557014865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1459358969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1597,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1519881354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7988532345669431961, guid: 182161c53302c754d9f26a6704272490, type: 3}
+  m_PrefabInstance: {fileID: 6486115689557014865}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1544904760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,17 +1642,6 @@ Transform:
   - {fileID: 1802548660}
   m_Father: {fileID: 2040411899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1563916668 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6575261749617541473, guid: 182161c53302c754d9f26a6704272490, type: 3}
-  m_PrefabInstance: {fileID: 6486115689557014865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4b0891c7897ae4cac5fe8b8636213e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1597490826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1751,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 713900460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1612295255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8589789100165184039, guid: 182161c53302c754d9f26a6704272490, type: 3}
+  m_PrefabInstance: {fileID: 6486115689557014865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1638787757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,7 +1801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _phases: []
-  _dialogueObjects: []
   PhaseFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -1949,10 +1941,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _dialogueBox: {fileID: 1959461227}
+  _dialogueBox: {fileID: 1612295255}
   _characterPortraits: []
-  _speakerNameText: {fileID: 1457551044}
-  _dialogueText: {fileID: 1735638896}
+  _dialogueText: {fileID: 1519881354}
 --- !u!4 &1716083128
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,17 +1959,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2040411899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1735638896 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4863927349319592172, guid: 182161c53302c754d9f26a6704272490, type: 3}
-  m_PrefabInstance: {fileID: 6486115689557014865}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1737766514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2761b5439fe754b911d03b54696813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alt: 0
   <Dialogue>k__BackingField: {fileID: 11400000, guid: ede52ea12ce5ae24b824a43cd0488496, type: 2}
   DialogueTriggered:
     m_PersistentCalls:
@@ -2211,7 +2190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2761b5439fe754b911d03b54696813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alt: 0
   <Dialogue>k__BackingField: {fileID: 11400000, guid: aa8e1fb1f3f2f2342842624833f4231f, type: 2}
   DialogueTriggered:
     m_PersistentCalls:
@@ -2243,11 +2221,6 @@ MonoBehaviour:
   DialogueEnds:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1959461227 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1172396624749012445, guid: 182161c53302c754d9f26a6704272490, type: 3}
-  m_PrefabInstance: {fileID: 6486115689557014865}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2040411898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,11 +2293,6 @@ Transform:
   - {fileID: 1132114667}
   m_Father: {fileID: 566579103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2119977094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1777497354566757587, guid: 182161c53302c754d9f26a6704272490, type: 3}
-  m_PrefabInstance: {fileID: 6486115689557014865}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2135251792
 GameObject:
   m_ObjectHideFlags: 0

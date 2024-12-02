@@ -49,4 +49,10 @@ public class PlayerBattleController : PlayerController
             OnPlayerDamaged(_basicDamageAmount); // Take damage
         }
     }
+    public override void EnableMovement()
+    {
+        // For events
+        _playerCanMove = true;
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+    }
 }
