@@ -15,6 +15,36 @@ MonoBehaviour:
   DialogueLines:
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    _dialogueBox: {fileID: 0}
-    Line: This is the first dialogue
+    SpeakerName: 
+    Line: 'Mom: It''s like we hardly see you anymore! I''ve missed you!'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: Ha, ha, yeah, sorry, I''m just really busy, like...'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: ...'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: ... lots of homework, and, yeah.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'Mom: Mhm...'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'Mom: Anyway, how are you?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: Um...'
     TypingSpeed: 0.05

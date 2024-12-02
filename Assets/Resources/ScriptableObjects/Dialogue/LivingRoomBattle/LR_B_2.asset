@@ -15,6 +15,26 @@ MonoBehaviour:
   DialogueLines:
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    _dialogueBox: {fileID: 0}
-    Line: This is the second dialogue
+    SpeakerName: 
+    Line: 'You: How''ve I been? Y''know, fine. Yeah.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'Dad: Been working a lot, huh?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: Yup...!'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'Dad: Working hard, or hardly working?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    SpeakerName: 
+    Line: 'You: Haha...'
     TypingSpeed: 0.05

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_7
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: Hey, I''m sorry, I wanna stay and chat but I''m about to be late
+      for class.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: Oh! Look at me, so forgetful. Hahaha.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: Must run in the family.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: You stare at each other awkwardly.
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: ... yeah?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: ...'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: ... yeah...?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: Did you remember your laundry?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: ... Laundry?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: "Mom: Sweetie, you\u2019ve had a pile of clothes on the laundry room floor
+      for the past week. I even folded everything for you."
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: Can you please go get it soon?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: Ack. Thanks. Yeah. Sorry. I''ll grab it tonight.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'Mom: Haha. No worries. I can just work around it today.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: 'You: ...'
+    TypingSpeed: 0.05

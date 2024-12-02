@@ -213,7 +213,7 @@ public class DialogueLine
 
     public Sprite _dialogueBoxSprite; // Which dialogue box should be paired with this line (tail direction or no tail)
 
-    public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
+    //public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
 
     [TextArea]
     public string Line; // One line of dialogue

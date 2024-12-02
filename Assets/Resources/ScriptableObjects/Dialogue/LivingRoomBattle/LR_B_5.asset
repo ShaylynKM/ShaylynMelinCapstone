@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_5
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: Mom gets confused halfway through about a plot point of her book.
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: Your dad asks about the book and realizes he's been reading it too, although
+      he said the title wrong.
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: They start chatting amongst themselves, trying and failing to remember
+      details of the plot.
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: This is your chance to make an escape!
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: You think the book sounds really boring, by the way.
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 0}
+    Line: You jerk.
+    TypingSpeed: 0.05

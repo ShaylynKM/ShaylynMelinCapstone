@@ -15,21 +15,35 @@ MonoBehaviour:
   DialogueLines:
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    SpeakerName: 
-    Line: This is the third dialogue
+    Line: 'You: I uh, I gotta g--'
     TypingSpeed: 0.05
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    SpeakerName: 
-    Line: This is this is this is this is
+    Line: 'Mom: Have you been sleeping okay? You look tired.'
     TypingSpeed: 0.05
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    SpeakerName: 
-    Line: drumrooooooooooooollllll
+    Line: You jump slightly as your mom does that mom thing where she shoots you
+      point blank with things you thought you were skillfully hiding.
     TypingSpeed: 0.05
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
-    SpeakerName: 
-    Line: Indeed the third dialogue
+    Line: 'You: I mean, yeah, I''ve been fine.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    Line: 'Mom: I hear you up at all hours of the night.'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    Line: 'You: Um, I get the most work done at night? That''s all!'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    Line: 'Mom: Honey, if you''re having trouble sleeping, it''s okay! Have you tried
+      reading before bed?'
+    TypingSpeed: 0.05
+  - _portraitSprites: []
+    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    Line: 'You: ...'
     TypingSpeed: 0.05
