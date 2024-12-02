@@ -18,6 +18,11 @@ public class PlayerBattleController : PlayerController
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
     }
 
+    public void SnapToCenter()
+    {
+        transform.position = new Vector3(0, 0, 0); // Move this object to the center
+    }
+
     public void OnPlayerDeath()
     {
         _currentScene = SceneManager.GetActiveScene();

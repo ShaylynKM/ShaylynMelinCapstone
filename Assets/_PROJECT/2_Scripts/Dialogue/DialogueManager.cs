@@ -17,8 +17,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
 
-    [SerializeField]
-    private TextMeshProUGUI _speakerNameText; // Name of the speaking character
+    //[SerializeField]
+    //private TextMeshProUGUI _speakerNameText; // Name of the speaking character
 
     [SerializeField]
     private TextMeshProUGUI _dialogueText; // What the character is saying; should pop up inside the dialogue box
@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator WaitForDialogueLoad()
     {
         _dialogueText.text = ""; // Clears text
-        _speakerNameText.text = ""; // Clears speaker name
+        //_speakerNameText.text = ""; // Clears speaker name
         
         yield return new WaitForSeconds(_loadSpeed); // Waits for the duration of the load speed to load in the text
 
@@ -118,7 +118,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
-        _speakerNameText.text = dialogueLine.SpeakerName;
+        //_speakerNameText.text = dialogueLine.SpeakerName;
         _dialogueText.text = dialogueLine.Line;
 
         string fullText = _dialogueText.text;

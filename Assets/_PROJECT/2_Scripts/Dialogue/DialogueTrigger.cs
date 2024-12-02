@@ -16,7 +16,7 @@ public class DialogueTrigger : MonoBehaviour
 
     // Put this script onto any object that triggers dialogue.
 
-    public bool alt; // testing
+    //public bool alt; // testing
 
     [field: SerializeField] public DialogueSO Dialogue { get; private set; } 
     //public List<DialogueSO> DialogueObjects;
