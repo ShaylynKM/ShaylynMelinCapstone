@@ -43,7 +43,7 @@ MonoBehaviour:
     TypingSpeed: 0.05
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 0}
-    Line: You:I don't think <i>she</i> even knows what she means.
+    Line: 'You: I don''t think <i>she</i> even knows what she means.'
     TypingSpeed: 0.05
   - _portraitSprites: []
     _dialogueBoxSprite: {fileID: 0}

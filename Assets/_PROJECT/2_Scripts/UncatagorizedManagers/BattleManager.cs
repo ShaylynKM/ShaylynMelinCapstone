@@ -22,12 +22,19 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        SetPhasesInactive();
+
+        Invoke("Begin", .1f);
+    }
+
+    public void SetPhasesInactive()
+    {
         foreach (GameObject phase in _phases)
         {
             phase.SetActive(false);
         }
-        Invoke("Begin", .1f);
     }
+
     public void Begin()
     {
         OnBeginScene?.Invoke();
