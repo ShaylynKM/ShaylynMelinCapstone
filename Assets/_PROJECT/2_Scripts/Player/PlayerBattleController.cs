@@ -8,9 +8,21 @@ public class PlayerBattleController : PlayerController
 {
     private Scene _currentScene;
 
-    public UnityEvent<int> PlayerHit;
+    public UnityEvent<int> PlayerHurt;
+    public UnityEvent<int> PlayerHeal;
 
     private int _basicDamageAmount = 1;
+
+    protected override void Start()
+    {
+        base.Start();
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+    }
+
+    public void SnapToCenter()
+    {
+        transform.position = new Vector3(0, 0, 0); // Move this object to the center
+    }
 
     public void OnPlayerDeath()
     {
@@ -20,22 +32,62 @@ public class PlayerBattleController : PlayerController
 
     public void OnPlayerDamaged(int damage)
     {
-        PlayerHit?.Invoke(damage);
+        PlayerHurt?.Invoke(damage); // Called by the health component
+    }
+
+    public void OnPlayerHealed(int health)
+    {
+        PlayerHeal?.Invoke(health); // Called by the health component
+    }
+
+    protected override void FixedUpdate()
+    {
+        {
+            // Using FixedUpdate for physics interactions
+            // Debug.Log(Time.fixedDeltaTime);
+            //Debug.Log(Time.deltaTime);
+            if (_moveVector.magnitude > 0.1f)
+            {
+                _movementVector = Vector2.Lerp(_rb.velocity, _moveVector * _moveSpeed, _movementStats.AccelerationSpeed);
+
+            }
+            else
+            {
+                _movementVector = Vector2.Lerp(_moveVector * _moveSpeed, _rb.velocity, _movementStats.SlowDownSpeed);
+
+            }
+            _rb.velocity = _movementVector;// _moveVector * _moveSpeed; // move player by multiplying the input by the speed
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<ProtoBullet>()) // If this is a bullet
+        if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet
         {
             OnPlayerDamaged(_basicDamageAmount); // Take damage
+        }
+        if (collision.gameObject.GetComponent<hpDrop>()) // If this is HP
+        {
+            OnPlayerHealed(_basicDamageAmount); // Heal a damage point
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<ProtoBullet>()) // If this is a bullet
+        if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet
         {
             OnPlayerDamaged(_basicDamageAmount); // Take damage
         }
+        if(collision.gameObject.GetComponent<hpDrop>()) // If this is HP
+        {
+            OnPlayerHealed(_basicDamageAmount); // Heal a damage point
+        }
+    }
+    public override void EnableMovement()
+    {
+        // For events
+        _playerCanMove = true;
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
     }
 }

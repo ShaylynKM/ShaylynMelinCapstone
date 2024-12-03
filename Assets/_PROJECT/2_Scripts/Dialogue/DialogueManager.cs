@@ -15,7 +15,10 @@ public class DialogueManager : MonoBehaviour
     private GameObject _dialogueBox; // Dialogue box that pops up when this script is triggered
 
     [SerializeField]
-    private TextMeshProUGUI _speakerNameText; // Name of the speaking character
+    private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
+
+    //[SerializeField]
+    //private TextMeshProUGUI _speakerNameText; // Name of the speaking character
 
     [SerializeField]
     private TextMeshProUGUI _dialogueText; // What the character is saying; should pop up inside the dialogue box
@@ -29,10 +32,15 @@ public class DialogueManager : MonoBehaviour
     private float _loadSpeed = 0.03f; // Delay to load in the text (so the first character isn't typed instantly)
 
     private bool _insideFormatTag = false; // For making sure the text sounds don't play for format tags
-
+    private DialogueTrigger _currentTrigger;
     private void Awake()
     {
         _dialogueBox.SetActive(false);
+        DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        foreach(DialogueTrigger dialogueTrigger in dialogueTriggers)
+        {
+            dialogueTrigger.DialogueTriggered.AddListener(DMTriggerDialogue);
+        }
     }
     private void Start()
     {
@@ -48,42 +56,41 @@ public class DialogueManager : MonoBehaviour
         PlayerInputManager.Instance.NextDialogue -= DisplayNextDialogueLine;
     }
 
-    public void DMTriggerDialogue(DialogueSO dialogueSO)
+    public void DMTriggerDialogue(DialogueTrigger dialogueTrigger)
     {
+        _currentTrigger = dialogueTrigger;
         // Call this method in the event when triggering the dialogue from outside
 
         _dialogueBox.SetActive(true);
 
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue); // Change the input state to the dialogue state
-
-        StartCoroutine(WaitForDialogueLoad(dialogueSO));
+        StartCoroutine(WaitForDialogueLoad());
         
     }
 
-    private IEnumerator WaitForDialogueLoad(DialogueSO dialogueSO)
+    private IEnumerator WaitForDialogueLoad()
     {
         _dialogueText.text = ""; // Clears text
-        _speakerNameText.text = ""; // Clears speaker name
-
+        //_speakerNameText.text = ""; // Clears speaker name
+        
         yield return new WaitForSeconds(_loadSpeed); // Waits for the duration of the load speed to load in the text
 
-        StartDialogue(dialogueSO.DialogueLines);
-    }
-
-    public void StartDialogue(List<DialogueLine> dialogueLines)
-    {
         _lines.Clear(); // Empties the queue
 
-        foreach (DialogueLine dialogueLine in dialogueLines)
+        foreach (DialogueLine dialogueLine in _currentTrigger.Dialogue.DialogueLines)
         {
             _lines.Enqueue(dialogueLine);
         }
-
         DisplayNextDialogueLine();
     }
 
+
     public void DisplayNextDialogueLine()
     {
+        // Trying to figure out how to display the correct sprites for the dialogue box + however many character portraits are present, based on the line in the scriptable object
+        //SpriteRenderer dialogueSprite = _dialogueBox.GetComponent<SpriteRenderer>();
+        //dialogueSprite = ????
+
         // If we are currently typing, complete the current sentence immediately
         if (_isTyping == true)
         {
@@ -101,15 +108,17 @@ public class DialogueManager : MonoBehaviour
 
         // Dequeues the next line and updates UI elements accordingly
         DialogueLine currentLine = _lines.Dequeue();
-        _speakerNameText.text = currentLine.SpeakerName;
+
         
 
         // Starts typing the next dialogue line
         StartCoroutine(TypeSentence(currentLine));
+        
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
+        //_speakerNameText.text = dialogueLine.SpeakerName;
         _dialogueText.text = dialogueLine.Line;
 
         string fullText = _dialogueText.text;
@@ -190,16 +199,21 @@ public class DialogueManager : MonoBehaviour
     {
         _dialogueBox.SetActive(false);
 
+        _currentTrigger.DialogueEnds?.Invoke();
         OnDialogueEnded?.Invoke();
 
-        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.PlayerMove); // Allow the player to move again
+ 
     }
 }
 
 [System.Serializable]
 public class DialogueLine
 {
-    public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
+    public Sprite[] _portraitSprites; // The portrait(s) to be displayed for this line
+
+    public Sprite _dialogueBoxSprite; // Which dialogue box should be paired with this line (tail direction or no tail)
+
+    //public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
 
     [TextArea]
     public string Line; // One line of dialogue

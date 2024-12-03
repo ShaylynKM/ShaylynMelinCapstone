@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
-    protected virtual void OnDespawn()
+    public virtual void OnDespawn()
     {
         
     }

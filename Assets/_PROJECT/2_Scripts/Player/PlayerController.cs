@@ -2,28 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private MyInputActions _input;
 
-    private Vector2 _moveVector = Vector2.zero;
-    private Rigidbody2D _rb;
+    protected Vector2 _moveVector = Vector2.zero;
+    protected Rigidbody2D _rb;
 
     private SpriteRenderer _spriteRenderer;
 
-    private float _moveSpeed;
+    protected float _moveSpeed;
 
     [SerializeField]
     private PlayerActionsSO _playerActionsSO;
 
     [SerializeField]
-    private PlayerMovementSO _movementStats;
+    protected PlayerMovementSO _movementStats;
 
-    private bool _playerCanMove = true;
+    [SerializeField]
+    private AnimationClip _walkAnimation;
 
-    private Vector2 _movementVector;
+    protected bool _playerCanMove = true;
+
+    protected Vector2 _movementVector;
+
+    public UnityEvent StartWalkAnimation;
+    public UnityEvent StopWalkAnimation;
 
     private void Awake()
     {
@@ -34,11 +41,16 @@ public class PlayerController : MonoBehaviour
         _moveSpeed = _movementStats.MoveSpeed; // Set the speed to what is defined in the scriptable object
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         // Enable was being called before Singleton was created (probably)
         PlayerInputManager.Instance.PlayerMove += HandleMove;
         PlayerInputManager.Instance.PlayerInteract += HandleInteract;
+        PlayerInputManager.Instance.PlayerStop += () =>
+        {
+            _playerCanMove = false;
+            _moveVector = new Vector2();
+        };
 
     }
 
@@ -64,7 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerActionsSO.HandleInteract();
     }
-    public void EnableMovement()
+    public virtual void EnableMovement()
     {
         // For events
         _playerCanMove = true;
@@ -74,15 +86,23 @@ public class PlayerController : MonoBehaviour
         _playerCanMove = false;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // Using FixedUpdate for physics interactions
         // Debug.Log(Time.fixedDeltaTime);
         //Debug.Log(Time.deltaTime);
         if(_moveVector.magnitude > 0.1f)
-            _movementVector = Vector2.Lerp(_rb.velocity,_moveVector * _moveSpeed, _movementStats.AccelerationSpeed);
+        {
+            _movementVector = Vector2.Lerp(_rb.velocity, _moveVector * _moveSpeed, _movementStats.AccelerationSpeed);
+            StartWalkAnimation?.Invoke();
+
+        }
         else
-            _movementVector = Vector2.Lerp( _moveVector * _moveSpeed, _rb.velocity, _movementStats.SlowDownSpeed);
+        {
+            _movementVector = Vector2.Lerp(_moveVector * _moveSpeed, _rb.velocity, _movementStats.SlowDownSpeed);
+            StopWalkAnimation.Invoke();
+
+        }
         _rb.velocity = _movementVector;// _moveVector * _moveSpeed; // move player by multiplying the input by the speed
 
     }
@@ -92,11 +112,11 @@ public class PlayerController : MonoBehaviour
         if (_movementStats.Flip == true)
         {
             // Flip the sprite when turning left and right
-            if (_moveVector.x > 0)
+            if (_moveVector.x < 0)
             {
                 _spriteRenderer.flipX = false;
             }
-            else if (_moveVector.x < 0)
+            else if (_moveVector.x > 0)
             {
                 _spriteRenderer.flipX = true;
             }

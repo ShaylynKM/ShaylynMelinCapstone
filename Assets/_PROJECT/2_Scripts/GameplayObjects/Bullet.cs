@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class Bullet : PoolObject
 {
-    private PoolObject _bulletPrefab; // Our prefab
-
-    public void Init(PoolObject bulletPrefab)
+    public override void OnDespawn()
     {
-        _bulletPrefab = bulletPrefab; // To set the reference in the spawner
-    }
-
-    protected override void OnDespawn()
-    {
-        PoolManager.Instance.Despawn(this, _bulletPrefab);
+        PoolManager.Instance.Despawn(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

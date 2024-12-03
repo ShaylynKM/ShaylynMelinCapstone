@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,33 +8,96 @@ using UnityEngine.Events;
 //when the health drops below zero, broadcast an event
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField]
-    private HealthSO _healthSO;
+    private int _currentHealth;
+    private int _maxHealth = 8;
+
+    private float _iFramesSeconds = 3;
+
+    private bool _isInvincible = false;
+
+    private CircleCollider2D _collider;
+
+    public UnityEvent StartFlashingAnimation;
+    public UnityEvent StopFlashingAnimation;
+
+    private void Awake()
+    {
+        _collider = GetComponent<CircleCollider2D>();
+    }
+
+    public int CurrentHealth
+    {
+        get
+        {
+            return _currentHealth;
+        }
+        set
+        {
+            _currentHealth = value;
+        }
+    }
+
+    public int MaxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+        set
+        {
+            _maxHealth = value;
+        }
+    }
 
     public UnityEvent OnDeath;
-    //public UnityEvent<int> OnDamage;
-    public UnityEvent<int> UpdateUI;
-
-    private int _health;
+    public UnityEvent UpdateUI;
 
     void Start()
     {
-        //assign private health variable to health from scriptable object
-        _health = _healthSO.Health;
+        _currentHealth = _maxHealth;
 
-        UpdateUI?.Invoke(_health);
+        UpdateUIInvoker();
+    }
+
+    public void UpdateUIInvoker()
+    {
+        UpdateUI?.Invoke();
     }
 
     public void ApplyDamage(int damageAmount)
     {
-        _health -= damageAmount; // subtract the amount of damage
-
-        if (_health <= 0)
+        if(_isInvincible == false)
         {
-            OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
+            StartFlashingAnimation?.Invoke();
 
-            return;
+            _isInvincible = true; // Make the player unable to get hit again
+
+            _currentHealth -= damageAmount; // subtract the amount of damage
+
+            if (_currentHealth <= 0)
+            {
+                OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
+
+                return;
+            }
+            UpdateUIInvoker(); // Update the UI to show the new health
+
+            Invoke("StopInvincibility", _iFramesSeconds);
         }
-        UpdateUI?.Invoke(_health); // Update the UI to show the new health
+    }
+
+    private void StopInvincibility()
+    {
+        StopFlashingAnimation?.Invoke();
+        _isInvincible = false;
+    }
+
+    public void Heal(int healAmount)
+    {
+        if(_currentHealth < _maxHealth)
+        {
+            _currentHealth += healAmount; // Add the HP
+        }
+        UpdateUIInvoker();
     }
 }
