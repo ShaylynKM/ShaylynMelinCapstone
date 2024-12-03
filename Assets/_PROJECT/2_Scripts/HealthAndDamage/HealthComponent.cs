@@ -10,6 +10,10 @@ public class HealthComponent : MonoBehaviour
     private int _currentHealth;
     private int _maxHealth = 8;
 
+    private float _iFramesSeconds = 5;
+
+    private bool _isInvincible = false;
+
     public int CurrentHealth
     {
         get
@@ -51,15 +55,27 @@ public class HealthComponent : MonoBehaviour
 
     public void ApplyDamage(int damageAmount)
     {
-        _currentHealth -= damageAmount; // subtract the amount of damage
-
-        if (_currentHealth <= 0)
+        if(_isInvincible == false)
         {
-            OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
+            _isInvincible = true; // Make the player unable to get hit again
 
-            return;
+            _currentHealth -= damageAmount; // subtract the amount of damage
+
+            if (_currentHealth <= 0)
+            {
+                OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
+
+                return;
+            }
+            UpdateUIInvoker(); // Update the UI to show the new health
+
+            Invoke("StopInvincibility", _iFramesSeconds);
         }
-        UpdateUIInvoker(); // Update the UI to show the new health
+    }
+
+    private void StopInvincibility()
+    {
+        _isInvincible = false;
     }
 
     public void Heal(int healAmount)
