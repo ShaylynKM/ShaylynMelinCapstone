@@ -40,6 +40,27 @@ public class PlayerBattleController : PlayerController
         PlayerHeal?.Invoke(health); // Called by the health component
     }
 
+    protected override void FixedUpdate()
+    {
+        {
+            // Using FixedUpdate for physics interactions
+            // Debug.Log(Time.fixedDeltaTime);
+            //Debug.Log(Time.deltaTime);
+            if (_moveVector.magnitude > 0.1f)
+            {
+                _movementVector = Vector2.Lerp(_rb.velocity, _moveVector * _moveSpeed, _movementStats.AccelerationSpeed);
+
+            }
+            else
+            {
+                _movementVector = Vector2.Lerp(_moveVector * _moveSpeed, _rb.velocity, _movementStats.SlowDownSpeed);
+
+            }
+            _rb.velocity = _movementVector;// _moveVector * _moveSpeed; // move player by multiplying the input by the speed
+
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet

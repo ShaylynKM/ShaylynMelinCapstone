@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,9 +11,19 @@ public class HealthComponent : MonoBehaviour
     private int _currentHealth;
     private int _maxHealth = 8;
 
-    private float _iFramesSeconds = 5;
+    private float _iFramesSeconds = 3;
 
     private bool _isInvincible = false;
+
+    private CircleCollider2D _collider;
+
+    public UnityEvent StartFlashingAnimation;
+    public UnityEvent StopFlashingAnimation;
+
+    private void Awake()
+    {
+        _collider = GetComponent<CircleCollider2D>();
+    }
 
     public int CurrentHealth
     {
@@ -57,6 +68,8 @@ public class HealthComponent : MonoBehaviour
     {
         if(_isInvincible == false)
         {
+            StartFlashingAnimation?.Invoke();
+
             _isInvincible = true; // Make the player unable to get hit again
 
             _currentHealth -= damageAmount; // subtract the amount of damage
@@ -75,6 +88,7 @@ public class HealthComponent : MonoBehaviour
 
     private void StopInvincibility()
     {
+        StopFlashingAnimation?.Invoke();
         _isInvincible = false;
     }
 

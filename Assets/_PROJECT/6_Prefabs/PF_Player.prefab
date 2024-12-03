@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 644202572399977082}
   - component: {fileID: 2619737579438061954}
   - component: {fileID: 6784528222251569857}
+  - component: {fileID: 8034637512872016323}
   m_Layer: 3
   m_Name: PF_Player
   m_TagString: Untagged
@@ -174,6 +175,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerActionsSO: {fileID: 11400000, guid: 3cdb7a71610c7584da20b75aa6d6bcfe, type: 2}
   _movementStats: {fileID: 11400000, guid: 7efaf5d49960665459b078ccf98392b0, type: 2}
+  _walkAnimation: {fileID: 0}
+  StartWalkAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8034637512872016323}
+        m_TargetAssemblyTypeName: HandleAnimation, Assembly-CSharp
+        m_MethodName: StartAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StopWalkAnimation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8034637512872016323}
+        m_TargetAssemblyTypeName: HandleAnimation, Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &6784528222251569857
 Animator:
   serializedVersion: 5
@@ -195,3 +227,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8034637512872016323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505005587426208091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6618c5978d642394ea4ec4a4778a530c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSprite: {fileID: 21300000, guid: b450854bf74f916408e8a8342cfaa289, type: 3}
