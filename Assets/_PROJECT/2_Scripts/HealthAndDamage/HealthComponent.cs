@@ -14,8 +14,9 @@ public class HealthComponent : MonoBehaviour
 
     private CircleCollider2D _collider;
 
-    public UnityEvent StartFlashingAnimation;
     public UnityEvent StopFlashingAnimation;
+
+    public UnityEvent OnHurtEffects;
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class HealthComponent : MonoBehaviour
     {
         if(_isInvincible == false)
         {
-            StartFlashingAnimation?.Invoke();
+            OnHurtEffects?.Invoke();
 
             _isInvincible = true; // Make the player unable to get hit again
 
