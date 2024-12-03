@@ -11,17 +11,23 @@ public class PlayerBattleController : PlayerController
     public UnityEvent<int> PlayerHurt;
     public UnityEvent<int> PlayerHeal;
 
+    private SpriteRenderer _sr;
+
     private int _basicDamageAmount = 1;
 
     protected override void Start()
     {
         base.Start();
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     public void SnapToCenter()
     {
-        transform.position = new Vector3(0, 0, 0); // Move this object to the center
+        //_sr.enabled = false;
+        //transform.position = new Vector3(0, 0, 0); // Move this object to the center
+
+        StartCoroutine(MoveToCenter());
     }
 
     public void OnPlayerDeath()
@@ -61,6 +67,16 @@ public class PlayerBattleController : PlayerController
         }
     }
 
+    IEnumerator MoveToCenter()
+    {
+
+        while(Vector2.Distance(transform.position, Vector2.zero) > 0.01f) // While we aren't at the center
+        {
+            transform.position = Vector2.Lerp(transform.position, Vector2.zero, _moveSpeed * Time.deltaTime); // Move to the center from wherever we are
+            yield return null;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Bullet>()) // If this is a bullet
@@ -89,5 +105,6 @@ public class PlayerBattleController : PlayerController
         // For events
         _playerCanMove = true;
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
+        _sr.enabled = true;
     }
 }
