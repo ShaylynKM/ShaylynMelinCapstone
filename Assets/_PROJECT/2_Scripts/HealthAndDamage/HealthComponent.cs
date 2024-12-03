@@ -42,8 +42,6 @@ public class HealthComponent : MonoBehaviour
         _currentHealth = _maxHealth;
 
         UpdateUIInvoker();
-
-        Debug.Log(_maxHealth);
     }
 
     public void UpdateUIInvoker()
