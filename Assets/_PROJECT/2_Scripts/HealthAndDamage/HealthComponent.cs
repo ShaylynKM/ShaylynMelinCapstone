@@ -7,41 +7,69 @@ using UnityEngine.Events;
 //when the health drops below zero, broadcast an event
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField]
-    private HealthSO _healthSO;
+    private int _currentHealth;
+    private int _maxHealth = 8;
+
+    public int CurrentHealth
+    {
+        get
+        {
+            return _currentHealth;
+        }
+        set
+        {
+            _currentHealth = value;
+        }
+    }
+
+    public int MaxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+        set
+        {
+            _maxHealth = value;
+        }
+    }
 
     public UnityEvent OnDeath;
-    //public UnityEvent<int> OnDamage;
-    public UnityEvent<int> UpdateUI;
-
-    private int _health;
+    public UnityEvent UpdateUI;
 
     void Start()
     {
-        //assign private health variable to health from scriptable object
-        _health = _healthSO.Health;
+        _currentHealth = _maxHealth;
 
-        UpdateUI?.Invoke(_health);
+        UpdateUIInvoker();
+
+        Debug.Log(_maxHealth);
+    }
+
+    public void UpdateUIInvoker()
+    {
+        UpdateUI?.Invoke();
     }
 
     public void ApplyDamage(int damageAmount)
     {
-        _health -= damageAmount; // subtract the amount of damage
+        _currentHealth -= damageAmount; // subtract the amount of damage
 
-        if (_health <= 0)
+        if (_currentHealth <= 0)
         {
             OnDeath?.Invoke(); // If the health is zero, the object "dies" (send out event to decide what happens on death)
 
             return;
         }
-        UpdateUI?.Invoke(_health); // Update the UI to show the new health
+        UpdateUIInvoker(); // Update the UI to show the new health
     }
 
     public void Heal(int healAmount)
     {
-        if(_health < _healthSO.MaxHealth)
+        if(_currentHealth < _maxHealth)
         {
-            _health += healAmount; // Add the HP
+            _currentHealth += healAmount; // Add the HP
         }
+        UpdateUIInvoker();
     }
 }

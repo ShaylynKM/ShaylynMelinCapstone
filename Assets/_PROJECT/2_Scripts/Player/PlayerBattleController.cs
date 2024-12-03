@@ -8,7 +8,7 @@ public class PlayerBattleController : PlayerController
 {
     private Scene _currentScene;
 
-    public UnityEvent<int> PlayerHit;
+    public UnityEvent<int> PlayerHurt;
     public UnityEvent<int> PlayerHeal;
 
     private int _basicDamageAmount = 1;
@@ -32,7 +32,7 @@ public class PlayerBattleController : PlayerController
 
     public void OnPlayerDamaged(int damage)
     {
-        PlayerHit?.Invoke(damage); // Called by the health component
+        PlayerHurt?.Invoke(damage); // Called by the health component
     }
 
     public void OnPlayerHealed(int health)
