@@ -28,6 +28,7 @@ public class PlayerBattleController : PlayerController
         //transform.position = new Vector3(0, 0, 0); // Move this object to the center
 
         StartCoroutine(MoveToCenter());
+
     }
 
     public void OnPlayerDeath()
@@ -39,6 +40,7 @@ public class PlayerBattleController : PlayerController
     public void OnPlayerDamaged(int damage)
     {
         PlayerHurt?.Invoke(damage); // Called by the health component
+        Debug.Log("Hurt");
     }
 
     public void OnPlayerHealed(int health)
