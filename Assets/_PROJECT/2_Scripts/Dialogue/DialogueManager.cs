@@ -11,8 +11,13 @@ public class DialogueManager : MonoBehaviour
 {
     public UnityEvent OnDialogueEnded; // Any logic for when the dialogue ends, such as changing scenes.
 
-    [SerializeField]
-    private GameObject _dialogueBox; // Dialogue box that pops up when this script is triggered
+     private GameObject _currentDialogueBox; // Dialogue box that pops up when this script is triggered
+    [SerializeField] private GameObject _dialogueBoxNoTail;
+    [SerializeField] private GameObject _dialogueBoxLeftTail;
+    [SerializeField] private GameObject _dialogueBoxRightTail;
+
+    [SerializeField] private GameObject _leftPortraitObject;
+    [SerializeField] private GameObject _rightPortraitObject;
 
     [SerializeField]
     private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
@@ -35,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueTrigger _currentTrigger;
     private void Awake()
     {
-        _dialogueBox.SetActive(false);
+        _dialogueBoxNoTail.SetActive(false);
         DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
         foreach(DialogueTrigger dialogueTrigger in dialogueTriggers)
         {
@@ -59,9 +64,28 @@ public class DialogueManager : MonoBehaviour
     public void DMTriggerDialogue(DialogueTrigger dialogueTrigger)
     {
         _currentTrigger = dialogueTrigger;
-        // Call this method in the event when triggering the dialogue from outside
 
-        _dialogueBox.SetActive(true);
+        ////turn off dialogue box if its already set. This can be improved later
+        //if (_currentDialogueBox != null) _currentDialogueBox.SetActive(false);
+
+        ////set new dialogue box type to current dialoge box
+        //switch(_lines.Peek().DialogueBoxTailEnum)
+        //{
+        //    case DialogueLine.DialogueBoxTail.None:
+        //        _currentDialogueBox = _dialogueBoxNoTail;
+        //        break;
+        //    case DialogueLine.DialogueBoxTail.Left:
+        //        _currentDialogueBox = _dialogueBoxLeftTail;
+        //        break;
+        //    case DialogueLine.DialogueBoxTail.Right:
+        //        _currentDialogueBox = _dialogueBoxRightTail;
+        //        break;
+        //}
+
+        //_dialogueText = _currentDialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        ////reactivate dialogue box
+        //_currentDialogueBox.SetActive(true);
 
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue); // Change the input state to the dialogue state
         StartCoroutine(WaitForDialogueLoad());
@@ -91,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         //SpriteRenderer dialogueSprite = _dialogueBox.GetComponent<SpriteRenderer>();
         //dialogueSprite = ????
 
+
         // If we are currently typing, complete the current sentence immediately
         if (_isTyping == true)
         {
@@ -105,6 +130,41 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        //turn off dialogue box if its already set. This can be improved later
+        if (_currentDialogueBox != null) _currentDialogueBox.SetActive(false);
+
+        //set new dialogue box type to current dialoge box
+        switch (_lines.Peek().DialogueBoxTailEnum)
+        {
+            case DialogueLine.DialogueBoxTail.None:
+                _currentDialogueBox = _dialogueBoxNoTail;
+                break;
+            case DialogueLine.DialogueBoxTail.Left:
+                _currentDialogueBox = _dialogueBoxLeftTail;
+                break;
+            case DialogueLine.DialogueBoxTail.Right:
+                _currentDialogueBox = _dialogueBoxRightTail;
+                break;
+        }
+
+        Sprite leftPortrait = _lines.Peek().LeftPortraitSprite;
+        if(_leftPortraitObject != null)
+        {
+            _leftPortraitObject.GetComponent<SpriteRenderer>().sprite = leftPortrait;
+        }
+
+        Sprite rightPortrait = _lines.Peek().RightPortraitSprite;
+        if(_rightPortraitObject != null)
+        {
+            _rightPortraitObject.GetComponent<SpriteRenderer>().sprite = rightPortrait;
+
+        }
+
+        _dialogueText = _currentDialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        //reactivate dialogue box
+        _currentDialogueBox.SetActive(true);
 
         // Dequeues the next line and updates UI elements accordingly
         DialogueLine currentLine = _lines.Dequeue();
@@ -197,7 +257,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        _dialogueBox.SetActive(false);
+        _dialogueBoxNoTail.SetActive(false);
 
         _currentTrigger.DialogueEnds?.Invoke();
         OnDialogueEnded?.Invoke();
@@ -209,17 +269,21 @@ public class DialogueManager : MonoBehaviour
 [System.Serializable]
 public class DialogueLine
 {
-    public Sprite[] _portraitSprites; // The portrait(s) to be displayed for this line
-
-    public Sprite _dialogueBoxSprite; // Which dialogue box should be paired with this line (tail direction or no tail)
-
-    //public string SpeakerName = null; // Name of the character speaking. Blank by default (in case of characters with no name, like the narrator)
+    // If there are two portraits, use both. If there's only one, it's fine to leave one empty
+    public Sprite LeftPortraitSprite;
+    public Sprite RightPortraitSprite;
 
     [TextArea]
     public string Line; // One line of dialogue
 
-    //public Sprite SpeakerPortrait; // Image of the speaking character to be displayed with each line
-
     public float TypingSpeed = 0.05f; // How fast the text characters are being revealed in the dialogue box
 
+    public DialogueBoxTail DialogueBoxTailEnum;
+
+    public enum DialogueBoxTail
+    {
+        Left,
+        Right,
+        None
+    }
 }

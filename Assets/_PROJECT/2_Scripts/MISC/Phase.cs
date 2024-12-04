@@ -11,7 +11,11 @@ public class Phase : MonoBehaviour
 
     [SerializeField] private Interval[] _patternPrefabs; // The bullet patterns needed for this phase. Could just be one
 
-    [SerializeField] private float _timeToWait; // How long before the phase is officially considered over
+    [Tooltip("The amount of time before a phase is considered over")]
+    [SerializeField] private float _TimeBeforeEndPhase; // How long before the phase is officially considered over
+
+    [Tooltip("The amount of time before a phase starts spawning objects")]
+    [SerializeField] private float _timeBeforeStartPhase;
 
     //private bool _phaseHasFinished = false;
 
@@ -28,7 +32,7 @@ public class Phase : MonoBehaviour
         }
         //_patternPrefabs[_patternPrefabs.Length - 1].Complete += () => PhaseOver?.Invoke();
 
-        _patternPrefabs[_patternPrefabs.Length - 1].Complete += () => Invoke("PhaseOverInvoker", _timeToWait);
+        _patternPrefabs[_patternPrefabs.Length - 1].Complete += () => Invoke("PhaseOverInvoker", _TimeBeforeEndPhase);
     }
 
     private void PhaseOverInvoker()
@@ -38,9 +42,18 @@ public class Phase : MonoBehaviour
 
     public void BeginPhase(int phaseNumber)
     {
+        //_patternPrefabs[phaseNumber].gameObject.SetActive(true);
+        //_patternPrefabs[phaseNumber].Begin();
+        StartCoroutine(BeginWithDelay(phaseNumber));
+    }
+
+    IEnumerator BeginWithDelay(int phaseNumber)
+    {
+        yield return new WaitForSeconds(_timeBeforeStartPhase);
         _patternPrefabs[phaseNumber].gameObject.SetActive(true);
         _patternPrefabs[phaseNumber].Begin();
     }
+
     // Call this function to set a pattern prefab as active during a phase
     //public void ActivatePatternPrefab()
     //{

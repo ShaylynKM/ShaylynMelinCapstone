@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 5202433403707037908}
   - component: {fileID: 8734327637510520502}
   m_Layer: 5
-  m_Name: DialogueBoxPlaye
+  m_Name: DialogueBoxLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 8258510163284267520}
   - component: {fileID: 4697403173402648813}
   m_Layer: 5
-  m_Name: DialogueBoxOpponent
+  m_Name: DialogueBoxRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,12 +274,12 @@ GameObject:
   - component: {fileID: 4910448069652147584}
   - component: {fileID: 5137346244306819431}
   m_Layer: 5
-  m_Name: DialogueBoxMiddle
+  m_Name: DialogueBoxNone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &179396330757192786
 RectTransform:
   m_ObjectHideFlags: 0

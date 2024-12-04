@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: beep1
   m_EditorClassIdentifier: 
   DialogueLines:
-  - SpeakerName: Mom
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
+    _dialogueBoxSprite: {fileID: 0}
     Line: How are classes going?
     TypingSpeed: 0.05
-  - SpeakerName: You
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
+    _dialogueBoxSprite: {fileID: 0}
     Line: Oh, uh, fine--
     TypingSpeed: 0.05
-  - SpeakerName: 
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
+    _dialogueBoxSprite: {fileID: 0}
     Line: (Your mom has trapped you in an awkward conversation. Yay.)
     TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
