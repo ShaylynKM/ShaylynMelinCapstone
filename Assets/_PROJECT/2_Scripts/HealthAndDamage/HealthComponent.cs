@@ -78,10 +78,12 @@ public class HealthComponent : MonoBehaviour
 
                 return;
             }
+
             UpdateUIInvoker(); // Update the UI to show the new health
 
             Invoke("StopInvincibility", _iFramesSeconds);
         }
+
     }
 
     private void StopInvincibility()

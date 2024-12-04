@@ -40,7 +40,6 @@ public class PlayerBattleController : PlayerController
     public void OnPlayerDamaged(int damage)
     {
         PlayerHurt?.Invoke(damage); // Called by the health component
-        Debug.Log("Hurt");
     }
 
     public void OnPlayerHealed(int health)
