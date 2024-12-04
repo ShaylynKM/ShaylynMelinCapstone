@@ -16,7 +16,9 @@ public class PoolManager : Singleton<PoolManager>
 
     public void InitPool(PoolObject bulletPrefab, int poolSize)
     {
-        string key = bulletPrefab.name.Replace("(Clone)", "").Trim(); // Used so that the name is consistent
+        string key = bulletPrefab.name;//.Replace("(Clone)", "").Trim(); // Used so that the name is consistent
+
+        Debug.Log(key);
         if(!_stackDictionary.ContainsKey(key)) // If this type of bullet prefab isn't in the dictionary already
         {
             Stack<PoolObject> objStack = new Stack<PoolObject>(); // Create a stack of this type of bullet prefab

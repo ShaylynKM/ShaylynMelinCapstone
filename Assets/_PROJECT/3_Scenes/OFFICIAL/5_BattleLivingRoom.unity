@@ -2551,7 +2551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127345190215656052, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _poolSize
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5127345190215656052, guid: 85d0292bc0eda534086678397f842566, type: 3}
       propertyPath: _playerObject
