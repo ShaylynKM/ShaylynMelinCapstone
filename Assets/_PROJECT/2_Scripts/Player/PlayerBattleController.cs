@@ -24,11 +24,7 @@ public class PlayerBattleController : PlayerController
 
     public void SnapToCenter()
     {
-        //_sr.enabled = false;
-        //transform.position = new Vector3(0, 0, 0); // Move this object to the center
-
         StartCoroutine(MoveToCenter());
-
     }
 
     public void OnPlayerDeath()

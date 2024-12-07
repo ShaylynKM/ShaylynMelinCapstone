@@ -91,7 +91,7 @@ public class Phase : MonoBehaviour
 
         if(_beginAllAtOnce == true)
         {
-            BeginAllPatternsAtOnce(); // Begin all the patterns simultaneously if flagged to do so
+            Invoke("BeginAllPatternsAtOnce", _timeBeforeStartPhase); // Begin all the patterns simultaneously if flagged to do so
         }
         else
         {

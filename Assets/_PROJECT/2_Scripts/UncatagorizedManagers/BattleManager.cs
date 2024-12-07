@@ -44,39 +44,6 @@ public class BattleManager : MonoBehaviour
     {
         OnBeginScene?.Invoke();
     }
-
-    //public void StartPhase()
-    //{
-    //    for(int i = 0; i < _phases.Length; i++)
-    //    {
-    //        if(_phases[i] != null && !_phases[i].activeInHierarchy)
-    //        {
-    //            _phases[i].SetActive(true); // Set this phase as active
-
-    //            Phase phaseScript = _phases[i].GetComponent<Phase>();
-
-    //            if (phaseScript.PhaseHasFinished == true)
-    //            {
-    //                PhaseFinished.Invoke(); // Invoke the event for when a phase finishes
-    //            }
-    //            break;
-    //        }
-    //        else if (_phases[i] != null && _phases[i].activeInHierarchy)
-    //        {
-    //            Debug.Log("Phase array element " + i + "is already active");
-    //            return;
-    //        }
-
-    //        else if (_phases[i] = null)
-    //        {
-    //            Debug.LogError("Nothing in the phase array.");
-    //        }
-    //    }
-    //}
-    public void StartNextPhase()
-    {
-
-    }
     public void StartSpecificPhase(Phase newPhase)
     {
         newPhase.gameObject.SetActive(true);
