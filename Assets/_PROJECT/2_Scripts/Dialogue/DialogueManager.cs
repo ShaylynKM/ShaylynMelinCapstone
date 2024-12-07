@@ -14,13 +14,14 @@ public class DialogueManager : MonoBehaviour
      private GameObject _currentDialogueBox; // Dialogue box that pops up when this script is triggered
     [SerializeField] private GameObject _dialogueBoxNoTail;
     [SerializeField] private GameObject _dialogueBoxLeftTail;
-    [SerializeField] private GameObject _dialogueBoxRightTail;
+    [SerializeField] private GameObject _dialogueBoxRightTailMom;
+    [SerializeField] private GameObject _dialogueBoxRightTailDad;
 
     [SerializeField] private GameObject _leftPortraitObject;
     [SerializeField] private GameObject _rightPortraitObject;
 
-    [SerializeField]
-    private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
+    //[SerializeField]
+    //private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
 
     //[SerializeField]
     //private TextMeshProUGUI _speakerNameText; // Name of the speaking character
@@ -78,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         //        _currentDialogueBox = _dialogueBoxLeftTail;
         //        break;
         //    case DialogueLine.DialogueBoxTail.Right:
-        //        _currentDialogueBox = _dialogueBoxRightTail;
+        //        _currentDialogueBox = _dialogueBoxRightTailMom;
         //        break;
         //}
 
@@ -134,7 +135,7 @@ public class DialogueManager : MonoBehaviour
         //turn off dialogue box if its already set. This can be improved later
         if (_currentDialogueBox != null) _currentDialogueBox.SetActive(false);
 
-        //set new dialogue box type to current dialoge box
+        //set new dialogue box type to current dialogue box
         switch (_lines.Peek().DialogueBoxTailEnum)
         {
             case DialogueLine.DialogueBoxTail.None:
@@ -143,8 +144,11 @@ public class DialogueManager : MonoBehaviour
             case DialogueLine.DialogueBoxTail.Left:
                 _currentDialogueBox = _dialogueBoxLeftTail;
                 break;
-            case DialogueLine.DialogueBoxTail.Right:
-                _currentDialogueBox = _dialogueBoxRightTail;
+            case DialogueLine.DialogueBoxTail.RightMom:
+                _currentDialogueBox = _dialogueBoxRightTailMom;
+                break;
+            case DialogueLine.DialogueBoxTail.RightDad:
+                _currentDialogueBox = _dialogueBoxRightTailDad;
                 break;
         }
 
@@ -257,7 +261,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        _dialogueBoxNoTail.SetActive(false);
+        _currentDialogueBox.SetActive(false);
 
         _currentTrigger.DialogueEnds?.Invoke();
         OnDialogueEnded?.Invoke();
@@ -283,7 +287,8 @@ public class DialogueLine
     public enum DialogueBoxTail
     {
         Left,
-        Right,
+        RightMom,
+        RightDad,
         None
     }
 }
