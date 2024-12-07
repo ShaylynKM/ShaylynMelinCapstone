@@ -8,31 +8,71 @@ public class Phase : MonoBehaviour
     /// <summary>
     /// This goes on a phase prefab (which contains all the pattern objects needed)
     /// </summary>
+    /// 
+
+    [SerializeField] private bool _beginAllAtOnce = false;
 
     [SerializeField] private Interval[] _patternPrefabs; // The bullet patterns needed for this phase. Could just be one
 
     [Tooltip("The amount of time before a phase is considered over")]
-    [SerializeField] private float _TimeBeforeEndPhase; // How long before the phase is officially considered over
+    [SerializeField] private float _timeBeforeEndPhase; // How long before the phase is officially considered over
 
     [Tooltip("The amount of time before a phase starts spawning objects")]
     [SerializeField] private float _timeBeforeStartPhase;
 
-    //private bool _phaseHasFinished = false;
-
-    //public bool PhaseHasFinished { get { return _phaseHasFinished; } }
     public UnityEvent PhaseOver;
-    private int _currentPhase = 0;
+
+    private int _currentPhase = 0; // Keeps track of what phase we're on
+    private int _completedPrefabs = 0; // How many of the prefabs in the phase we've run through
+    private bool _canStart = false; // Flag to keep the phase from starting before it's properly triggered
+
 
     private void Start()
     {      
-        for (int i = 0; i < _patternPrefabs.Length - 1; i++)        
+        for (int i = 0; i < _patternPrefabs.Length; i++)        
         {
             _patternPrefabs[i].gameObject.SetActive(false);
-            _patternPrefabs[i].Complete += () => BeginPhase(i + 1);
+            _patternPrefabs[i].Complete += () => OnPrefabComplete();
         }
-        //_patternPrefabs[_patternPrefabs.Length - 1].Complete += () => PhaseOver?.Invoke();
+    }
 
-        _patternPrefabs[_patternPrefabs.Length - 1].Complete += () => Invoke("PhaseOverInvoker", _TimeBeforeEndPhase);
+    public void BeginAfterTrigger()
+    {
+        _canStart = true;
+        BeginPhase(0);
+    }
+    
+
+    private void OnPrefabComplete()
+    {
+        _completedPrefabs++; // Increment how many of the phase's prefabs we've cycled through
+
+        if(_completedPrefabs < _patternPrefabs.Length)
+        {
+            BeginPhase(_completedPrefabs);
+        }
+        else
+        {
+            Invoke("PhaseOverInvoker", _timeBeforeEndPhase);
+        }
+    }
+
+    private void BeginAllPatternsAtOnce()
+    {
+        if(_canStart == false)
+        {
+            return;
+        }
+
+        foreach (var pattern in _patternPrefabs)
+        {
+            if (!pattern.gameObject.activeSelf) // Avoid activating the same pattern twice
+            {
+                pattern.gameObject.SetActive(true);
+                pattern.Begin();
+            }
+        }
+        Invoke("PhaseOverInvoker", _timeBeforeEndPhase);
     }
 
     private void PhaseOverInvoker()
@@ -42,43 +82,31 @@ public class Phase : MonoBehaviour
 
     public void BeginPhase(int phaseNumber)
     {
-        //_patternPrefabs[phaseNumber].gameObject.SetActive(true);
-        //_patternPrefabs[phaseNumber].Begin();
-        StartCoroutine(BeginWithDelay(phaseNumber));
+        if(_canStart == false)
+        {
+            return;
+        }
+
+        _currentPhase = phaseNumber; // The phase we drop in the inspector for the event
+
+        if(_beginAllAtOnce == true)
+        {
+            BeginAllPatternsAtOnce(); // Begin all the patterns simultaneously if flagged to do so
+        }
+        else
+        {
+            StartCoroutine(BeginWithDelay(phaseNumber)); // Otherwise we begin only the current indexed phase
+        }
     }
 
     IEnumerator BeginWithDelay(int phaseNumber)
     {
         yield return new WaitForSeconds(_timeBeforeStartPhase);
-        _patternPrefabs[phaseNumber].gameObject.SetActive(true);
-        _patternPrefabs[phaseNumber].Begin();
+
+        if (!_patternPrefabs[phaseNumber].gameObject.activeSelf) // Don't activate a prefab that's already active
+        {
+            _patternPrefabs[phaseNumber].gameObject.SetActive(true);
+            _patternPrefabs[phaseNumber].Begin();
+        }
     }
-
-    // Call this function to set a pattern prefab as active during a phase
-    //public void ActivatePatternPrefab()
-    //{
-    //    for(int i = 0; i < _patternPrefabs.Length; i++)
-    //    {
-    //        if (_patternPrefabs[i] != null && !_patternPrefabs[i].activeInHierarchy) // if we have objects in the array, and the current one we're checking is inactive
-    //        {
-    //            _patternPrefabs[i].SetActive(true); // Set this one as active
-
-    //            if(i < _patternPrefabs.Length - 1)
-    //            {
-    //                _phaseHasFinished = true; // This phase is over when we've reached the end of the array
-    //            }
-    //            break;
-    //        }
-    //        else if (_patternPrefabs[i] != null && _patternPrefabs[i].activeInHierarchy)
-    //        {
-    //            Debug.Log("Phase array element " + i + "is already active");
-    //            return;
-    //        }
-
-    //        else if (_patternPrefabs[i] = null)
-    //        {
-    //            Debug.LogError("Nothing in the pattern prefabs array.");
-    //        }
-    //    }
-    //}
 }
