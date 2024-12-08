@@ -63,6 +63,8 @@ public class HealthComponent : MonoBehaviour
         {
             OnHurtEffects?.Invoke();
 
+            AudioManager.Instance.PlayAudio("HurtSFX");
+
             _isInvincible = true; // Make the player unable to get hit again
 
             _currentHealth -= damageAmount; // subtract the amount of damage
