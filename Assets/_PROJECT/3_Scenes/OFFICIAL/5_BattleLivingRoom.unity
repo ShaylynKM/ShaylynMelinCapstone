@@ -4528,7 +4528,7 @@ PrefabInstance:
     - target: {fileID: 7524971890260172407, guid: 64ae4661e46755349932c1d9afea46aa, type: 3}
       propertyPath: <Dialogue>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: f98b6a8aa65bb144e936205724c1bbdb, type: 2}
+      objectReference: {fileID: 11400000, guid: e4c0d7ad6539f7f428d5ca420328045d, type: 2}
     - target: {fileID: 7524971890260172407, guid: 64ae4661e46755349932c1d9afea46aa, type: 3}
       propertyPath: DialogueEnds.m_PersistentCalls.m_Calls.Array.size
       value: 3

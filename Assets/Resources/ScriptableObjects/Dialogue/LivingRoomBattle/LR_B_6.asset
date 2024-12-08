@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_6
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 58ad65136221b8f4d87fe8d4b0737a96, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 5e9448455a5375f4e86ae4347bccbdeb, type: 3}
+    Line: 'YOU: I mean, yeah, I''ve been sleeping, I''m fine,'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'MOM: I hear you up at all hours of the night.'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'YOU: Um, I get the most work done at night. That''s why.'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: a9c61523140d73c44b8812bf7001e36b, type: 3}
+    Line: 'MOM: Honey, if you''re having trouble sleeping, it''s okay! Have you tried
+      reading before bed?'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 840cabdf003011549b62c1da14b27133, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: a9c61523140d73c44b8812bf7001e36b, type: 3}
+    Line: 'YOU: ...'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 1

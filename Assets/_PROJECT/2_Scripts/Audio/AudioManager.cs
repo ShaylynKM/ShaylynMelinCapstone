@@ -21,8 +21,8 @@ public class AudioManager : Singleton<AudioManager>
 
     private int _audioPoolSize; // How many audio sources we need
 
-    private float _lowestPitch = 0.8f; // The lowest pitch we can get with randomized pitch
-    private float _highestPitch = 1.2f; // The highest pitch we can get with randomized pitch
+    private float _lowestPitch = 0.9f; // The lowest pitch we can get with randomized pitch
+    private float _highestPitch = 1.1f; // The highest pitch we can get with randomized pitch
 
     protected override void Awake()
     {
@@ -76,7 +76,7 @@ public class AudioManager : Singleton<AudioManager>
                 return; // This audio source is taken by a paused audio. Try again
             }
 
-            if(_audioSource != null && audioData.CanPlay == true)
+            if (_audioSource != null) //&& audioData.CanPlay == true)
             {
                 AudioClip currentClip = audioData.Clip;
 

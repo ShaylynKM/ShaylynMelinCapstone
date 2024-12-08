@@ -233,12 +233,8 @@ public class DialogueManager : MonoBehaviour
             {
                 _dialogueText.maxVisibleCharacters++; // Increase the amount of visible characters one by one (only if they are not part of a format tag)
 
-                //if (_audioSource.isPlaying == false && dialogueLine.SpeakerVoice != null)
-                //{
-                //    _audioSource.clip = dialogueLine.SpeakerVoice; // Use the audio from the scriptable object
-                //    _audioSource.Play();
-                //}
-                //yield return new WaitForSecondsRealtime(_typingSpeed);
+                AudioManager.Instance.PlayAudio("VoiceBeep");
+                //yield return new WaitForSecondsRealtime(dialogueLine.TypingSpeed);
             }
             else
             {
