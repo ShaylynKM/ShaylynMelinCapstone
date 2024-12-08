@@ -17,7 +17,7 @@ MonoBehaviour:
   Mixer: {fileID: 24300002, guid: 9d15d59d65ecf0941b45cae163a16f3b, type: 2}
   ClipName: VoiceBeep
   ClipVolume: 1
-  ClipPitch: 1.0581806
+  ClipPitch: 1.1232462
   PitchRandomized: 1
   IsLooped: 0
   CanPlay: 1
