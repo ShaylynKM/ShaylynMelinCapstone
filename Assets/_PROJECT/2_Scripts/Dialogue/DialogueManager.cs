@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     private bool _isTyping = false; // If text is currently being typed
 
     private float _loadSpeed = 0.03f; // Delay to load in the text (so the first character isn't typed instantly)
+    private float _typeSpeed = 0.03f; // How fast the text appears
 
     private bool _insideFormatTag = false; // For making sure the text sounds don't play for format tags
     private DialogueTrigger _currentTrigger;
@@ -232,9 +233,7 @@ public class DialogueManager : MonoBehaviour
             if (_insideFormatTag == false)
             {
                 _dialogueText.maxVisibleCharacters++; // Increase the amount of visible characters one by one (only if they are not part of a format tag)
-
                 AudioManager.Instance.PlayAudio("VoiceBeep");
-                //yield return new WaitForSecondsRealtime(dialogueLine.TypingSpeed);
             }
             else
             {
@@ -243,7 +242,7 @@ public class DialogueManager : MonoBehaviour
 
             currentIndex++; // Continues to increment characters, even if they aren't being revealed (in the case of a format tag)
 
-            yield return new WaitForSeconds(dialogueLine.TypingSpeed);
+            yield return new WaitForSeconds(_typeSpeed);
 
             if (currentIndex >= dialogueLineCharLength)
             {
@@ -252,6 +251,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         _isTyping = false;// Indicates that typing is complete.
+
         _completeCurrentSentence = false;
     }
 
@@ -276,7 +276,7 @@ public class DialogueLine
     [TextArea]
     public string Line; // One line of dialogue
 
-    public float TypingSpeed = 0.05f; // How fast the text characters are being revealed in the dialogue box
+    //public float TypingSpeed = 0.2f; // How fast the text characters are being revealed in the dialogue box
 
     public DialogueBoxTail DialogueBoxTailEnum;
 

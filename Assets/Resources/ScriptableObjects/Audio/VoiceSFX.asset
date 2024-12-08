@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: VoiceSFX
   m_EditorClassIdentifier: 
   _clip:
-  - {fileID: 8300000, guid: 8f9089a803a4e364f87b838b3a373b09, type: 3}
+  - {fileID: 8300000, guid: 8a7912c12afb65943be32f036bd8970a, type: 3}
   Mixer: {fileID: 24300002, guid: 9d15d59d65ecf0941b45cae163a16f3b, type: 2}
   ClipName: VoiceBeep
-  ClipVolume: 0.5
-  ClipPitch: 1
+  ClipVolume: 1
+  ClipPitch: 1.0581806
   PitchRandomized: 1
   IsLooped: 0
-  CanPlay: 0
+  CanPlay: 1
   IsPaused: 0
   Source: {fileID: 0}

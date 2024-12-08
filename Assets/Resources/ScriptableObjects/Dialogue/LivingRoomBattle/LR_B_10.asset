@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_10
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 3285185dbaa256a488c134470f997f99, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: 'YOU: ... Forgetful?'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: 'MOM: ...'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: 'YOU: ...'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'MOM: Did you remember your laundry?'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'YOU: ... Laundry?'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'MOM: Sweetie, you''ve had a pile of clothes on the laundry room floor
+      for the past week. I even folded them for you.'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'MOM: Can you please get it soon?'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'YOU: Ack. Thanks. Yeah. Sorry. I''ll grab it when I get home from work.'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 3b32e92a2786a3a468a34c9476ed96b0, type: 3}
+    Line: 'MOM: Haha. No worries. I can just work around it today.'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 3b32e92a2786a3a468a34c9476ed96b0, type: 3}
+    Line: 'YOU: ...'
+    DialogueBoxTailEnum: 0

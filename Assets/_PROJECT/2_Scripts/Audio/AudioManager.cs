@@ -21,8 +21,8 @@ public class AudioManager : Singleton<AudioManager>
 
     private int _audioPoolSize; // How many audio sources we need
 
-    private float _lowestPitch = 0.9f; // The lowest pitch we can get with randomized pitch
-    private float _highestPitch = 1.1f; // The highest pitch we can get with randomized pitch
+    private float _lowestPitch = 1f; // The lowest pitch we can get with randomized pitch
+    private float _highestPitch = 1.2f; // The highest pitch we can get with randomized pitch
 
     protected override void Awake()
     {
@@ -100,10 +100,6 @@ public class AudioManager : Singleton<AudioManager>
 
                     if(_audioSource.isPlaying == true)
                         StartCoroutine(WaitBeforePlaying(audioName, currentClip.length)); // Must wait the length of the current clip before playing it again
-                }
-                else
-                {
-                    Debug.LogError("The clip" + audioName + "cannot be found.");
                 }
             }
         }

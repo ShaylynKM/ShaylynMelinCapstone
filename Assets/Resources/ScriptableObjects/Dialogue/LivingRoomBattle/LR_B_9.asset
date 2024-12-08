@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_9
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: "YOU: Hey, I\u2019m sorry, I wanna stay and chat but I\u2019m about to
+      be late for college."
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 3b32e92a2786a3a468a34c9476ed96b0, type: 3}
+    Line: 'MOM: Oh! Look at me, so forgetful. Hahaha.'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: 'MOM: Must run in the family.'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: You stare at each other awkwardly. Her eye twitches slightly.
+    DialogueBoxTailEnum: 3
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: "The boss music in your head would have increased in volume if that wouldn\u2019t
+      be disruptive to your own delusional experience."
+    DialogueBoxTailEnum: 3

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_11
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 556f662db03691f4bbe1749b18ea7e19, type: 3}
+    Line: 'MOM: You know, there are some really nice clothes in that pile. Maybe
+      take a look before you leave?'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 556f662db03691f4bbe1749b18ea7e19, type: 3}
+    Line: 'YOU: Uhh, I kinda don''t have time.'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 556f662db03691f4bbe1749b18ea7e19, type: 3}
+    Line: 'MOM: But, are you going out like that?'
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 840cabdf003011549b62c1da14b27133, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 556f662db03691f4bbe1749b18ea7e19, type: 3}
+    Line: 'YOU: Going out like what?'
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 840cabdf003011549b62c1da14b27133, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 9d0c1969e979b474b90067171be6abc4, type: 3}
+    Line: Your dad looks up from his mug and glances nervously between the two of
+      you.
+    DialogueBoxTailEnum: 3
