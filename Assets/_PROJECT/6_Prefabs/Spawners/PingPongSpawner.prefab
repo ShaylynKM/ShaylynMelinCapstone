@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8932850357733245318}
   - component: {fileID: 7468261826583200224}
   - component: {fileID: 5352628614067341027}
-  - component: {fileID: 3976732252162368238}
+  - component: {fileID: 3328664092374037382}
   m_Layer: 0
   m_Name: PingPongSpawner
   m_TagString: Untagged
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b9e0e4742a04647aaceb1c7e1de1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: {x: 0, y: 0, z: 0}
-  _speed: 1
   _pointA: {fileID: 0}
   _pointB: {fileID: 0}
+  _pingPongSpeed: 0
+  _pingPongObjectAngle: 0
 --- !u!114 &5352628614067341027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,12 +62,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f668b02439177b42a92a5b78915405e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnObject: {fileID: 5432577806339451261, guid: fba09b2284fa2674b882d845205a7464, type: 3}
-  _spawnAmount: 1
-  _spawnedObjectAngles: []
-  _spawnedObjectAngle: 270
   _poolSize: 20
---- !u!114 &3976732252162368238
+  _spawnedObjectSpeed: 0
+  _spawnedObject: {fileID: 0}
+  _spawnerShouldRotate: 0
+  _spawnerShouldFollowPlayer: 0
+  _spawnerRotationSpeed: 5
+  _playerObject: {fileID: 0}
+  _timeBeforeMoving: 0
+  _timeBeforeDespawn: 0
+  _spawnAmount: 1
+  _spawnedObjectAngle: 270
+  _spawnedObjectAngles: []
+  _sineAmplitude: 0
+  _sineFrequency: 0
+  _invertSine: 0
+  _spiralAngleIncrement: 0
+  _rateOfSpiralGrowth: 0
+  _homingTarget: {fileID: 0}
+  _trapTarget: {fileID: 0}
+--- !u!114 &3328664092374037382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,9 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92da0ded9b444839a73d808596945076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnOnStart: 1
-  timesToRun: 1000
-  timeInterval: 0.2
+  _spawnOnStart: 0
+  timesToRun: 0
+  timeInterval: 0
   Command:
     m_PersistentCalls:
       m_Calls:

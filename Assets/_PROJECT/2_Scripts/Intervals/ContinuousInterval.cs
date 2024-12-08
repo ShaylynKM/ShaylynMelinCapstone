@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class ContinuousInterval : Interval
 {
     protected float _currentTime;
-    [SerializeField] private int timesToRun = 5;//number of times to run
+    [SerializeField] private int timesToRun;//number of times to run
     [SerializeField] private float timeInterval;
     [SerializeField] private UnityEvent Command;
 

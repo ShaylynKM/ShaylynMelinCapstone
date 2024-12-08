@@ -64,15 +64,40 @@ public class Phase : MonoBehaviour
             return;
         }
 
+        _completedPrefabs = 0;
+
         foreach (var pattern in _patternPrefabs)
         {
-            if (!pattern.gameObject.activeSelf) // Avoid activating the same pattern twice
+            if(!pattern.IsActive)
             {
                 pattern.gameObject.SetActive(true);
                 pattern.Begin();
             }
         }
-        Invoke("PhaseOverInvoker", _timeBeforeEndPhase);
+        StartCoroutine(WaitForPatternsComplete());
+    }
+
+    private IEnumerator WaitForPatternsComplete()
+    {
+        while(!AllPatternsComplete())
+        {
+            yield return null; // Wait for the patterns to be complete
+        }
+
+        yield return new WaitForSeconds(_timeBeforeEndPhase); // Once all the patterns are complete, we can end
+        PhaseOverInvoker(); // And the phase is over
+    }
+
+    private bool AllPatternsComplete()
+    {
+        foreach(var pattern in _patternPrefabs)
+        {
+            if(pattern.IsActive)
+            {
+                return false;
+            }
+        }
+        return true; // Only return true once all our patterns are active
     }
 
     private void PhaseOverInvoker()
