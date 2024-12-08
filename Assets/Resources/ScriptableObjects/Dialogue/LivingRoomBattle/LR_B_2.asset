@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e4245d862e420449c75472041e58fb, type: 3}
+  m_Name: LR_B_2
+  m_EditorClassIdentifier: 
+  DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 58ad65136221b8f4d87fe8d4b0737a96, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: a9c61523140d73c44b8812bf7001e36b, type: 3}
+    Line: 'YOU: Ha, ha, sorry I haven''t been around, I''m just really busy, like...'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'YOU: ... like...'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: Your mom expectantly bores holes in you with her eyes.
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 3
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: c737b6ec5ecd20b4cac0c099ac939651, type: 3}
+    Line: 'YOU: ... homework, and, yeah.'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: e8f042b78d30f244fb88d10935bddab3, type: 3}
+    Line: 'MOM: Mhm. Anyway.'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
+    Line: 'MOM: How''ve you been?'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 1
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
+    Line: 'YOU: Uh.'
+    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 0
