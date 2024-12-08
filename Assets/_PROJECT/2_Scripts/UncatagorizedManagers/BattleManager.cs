@@ -14,10 +14,10 @@ public class BattleManager : MonoBehaviour
     /// This script could have a list of the phase objects to activate??? Deciding if I want them all in the hierarchy at the start or instantiate them at runtime (it would be easier to set up events if they were all present in the scene at once
     /// </summary>
 
-    [SerializeField] private GameObject[] _phases; // Objects for each phase in the entire battle
+    private GameObject[] _phases; // Objects for each phase in the entire battle
     //[SerializeField] private GameObject[] _dialogueObjects; // Objects containing the dialogue for each section
 
-    public UnityEvent PhaseFinished;
+   // public UnityEvent PhaseFinished;
     public UnityEvent OnBeginScene;
 
     private void Start()
@@ -43,6 +43,39 @@ public class BattleManager : MonoBehaviour
     public void Begin()
     {
         OnBeginScene?.Invoke();
+    }
+
+    //public void StartPhase()
+    //{
+    //    for(int i = 0; i < _phases.Length; i++)
+    //    {
+    //        if(_phases[i] != null && !_phases[i].activeInHierarchy)
+    //        {
+    //            _phases[i].SetActive(true); // Set this phase as active
+
+    //            Phase phaseScript = _phases[i].GetComponent<Phase>();
+
+    //            if (phaseScript.PhaseHasFinished == true)
+    //            {
+    //                PhaseFinished.Invoke(); // Invoke the event for when a phase finishes
+    //            }
+    //            break;
+    //        }
+    //        else if (_phases[i] != null && _phases[i].activeInHierarchy)
+    //        {
+    //            Debug.Log("Phase array element " + i + "is already active");
+    //            return;
+    //        }
+
+    //        else if (_phases[i] = null)
+    //        {
+    //            Debug.LogError("Nothing in the phase array.");
+    //        }
+    //    }
+    //}
+    public void StartNextPhase()
+    {
+
     }
     public void StartSpecificPhase(Phase newPhase)
     {
