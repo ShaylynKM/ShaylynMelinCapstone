@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayAudio("BattleMusic");
+
         var phases = FindObjectsOfType<Phase>();
         _phases = new GameObject[phases.Length];
         for (int i = 0; i < _phases.Length; i++)
@@ -30,6 +32,17 @@ public class BattleManager : MonoBehaviour
         SetPhasesInactive();
 
         Invoke("Begin", .1f);
+    }
+
+    public void StopMusic(string musicName, float duration)
+    {
+        AudioManager.Instance.FadeAudio(musicName, duration, 0f);
+        AudioManager.Instance.StopAudio(musicName);
+    }
+
+    public void Die()
+    {
+        StopMusic("BattleMusic", 0.5f); // Cut music off more abruptly when dying
     }
 
     public void SetPhasesInactive()
@@ -45,34 +58,6 @@ public class BattleManager : MonoBehaviour
         OnBeginScene?.Invoke();
     }
 
-    //public void StartPhase()
-    //{
-    //    for(int i = 0; i < _phases.Length; i++)
-    //    {
-    //        if(_phases[i] != null && !_phases[i].activeInHierarchy)
-    //        {
-    //            _phases[i].SetActive(true); // Set this phase as active
-
-    //            Phase phaseScript = _phases[i].GetComponent<Phase>();
-
-    //            if (phaseScript.PhaseHasFinished == true)
-    //            {
-    //                PhaseFinished.Invoke(); // Invoke the event for when a phase finishes
-    //            }
-    //            break;
-    //        }
-    //        else if (_phases[i] != null && _phases[i].activeInHierarchy)
-    //        {
-    //            Debug.Log("Phase array element " + i + "is already active");
-    //            return;
-    //        }
-
-    //        else if (_phases[i] = null)
-    //        {
-    //            Debug.LogError("Nothing in the phase array.");
-    //        }
-    //    }
-    //}
     public void StartNextPhase()
     {
 
@@ -85,6 +70,6 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd()
     {
-        // do stuff
+        StopMusic("BattleMusic", 3f);
     }
 }

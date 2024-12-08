@@ -12,16 +12,13 @@ public class HealthComponent : MonoBehaviour
 
     private bool _isInvincible = false;
 
-    private CircleCollider2D _collider;
-
     public UnityEvent StopFlashingAnimation;
 
     public UnityEvent OnHurtEffects;
 
-    private void Awake()
-    {
-        _collider = GetComponent<CircleCollider2D>();
-    }
+    public UnityEvent OnDeath;
+
+    public UnityEvent UpdateUI;
 
     public int CurrentHealth
     {
@@ -47,8 +44,6 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
-    public UnityEvent OnDeath;
-    public UnityEvent UpdateUI;
 
     void Start()
     {

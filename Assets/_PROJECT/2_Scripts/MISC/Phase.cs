@@ -85,6 +85,7 @@ public class Phase : MonoBehaviour
         }
 
         yield return new WaitForSeconds(_timeBeforeEndPhase); // Once all the patterns are complete, we can end
+
         PhaseOverInvoker(); // And the phase is over
     }
 

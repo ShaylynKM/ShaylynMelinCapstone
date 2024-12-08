@@ -24,6 +24,8 @@ public class AudioManager : Singleton<AudioManager>
     private float _lowestPitch = 1f; // The lowest pitch we can get with randomized pitch
     private float _highestPitch = 1.2f; // The highest pitch we can get with randomized pitch
 
+    private float _targetVolume;
+
     protected override void Awake()
     {
         base.Awake();
@@ -63,6 +65,39 @@ public class AudioManager : Singleton<AudioManager>
             }
         }
         return null;
+    }
+
+    public void FadeAudio(string audioName, float duration, float targetVolume)
+    {
+        if(_audioPairs.TryGetValue(audioName, out var audioData)) // If our audio is in the dictionary, assign its value to "audioData"
+        {
+            if(audioData.Source != null)
+            {
+                StartCoroutine(StartFade(audioData.Source, duration, targetVolume));
+            }
+        }
+    }
+
+    private IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume, float tolerance = 0.02f)
+    {
+        float currentTime = 0;
+        float startVolume = audioSource.volume; // How loud the audio currently is
+
+        while(currentTime < duration) // While we're in the duration to fade the audio
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, currentTime / duration); // Fade the audio
+
+            if(Mathf.Abs(audioSource.volume - targetVolume) <= tolerance) // Tolerance to make sure we don't require an exact specific point to end the loop
+            {
+                audioSource.volume = targetVolume; // Set the volume to the correct one
+            }
+
+            yield return null; // Continue returning null until we're at the correct volume
+        }
+
+        audioSource.volume = targetVolume; // Set the final volume
+        yield break;
     }
 
     public void PlayAudio(string audioName)
