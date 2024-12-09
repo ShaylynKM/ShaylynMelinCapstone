@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 { 
@@ -20,8 +21,12 @@ public class BattleManager : MonoBehaviour
    // public UnityEvent PhaseFinished;
     public UnityEvent OnBeginScene;
 
+    [SerializeField] private GameObject _dieScreen;
+
     private void Start()
     {
+        _dieScreen.SetActive(false);
+
         AudioManager.Instance.PlayAudio("BattleMusic");
 
         var phases = FindObjectsOfType<Phase>();
@@ -40,9 +45,19 @@ public class BattleManager : MonoBehaviour
         AudioManager.Instance.StopAudio(musicName);
     }
 
+    public void QuitMainMenu()
+    {
+        SceneManager.LoadScene("0_MainMenu");
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene("2_Battle");
+    }
+
     public void Die()
     {
         StopMusic("BattleMusic", 0.5f); // Cut music off more abruptly when dying
+        _dieScreen.SetActive(true);
     }
 
     public void SetPhasesInactive()

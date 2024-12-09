@@ -29,8 +29,7 @@ public class PlayerBattleController : PlayerController
 
     public void OnPlayerDeath()
     {
-        _currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(_currentScene.name);
+        
     }
 
     public void OnPlayerDamaged(int damage)
