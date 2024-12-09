@@ -1371,8 +1371,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8570009236961181986, guid: 32697bb255e114f459f8fea643234b06, type: 3}
+      propertyPath: _sfxSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570009236961181986, guid: 32697bb255e114f459f8fea643234b06, type: 3}
+      propertyPath: _musicSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570009236961181986, guid: 32697bb255e114f459f8fea643234b06, type: 3}
+      propertyPath: _voiceToggle
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1999923850866126036, guid: 32697bb255e114f459f8fea643234b06, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32697bb255e114f459f8fea643234b06, type: 3}

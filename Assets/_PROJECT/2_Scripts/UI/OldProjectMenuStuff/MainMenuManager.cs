@@ -25,6 +25,11 @@ public class MainMenuManager : MonoBehaviour
         _loadingScreen.SetActive(false);
     }
 
+    private void Start()
+    {
+       
+    }
+
     public void OnNewGameStart()
     {
         StartCoroutine(LoadAsync(_firstSceneIndex));

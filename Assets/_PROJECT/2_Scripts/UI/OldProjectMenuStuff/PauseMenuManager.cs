@@ -32,15 +32,19 @@ public class PauseMenuManager : Singleton<PauseMenuManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && IsPaused == false)
+        // I'm sorry
+        if(_settingsMenu.activeInHierarchy == false)
         {
-            Debug.Log("pause");
-            OnPause();
-        }
-        else if(Input.GetKeyDown(KeyCode.Escape) && IsPaused == true)
-        {
-            Debug.Log("resume");
-            OnResume();
+            if (Input.GetKeyDown(KeyCode.Escape) && IsPaused == false)
+            {
+                Debug.Log("pause");
+                OnPause();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && IsPaused == true)
+            {
+                Debug.Log("resume");
+                OnResume();
+            }
         }
     }
 

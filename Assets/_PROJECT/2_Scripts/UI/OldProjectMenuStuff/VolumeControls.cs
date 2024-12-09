@@ -6,24 +6,21 @@ using UnityEngine.SceneManagement;
 public class VolumeControls : Singleton<VolumeControls>
 {
     [SerializeField]
-    private AudioMixer _audioMixer;
+    private AudioMixer _musicMixer;
 
     [SerializeField]
-    private Slider _volumeSlider; // For the overall volume
+    private AudioMixer _sfxMixer;
 
     [SerializeField]
-    private Toggle _voiceToggle; // For muting the voiced effects
+    private Slider _musicSlider;
+
+    [SerializeField]
+    private Slider _sfxSlider;
 
     private const float _maxValue = 0f; // Audio volume in db
 
-    [SerializeField]
-    private float _currentSavedVolume;
-
-    [SerializeField]
-    private bool _voiceIsAudible = true;
-
-    [SerializeField]
-    private AudioSource _typeSFX;
+    private float _currentMusicVolume;
+    private float _currentSFXVolume;
 
     protected override void Awake()
     {
@@ -36,24 +33,19 @@ public class VolumeControls : Singleton<VolumeControls>
     {
         SceneManager.activeSceneChanged += OnActiveSceneChanged; // Subscribes our scene changing method to the callback event
 
-        _currentSavedVolume = PlayerPrefs.GetFloat("Volume", _maxValue); // Assigns the volume as the saved volume (unless there is no saved volume, then the default, maximum level is used
-
-        _voiceIsAudible = PlayerPrefs.GetInt("VoiceMute", 1) == 1;
+        _currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", _maxValue); // Assigns the volume as the saved volume (unless there is no saved volume, then the default, maximum level is used)
+        _currentSFXVolume = PlayerPrefs.GetFloat("SFXVolume", _maxValue);
 
         OnSliderFound();
-        OnToggleFound();
-        AssignTypeSFX();
-        SetVolume(_currentSavedVolume);
-        SFXMuteState();
+        SetMusicVolume(_currentMusicVolume);
+        SetSFXVolume(_currentSFXVolume);
     }
 
     void OnActiveSceneChanged(Scene previous, Scene next)
     {
         OnSliderFound();
-        OnToggleFound();
-        AssignTypeSFX();
-        SetVolume(_currentSavedVolume);
-        SFXMuteState();
+        SetMusicVolume(_currentMusicVolume);
+        SetSFXVolume(_currentSFXVolume);
     }
 
     protected override void OnDestroy()
@@ -62,16 +54,29 @@ public class VolumeControls : Singleton<VolumeControls>
         SceneManager.activeSceneChanged -= OnActiveSceneChanged; // Unsubscribes from the callback method when this object is destroyed
     }
 
-    // Sets the volume for all audio
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float sliderValue)
     {
-        _currentSavedVolume = volume;
+        // -60 as the lowest value because past that isn't audible anyway
+        float dB = Mathf.Lerp(-60, 0f, sliderValue);
 
-        PlayerPrefs.SetFloat("Volume", _currentSavedVolume);
+        // Save the values
+        _currentMusicVolume = sliderValue;
 
-        _audioMixer.SetFloat("MasterVolume", volume);
+        PlayerPrefs.SetFloat("MusicVolume", _currentMusicVolume);
 
-        PlayerPrefs.SetFloat("Volume", volume);
+        _musicMixer.SetFloat("MusicVolume", dB); // Apply to the mixer
+    }
+
+    public void SetSFXVolume(float sliderValue)
+    {
+        float dB = Mathf.Lerp(-60f, 0f, sliderValue);
+
+        // Save the values
+        _currentSFXVolume = sliderValue;
+
+        PlayerPrefs.SetFloat("SFXVolume", _currentSFXVolume);
+
+        _sfxMixer.SetFloat("SFXVolume", dB); // Apply to the mixer
     }
 
     // Finds and assigns a new volume slider for when the scene changes
@@ -84,81 +89,16 @@ public class VolumeControls : Singleton<VolumeControls>
         {
             if (slider.name == "MusicSlider")
             {
-                _volumeSlider = slider;
-
-                break;
+                _musicSlider = slider;
+                _musicSlider.onValueChanged.AddListener(SetMusicVolume);
+                _musicSlider.value = _currentMusicVolume;
             }
-        }
-
-        if (_volumeSlider != null)
-        {
-            _volumeSlider.onValueChanged.AddListener(SetVolume);
-            _volumeSlider.value = _currentSavedVolume;
-        }
-
-        else
-        {
-            Debug.Log("Slider not found");
-        }
-
-    }
-
-    // Assigns the muted/unmuted state of the mute toggle in relation to the voice SFX
-    private void SFXMuteState()
-    {
-        if (_typeSFX != null)
-        {
-            _typeSFX.mute = !_voiceIsAudible;
-        }
-    }
-
-    public void OnVoiceMute(bool isMuted)
-    {
-        _voiceIsAudible = !isMuted;
-        PlayerPrefs.SetInt("VoiceMute", _voiceIsAudible ? 1 : 0); // Saves the bool in PlayerPrefs as an Int, since PlayerPrefs doesn't natively support boolean values
-        SFXMuteState();
-    }
-
-    // Finds and assigns a new voice effect toggle for when the scene changes
-    private void OnToggleFound()
-    {
-        Toggle[] toggles = FindObjectsOfType<Toggle>(true);
-
-        // Makes sure we find the correct toggle before proceeding
-        foreach (Toggle toggle in toggles)
-        {
-            if (toggle.name == "VoiceToggle")
+            else if (slider.name == "SFXSlider")
             {
-                _voiceToggle = toggle;
-
-                break;
+                _sfxSlider = slider;
+                _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+                _sfxSlider.value = _currentSFXVolume;
             }
-        }
-
-        if (_voiceToggle != null)
-        {
-            // Assigns the listener for the value changed
-            _voiceToggle.onValueChanged.AddListener(delegate
-            {
-                OnVoiceMute(!_voiceToggle.isOn);
-            });
-
-            _voiceToggle.isOn = _voiceIsAudible; // Sets the toggle in the scene to on or off based on the current mute state
-        }
-        else
-        {
-            Debug.Log("Mute toggle not found");
-        }
-    }
-
-    // Finds and assigns the typing sounds
-    private void AssignTypeSFX()
-    {
-        GameObject typeSFXObject = GameObject.FindWithTag("TypingSFX"); // Finds the object with the audio source
-
-        if (typeSFXObject != null)
-        {
-            _typeSFX = typeSFXObject.GetComponent<AudioSource>();
         }
     }
 }
