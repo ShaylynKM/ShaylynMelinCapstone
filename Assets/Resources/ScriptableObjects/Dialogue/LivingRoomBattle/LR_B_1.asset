@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: LR_B_1
   m_EditorClassIdentifier: 
   DialogueLines:
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
+    Line: You're about to be late for class.
+    DialogueBoxTailEnum: 3
+  - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
+    RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
+    Line: You tried to sneak past your parents, but, as it turns out, open-plan houses
+      are awful for sneaking.
+    DialogueBoxTailEnum: 3
   - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
     RightPortraitSprite: {fileID: 21300000, guid: a9c61523140d73c44b8812bf7001e36b, type: 3}
     Line: 'MOM: We hardly see you around anymore!'
-    TypingSpeed: 0.05
     DialogueBoxTailEnum: 1
   - LeftPortraitSprite: {fileID: 21300000, guid: 10e37dbb8a0bf3746abc902f72e839f8, type: 3}
     RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
     Line: 'MOM: Hahaha, do we even live in the same house!?'
-    TypingSpeed: 0.05
     DialogueBoxTailEnum: 1
   - LeftPortraitSprite: {fileID: 21300000, guid: 1df7243114f420749910700837a948ba, type: 3}
     RightPortraitSprite: {fileID: 21300000, guid: 308b873d4bcbb134dacf66a23faef3ab, type: 3}
     Line: Why do you hear boss music?
-    TypingSpeed: 0.05
     DialogueBoxTailEnum: 3

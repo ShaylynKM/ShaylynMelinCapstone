@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: LR_O_1
   m_EditorClassIdentifier: 
   DialogueLines:
-  - _portraitSprites: []
-    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
     Line: You make it downstairs.
-    TypingSpeed: 0.05
-  - _portraitSprites: []
-    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    DialogueBoxTailEnum: 3
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
     Line: You don't have much time to get to class.
-    TypingSpeed: 0.05
-  - _portraitSprites: []
-    _dialogueBoxSprite: {fileID: 21300000, guid: 3bd37a602eef9054ebf3a0f42e19d07f, type: 3}
+    DialogueBoxTailEnum: 3
+  - LeftPortraitSprite: {fileID: 0}
+    RightPortraitSprite: {fileID: 0}
     Line: Maybe if you're really, <i>really</i> quiet, you can sneak past your parents
       unnoticed...
-    TypingSpeed: 0.05
+    DialogueBoxTailEnum: 3

@@ -30,6 +30,8 @@ public class AudioManager : Singleton<AudioManager>
     {
         base.Awake();
 
+        _isPersistent = true;
+
         _audioSOs = Resources.LoadAll<AudioSO>("ScriptableObjects/Audio"); // Load all the SOs from the Audio folder in Resources
         _audioPairs = new Dictionary<string, AudioSO>(); // Our dictionary of audioSOs
         _audioPoolSize = _audioSOs.Length; // We have as many audios in our pool as there are audioSOs

@@ -67,28 +67,6 @@ public class DialogueManager : MonoBehaviour
     {
         _currentTrigger = dialogueTrigger;
 
-        ////turn off dialogue box if its already set. This can be improved later
-        //if (_currentDialogueBox != null) _currentDialogueBox.SetActive(false);
-
-        ////set new dialogue box type to current dialoge box
-        //switch(_lines.Peek().DialogueBoxTailEnum)
-        //{
-        //    case DialogueLine.DialogueBoxTail.None:
-        //        _currentDialogueBox = _dialogueBoxNoTail;
-        //        break;
-        //    case DialogueLine.DialogueBoxTail.Left:
-        //        _currentDialogueBox = _dialogueBoxLeftTail;
-        //        break;
-        //    case DialogueLine.DialogueBoxTail.Right:
-        //        _currentDialogueBox = _dialogueBoxRightTailMom;
-        //        break;
-        //}
-
-        //_dialogueText = _currentDialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-
-        ////reactivate dialogue box
-        //_currentDialogueBox.SetActive(true);
-
         PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue); // Change the input state to the dialogue state
         StartCoroutine(WaitForDialogueLoad());
         

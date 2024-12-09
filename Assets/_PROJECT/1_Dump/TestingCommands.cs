@@ -11,14 +11,14 @@ public class TestingCommands : Singleton<TestingCommands>
         base.Awake();
     }
 
-    public string MainMenuScene, Scene1, Scene2, Scene3;
+    public string Scene1, Scene2, Scene3;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            SceneManager.LoadScene(MainMenuScene);
-        }
+        //if(Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    SceneManager.LoadScene(MainMenuScene);
+        //}
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SceneManager.LoadScene(Scene1);
