@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class VolumeControls : Singleton<VolumeControls>
 {
-    /// <summary>
-    /// NEEDS TO BE REFACTORED
-    /// Some stuff in here won't be applicable, and some of it just needs to be written a little better
-    /// </summary>
-
     [SerializeField]
     private AudioMixer _audioMixer;
 
@@ -30,10 +25,15 @@ public class VolumeControls : Singleton<VolumeControls>
     [SerializeField]
     private AudioSource _typeSFX;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         _isPersistent = true;
 
+    }
+
+    private void Start()
+    {
         SceneManager.activeSceneChanged += OnActiveSceneChanged; // Subscribes our scene changing method to the callback event
 
         _currentSavedVolume = PlayerPrefs.GetFloat("Volume", _maxValue); // Assigns the volume as the saved volume (unless there is no saved volume, then the default, maximum level is used
@@ -56,8 +56,9 @@ public class VolumeControls : Singleton<VolumeControls>
         SFXMuteState();
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         SceneManager.activeSceneChanged -= OnActiveSceneChanged; // Unsubscribes from the callback method when this object is destroyed
     }
 
@@ -79,9 +80,9 @@ public class VolumeControls : Singleton<VolumeControls>
         Slider[] sliders = FindObjectsOfType<Slider>(true);
 
         // Makes sure we find the correct slider before proceeding
-        foreach(Slider slider in sliders)
+        foreach (Slider slider in sliders)
         {
-            if(slider.name == "VolumeSlider")
+            if (slider.name == "MusicSlider")
             {
                 _volumeSlider = slider;
 
@@ -89,7 +90,7 @@ public class VolumeControls : Singleton<VolumeControls>
             }
         }
 
-        if(_volumeSlider != null)
+        if (_volumeSlider != null)
         {
             _volumeSlider.onValueChanged.AddListener(SetVolume);
             _volumeSlider.value = _currentSavedVolume;
@@ -157,7 +158,7 @@ public class VolumeControls : Singleton<VolumeControls>
 
         if (typeSFXObject != null)
         {
-            _typeSFX = typeSFXObject.GetComponent<AudioSource>();           
+            _typeSFX = typeSFXObject.GetComponent<AudioSource>();
         }
     }
 }
