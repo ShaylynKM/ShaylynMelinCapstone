@@ -27,7 +27,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGameStart()
     {
-        StartCoroutine(LoadSceneAsync(_firstSceneIndex));
+        StartCoroutine(LoadAsync(_firstSceneIndex));
     }
 
     public void OnSettings()
@@ -53,19 +53,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    // For asynchronous loading
-    IEnumerator LoadSceneAsync(string sceneName)
-    {
-        // Load by scene name
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
-        _loadingScreen.SetActive(true);
-
-        yield return null;
-    }
-
-    IEnumerator LoadSceneAsync(int sceneID)
+    IEnumerator LoadAsync(int sceneID)
     {
         // Load by scene index
 

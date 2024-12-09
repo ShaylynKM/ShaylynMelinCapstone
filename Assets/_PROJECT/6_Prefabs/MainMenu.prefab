@@ -32,13 +32,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 387380031127188488, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 749326798283398875, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 960921242575574967, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
       propertyPath: m_text
-      value: Options
+      value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 960921242575574967, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
       propertyPath: m_fontSize
@@ -116,10 +120,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2301192595928885764, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2377850343294427624, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7e28b9289410f6b42b27a8b119f88c62, type: 3}
+    - target: {fileID: 2874890755883450879, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098986290361432735, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5440345466583475078, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
       propertyPath: m_SizeDelta.x
       value: 400
@@ -300,6 +316,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6264024507716733454, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
     - {fileID: 8154387834339206313, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
+    - {fileID: 2453608536391005472, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7151c2a6011d0646ba249fb8ae1b2da, type: 3}
