@@ -11,15 +11,10 @@ public class TestingCommands : Singleton<TestingCommands>
         base.Awake();
     }
 
-    public string MainMenuScene, Scene1, Scene2, Scene3, Scene4, Scene5, Scene6;
+    public string MainMenuScene, Scene1, Scene2, Scene3;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            string currentScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentScene); // Reload this scene
-        }
         if(Input.GetKeyDown(KeyCode.Alpha0))
         {
             SceneManager.LoadScene(MainMenuScene);
@@ -35,22 +30,6 @@ public class TestingCommands : Singleton<TestingCommands>
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SceneManager.LoadScene(Scene3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SceneManager.LoadScene(Scene4);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SceneManager.LoadScene(Scene5);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SceneManager.LoadScene(Scene5);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SceneManager.LoadScene(Scene6);
         }
     }
 }

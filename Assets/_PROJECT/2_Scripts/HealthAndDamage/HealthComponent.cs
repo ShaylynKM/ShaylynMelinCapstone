@@ -93,6 +93,7 @@ public class HealthComponent : MonoBehaviour
     {
         if(_currentHealth < _maxHealth)
         {
+            AudioManager.Instance.PlayAudio("HealSFX");
             _currentHealth += healAmount; // Add the HP
         }
         UpdateUIInvoker();
