@@ -31,7 +31,7 @@ public class Phase : MonoBehaviour
     {      
         for (int i = 0; i < _patternPrefabs.Length; i++)        
         {
-            _patternPrefabs[i].gameObject.SetActive(false);
+            //_patternPrefabs[i].gameObject.SetActive(false);
             _patternPrefabs[i].Complete += () => OnPrefabComplete();
         }
     }
