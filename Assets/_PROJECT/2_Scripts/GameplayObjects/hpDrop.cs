@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class hpDrop : PoolObject
+public class hpDrop : MonoBehaviour
 {
-    public override void OnDespawn()
-    {
-        PoolManager.Instance.Despawn(this);
-    }
+    public UnityEvent OnDestroyHP;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerBattleController>() || collision.GetComponent<BulletDestroyer>())
-            OnDespawn();
+        if (collision.GetComponent<PlayerBattleController>())
+        {
+            OnDestroyHP?.Invoke();
+        }
     }
 }
