@@ -15,18 +15,15 @@ public class SpawnAndDespawnHP : MonoBehaviour
     private void Start()
     {
         _hP.gameObject.SetActive(false);
-        Debug.Log("Set hp inactive");
     }
 
     public void SpawnHealth()
     {
-        Debug.Log("Trying to spawn health");
         StartCoroutine(WaitForSpawn());
     }
 
     public void DespawnHealth()
     {
-        Debug.Log("Trying to despawn health");
         if(_hP != null)
         {
             Destroy(_hP.gameObject);
@@ -35,13 +32,9 @@ public class SpawnAndDespawnHP : MonoBehaviour
 
     IEnumerator WaitForSpawn()
     {
-        Debug.Log("Waiting to spawn health");
         yield return new WaitForSeconds(_timeBeforeSpawn);
-        Debug.Log("Waited to spawn health");
         _hP.gameObject.SetActive(true);
-        Debug.Log("Spawned health");
         yield return new WaitForSeconds(_timeBeforeDespawn);
-        Debug.Log("Waited to despawn health");
         DespawnHealth();
     }
 
