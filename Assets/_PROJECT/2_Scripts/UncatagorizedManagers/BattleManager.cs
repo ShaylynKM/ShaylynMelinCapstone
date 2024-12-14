@@ -62,6 +62,8 @@ public class BattleManager : MonoBehaviour
 
     public void SetPhasesInactive()
     {
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Dialogue);
+
         foreach (GameObject phase in _phases)
         {
             phase.SetActive(false);
@@ -79,6 +81,7 @@ public class BattleManager : MonoBehaviour
     }
     public void StartSpecificPhase(Phase newPhase)
     {
+        PlayerInputManager.Instance.ChangePlayerInputState(PlayerInputState.Battle);
         newPhase.gameObject.SetActive(true);
         newPhase.BeginPhase(0);
     }

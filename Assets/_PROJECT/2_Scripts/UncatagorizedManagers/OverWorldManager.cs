@@ -1,16 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class OverWorldManager : MonoBehaviour
 {
-    private void Update()
+    public UnityEvent OnStartBattle;
+
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("2_Battle");
-        }
+        StartCoroutine(WaitToStart());
+    }
+
+    IEnumerator WaitToStart()
+    {
+        yield return new WaitForSeconds(5);
+        OnStartBattle?.Invoke();
     }
 }

@@ -20,12 +20,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject _leftPortraitObject;
     [SerializeField] private GameObject _rightPortraitObject;
 
-    //[SerializeField]
-    //private GameObject[] _characterPortraits; // The objects containing the character portrait(s) for each line
-
-    //[SerializeField]
-    //private TextMeshProUGUI _speakerNameText; // Name of the speaking character
-
     [SerializeField]
     private TextMeshProUGUI _dialogueText; // What the character is saying; should pop up inside the dialogue box
 
@@ -40,6 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     private bool _insideFormatTag = false; // For making sure the text sounds don't play for format tags
     private DialogueTrigger _currentTrigger;
+
     private void Awake()
     {
         _dialogueBoxNoTail.SetActive(false);
@@ -91,11 +86,6 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogueLine()
     {
-        // Trying to figure out how to display the correct sprites for the dialogue box + however many character portraits are present, based on the line in the scriptable object
-        //SpriteRenderer dialogueSprite = _dialogueBox.GetComponent<SpriteRenderer>();
-        //dialogueSprite = ????
-
-
         // If we are currently typing, complete the current sentence immediately
         if (_isTyping == true)
         {
